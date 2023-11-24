@@ -15,7 +15,7 @@ Il mail client, associato a un particolare account di posta elettronica, ha un�
 leggere i messaggi della casella di posta        
 - rispondere a un messaggio ricevuto, in Reply (al mittente del messaggio) e/o in Reply-all (al mittente e a tutti i destinatari del messaggio ricevuto)
 - girare (forward) un messaggio a uno o più account di posta elettronica
-rimuovere un messaggio dalla casella di posta.
+- rimuovere un messaggio dalla casella di posta.
 
 L’interfaccia mostra sempre la lista aggiornata dei messaggi in casella e, quando arriva un nuovo messaggio, notifica l’utente attraverso una finestra di dialogo.
 > NB: per semplicità si associno i mail client agli utenti a priori: non si richiede che il mail client offra le funzionalità di registrazione di un account di posta. Inoltre, un mail client è associato a una sola casella di posta elettronica e la sua interfaccia non richiede autenticazione da parte dell’utente.

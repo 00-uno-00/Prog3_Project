@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="style.css"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ToolBar?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.client.client.TestController">
+    <left>
+        <VBox>
+            <ListView fx:id="emailList">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Email 1"/>
+                        <String fx:value="Email 2"/>
+                        <String fx:value="Email 3"/>
+                    </FXCollections>
+                </items>
+            </ListView>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox>
+            <ToolBar>
+                <Button fx:id="Reply" text="Reply"/>
+                <Button fx:id="ReplyAll" text="Reply All"/>
+                <Button fx:id="Forward" text="Forward"/>
+                <Button fx:id="Delete" text="Delete"/>
+            </ToolBar>
+            <TextArea fx:id="emailContent" text="Here is the content of the selected email..."/>
+        </VBox>
+    </center>
+
+    <right>
+        <VBox>
+            <Button fx:id="ChangeAccount" text="Change Account"/>
+            <ListView>
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Contact 1"/>
+                        <String fx:value="Contact 2"/>
+                        <String fx:value="Contact 3"/>
+                    </FXCollections>
+                </items>
+            </ListView>
+        </VBox>
+    </right>
+</BorderPane>
