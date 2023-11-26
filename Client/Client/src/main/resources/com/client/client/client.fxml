@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?xml-stylesheet type="text/css" href="style.css"?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.client.client.TestController">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.client.client.ClientController">
    <children>
       <SplitPane dividerPositions="0.7" VBox.vgrow="ALWAYS">
          <items>
