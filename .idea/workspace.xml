@@ -5,7 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Trying to fix weird error with server folder">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_11_23__18_28__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_11_23__18_28__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/Client_1/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/Client_1/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Client_1/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Client_1/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Client_1/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Client_1/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Client_1/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/Client_1/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/Client_1/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Client_1/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client/src/main/java/com/client/client/BLACKBOXTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client_1/src/main/java/com/client/client/BLACKBOXTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client/src/main/java/com/client/client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client_1/src/main/java/com/client/client/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client/src/main/java/com/client/client/Contact.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client_1/src/main/java/com/client/client/Contact.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client/src/main/java/com/client/client/GPT3Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client_1/src/main/java/com/client/client/GPT3Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client/src/main/java/com/client/client/GPT4Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client_1/src/main/java/com/client/client/GPT4Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client/src/main/java/com/client/client/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client_1/src/main/java/com/client/client/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client_1/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client/src/main/resources/com/client/client/client.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client_1/src/main/resources/com/client/client/client.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client/src/main/resources/com/client/client/contacts.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Client_1/src/main/resources/com/client/client/contacts.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client/src/main/resources/com/client/client/email.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client_1/src/main/resources/com/client/client/email.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Client/src/main/resources/com/client/client/test.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client_1/src/main/resources/com/client/client/test.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/ServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/ServerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/ServerApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/ServerApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/ServerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/ServerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/module-info.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,10 +99,10 @@
       <recent name="$PROJECT_DIR$/Server" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.HelloApplication">
+  <component name="RunManager" selected="Application.ServerApplication">
     <configuration name="BLACKBOXTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.client.client.BLACKBOXTest" />
-      <module name="Client" />
+      <module name="Client_1" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.client.client.*" />
@@ -88,7 +115,7 @@
     </configuration>
     <configuration name="GPT3Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.client.client.GPT3Test" />
-      <module name="Client" />
+      <module name="Client_1" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.client.client.*" />
@@ -101,7 +128,7 @@
     </configuration>
     <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.client.client.HelloApplication" />
-      <module name="Client" />
+      <module name="Client_1" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.client.client.*" />
@@ -112,8 +139,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ServerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.server.server.ServerApplication" />
+      <module name="Server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.server.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ServerApplication" />
         <item itemvalue="Application.HelloApplication" />
         <item itemvalue="Application.BLACKBOXTest" />
         <item itemvalue="Application.GPT3Test" />
@@ -134,11 +175,24 @@
       <workItem from="1700922270211" duration="8382000" />
       <workItem from="1700998538093" duration="2522000" />
       <workItem from="1701005019552" duration="6845000" />
+      <workItem from="1701020047774" duration="152000" />
+      <workItem from="1701020207394" duration="313000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added usefulLinks.txt file" />
