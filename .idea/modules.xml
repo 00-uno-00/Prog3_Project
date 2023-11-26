@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Prog3_Project.iml" filepath="$PROJECT_DIR$/.idea/Prog3_Project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Client/Client/mailingApp.iml" filepath="$PROJECT_DIR$/Client/Client/mailingApp.iml" />
     </modules>
   </component>
 </project>
