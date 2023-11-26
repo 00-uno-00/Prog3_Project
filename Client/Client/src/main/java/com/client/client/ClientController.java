@@ -5,8 +5,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import org.kordamp.bootstrapfx.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,7 +14,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
-public class TestController implements Initializable {
+public class ClientController implements Initializable {
 
     @FXML
     private Button changeAccount;
@@ -28,7 +26,6 @@ public class TestController implements Initializable {
     private ListView<String> contactsList;
 
     private List<Contact> contacts = new ArrayList<>();
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
