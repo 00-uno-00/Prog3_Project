@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
@@ -8,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?xml-stylesheet type="text/css" href="style.css"?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.client.client.ClientController">
+<VBox id="window" fx:id="window" prefHeight="600.0" prefWidth="900.0" spacing="5.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.client.client.ClientController">
    <children>
       <SplitPane dividerPositions="0.7" VBox.vgrow="ALWAYS">
          <items>
@@ -16,10 +17,16 @@
             <AnchorPane fx:id="buttonAnchor" prefHeight="598.0" prefWidth="345.0">
                <children>
                   <Button fx:id="changeAccount" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="266.0" text="Change Account" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <ListView fx:id="contactsList" layoutY="25.0" prefHeight="200.0" prefWidth="233.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0" />
+                  <ListView fx:id="contactsList" layoutY="25.0" onMouseClicked="#openPopup" prefHeight="200.0" prefWidth="233.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0" />
                </children>
             </AnchorPane>
          </items>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
       </SplitPane>
    </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </VBox>
