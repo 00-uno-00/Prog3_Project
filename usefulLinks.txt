@@ -1,1 +1,2 @@
 JAVAFX IMAP Client : https://github.com/PranavAmarnath/SecresMail/tree/master
+JAVAFX Video Tutorials : https://www.youtube.com/playlist?list=PLZPZq0r_RZOM-8vJA3NQFZB7JroDcMwev
