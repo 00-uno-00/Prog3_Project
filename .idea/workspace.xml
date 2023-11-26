@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Added usefulLinks.txt file">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Trying to fix weird error with server folder">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Client/src/main/java/com/client/client/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Client/src/main/java/com/client/client/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Client/src/main/java/com/client/client/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Client/src/main/java/com/client/client/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Client/src/main/resources/com/client/client/client.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Client/src/main/resources/com/client/client/client.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Client/src/main/resources/com/client/client/email.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Client/src/main/resources/com/client/client/email.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Client/src/main/resources/com/client/client/test.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Client/src/main/resources/com/client/client/test.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +72,7 @@
       <recent name="$PROJECT_DIR$/Server" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.HelloApplication">
     <configuration name="BLACKBOXTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.client.client.BLACKBOXTest" />
       <module name="Client" />
