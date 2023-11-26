@@ -102,7 +102,7 @@
   <component name="RunManager" selected="Application.ServerApplication">
     <configuration name="BLACKBOXTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.client.client.BLACKBOXTest" />
-      <module name="Client_1" />
+      <module name="Client" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.client.client.*" />
@@ -115,7 +115,7 @@
     </configuration>
     <configuration name="GPT3Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.client.client.GPT3Test" />
-      <module name="Client_1" />
+      <module name="Client" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.client.client.*" />
@@ -128,7 +128,7 @@
     </configuration>
     <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.client.client.HelloApplication" />
-      <module name="Client_1" />
+      <module name="Client" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.client.client.*" />
