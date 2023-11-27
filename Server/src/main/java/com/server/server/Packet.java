@@ -4,6 +4,12 @@ import java.io.Serializable;
 
 /**
  * Packet class that represents a packet of data sent between the client and the server.
+ * The packet is serializable so that it can be sent over the network.
+ * Protocol is yet to be defined but the overall structure is as follows:
+ *     type:   the operation type (list of operations to be defined)
+ *     object: the object to be sent (e.g.  User, Email, ArrayList<Email>)
+ *     sender: the sender of the packet (to authenticate the sender)
+ * The server receives a packet, reads the type, and performs the operation accordingly. (e.g. casts the object to the appropriate type)
  */
 public class Packet implements Serializable{
     String type;

@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Added server shut down on close request.">
-      <change afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/Email.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/Packet.java" afterDir="false" />
+    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Email and Packet class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/Packet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/Packet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,7 +170,7 @@
       <workItem from="1701005019552" duration="6845000" />
       <workItem from="1701020047774" duration="152000" />
       <workItem from="1701020207394" duration="6391000" />
-      <workItem from="1701084609937" duration="16518000" />
+      <workItem from="1701084609937" duration="16747000" />
     </task>
     <task id="LOCAL-00001" summary="Server branch">
       <option name="closed" value="true" />
@@ -213,7 +212,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701109617339</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Email and Packet class">
+      <option name="closed" value="true" />
+      <created>1701115957375</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1701115957375</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -224,7 +231,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/server" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -237,7 +256,8 @@
     <MESSAGE value="Improved server interface UI and added logging features" />
     <MESSAGE value="Improved documentation." />
     <MESSAGE value="Added server shut down on close request." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added server shut down on close request." />
+    <MESSAGE value="Email and Packet class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Email and Packet class" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
