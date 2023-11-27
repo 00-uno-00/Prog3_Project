@@ -35,6 +35,9 @@ public class ServerApplication extends Application {
         // Set the minimum width and height for the stage
         stage.setMinWidth(120);
         stage.setMinHeight(120);
+        // Intercept the close request
+        ServerController controller = fxmlLoader.getController();
+        stage.setOnCloseRequest(event -> controller.handleCloseRequest());
         // Show the stage
         stage.show();
     }

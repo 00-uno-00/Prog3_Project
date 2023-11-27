@@ -38,6 +38,15 @@ public class ServerController implements Initializable {
     private final int port = 8025;
 
     /**
+     * Method to handle the close request of the server.
+     * If the server is on, it will be turned off by calling the onOffButtonClick method.
+     */
+    public void handleCloseRequest() {
+        if (isOn) {
+            onOffButtonClick();
+        }
+    }
+    /**
      * Handles the button click event.
      * Toggles the server state and updates the GUI accordingly.
      */

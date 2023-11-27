@@ -4,11 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Improved server interface UI and added logging features">
+    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Added server shut down on close request.">
+      <change afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/logs/log_27_11_2023_19_22_37.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/logs/log_27_11_2023_19_22_49.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/Logger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/ServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/ServerApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/ServerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/ServerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/Logger.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/Logger.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/ServerApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/ServerApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/ServerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/ServerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/icons/switch.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/logs/log_27_11_2023_18_15_52.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/logs/log_27_11_2023_18_16_23.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/logs/log_27_11_2023_18_17_07.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/logs/log_27_11_2023_18_23_03.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/logs/log_27_11_2023_18_34_25.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/logs/log_27_11_2023_18_38_20.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/logs/log_27_11_2023_18_38_51.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/logs/log_27_11_2023_18_39_09.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/logs/log_27_11_2023_18_40_14.csv" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +186,7 @@
       <workItem from="1701005019552" duration="6845000" />
       <workItem from="1701020047774" duration="152000" />
       <workItem from="1701020207394" duration="6391000" />
-      <workItem from="1701084609937" duration="12483000" />
+      <workItem from="1701084609937" duration="14139000" />
     </task>
     <task id="LOCAL-00001" summary="Server branch">
       <option name="closed" value="true" />
@@ -198,7 +212,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701106955955</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Improved documentation.">
+      <option name="closed" value="true" />
+      <created>1701107315786</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1701107315786</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,7 +242,9 @@
     <MESSAGE value="Server branch" />
     <MESSAGE value="Server buttons" />
     <MESSAGE value="Improved server interface UI and added logging features" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved server interface UI and added logging features" />
+    <MESSAGE value="Improved documentation." />
+    <MESSAGE value="Added server shut down on close request." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added server shut down on close request." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
