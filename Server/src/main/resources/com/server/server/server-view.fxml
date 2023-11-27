@@ -12,11 +12,11 @@
    <children>
       <ToolBar prefHeight="40.0" prefWidth="200.0">
          <items>
-            <Button id="onOffButton" mnemonicParsing="false" text="ON/OFF" onAction="#onOffButtonClick">
+            <Button id="onOffButton" mnemonicParsing="false" onAction="#onOffButtonClick" text="ON/OFF">
                <graphic>
-                  <ImageView fx:id="iconImageView" fitHeight="20" fitWidth="20">
+                  <ImageView fx:id="statusIcon" fitHeight="20" fitWidth="20">
                      <image>
-                        <Image url="@icons/switch.png" />
+                        <Image url="@icons/off-button.png" />
                      </image></ImageView>
                </graphic>
             </Button>

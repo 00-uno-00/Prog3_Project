@@ -4,14 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Server branch">
+    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Server buttons">
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/Logger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/ServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/ServerApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/ServerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/ServerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/server-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/server-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/ServerApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/ServerApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/ServerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/ServerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/module-info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/server-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/server-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,8 +82,13 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.keymap",
+    "settings.editor.selected.configurable": "preferences.intentionPowerPack",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "PLAIN_TEXT"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -92,7 +98,7 @@
       <recent name="$PROJECT_DIR$/Server" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.ServerApplication">
     <configuration name="BLACKBOXTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.client.client.BLACKBOXTest" />
       <module name="Client" />
@@ -147,9 +153,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ServerApplication" />
         <item itemvalue="Application.HelloApplication" />
         <item itemvalue="Application.BLACKBOXTest" />
-        <item itemvalue="Application.ServerApplication" />
         <item itemvalue="Application.GPT3Test" />
       </list>
     </recent_temporary>
@@ -170,7 +176,7 @@
       <workItem from="1701005019552" duration="6845000" />
       <workItem from="1701020047774" duration="152000" />
       <workItem from="1701020207394" duration="6391000" />
-      <workItem from="1701084609937" duration="4056000" />
+      <workItem from="1701084609937" duration="11951000" />
     </task>
     <task id="LOCAL-00001" summary="Server branch">
       <option name="closed" value="true" />
@@ -180,7 +186,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701085730039</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Server buttons">
+      <option name="closed" value="true" />
+      <created>1701091909252</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1701091909252</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,18 +214,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added usefulLinks.txt file" />
     <MESSAGE value="Server branch" />
-    <option name="LAST_COMMIT_MESSAGE" value="Server branch" />
+    <MESSAGE value="Server buttons" />
+    <option name="LAST_COMMIT_MESSAGE" value="Server buttons" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/ServerController.java</url>
-          <line>25</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="contactsList.dirtyChildren" />
