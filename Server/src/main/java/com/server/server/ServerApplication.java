@@ -14,6 +14,8 @@ public class ServerApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("Server");
         stage.setScene(scene);
+        stage.setMinWidth(120);
+        stage.setMinHeight(120);
         stage.show();
     }
 
