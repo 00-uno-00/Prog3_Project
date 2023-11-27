@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 
@@ -12,11 +14,15 @@
          <items>
             <Button mnemonicParsing="false" text="ON/OFF">
                <graphic>
-                  <ImageView fx:id="iconImageView" fitHeight="20" fitWidth="20" />
+                  <ImageView fx:id="iconImageView" fitHeight="20" fitWidth="20">
+                     <image>
+                        <Image url="@icons/switch.png" />
+                     </image></ImageView>
                </graphic>
             </Button>
+            <Label text="Connected to port : ..." />
          </items>
       </ToolBar>
-      <TextArea prefHeight="477.0" prefWidth="600.0" promptText="Here is the logging..." />
+      <ListView prefHeight="390.0" prefWidth="600.0" />
    </children>
 </VBox>
