@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Email and Packet class">
+    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Added protocol idea">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/Packet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/Packet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +91,7 @@
       <recent name="$PROJECT_DIR$/Server" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ServerApplication">
+  <component name="RunManager" selected="Application.HelloApplication">
     <configuration name="BLACKBOXTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.client.client.BLACKBOXTest" />
       <module name="Client" />
@@ -147,8 +146,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ServerApplication" />
         <item itemvalue="Application.HelloApplication" />
+        <item itemvalue="Application.ServerApplication" />
         <item itemvalue="Application.BLACKBOXTest" />
         <item itemvalue="Application.GPT3Test" />
       </list>
@@ -170,7 +169,7 @@
       <workItem from="1701005019552" duration="6845000" />
       <workItem from="1701020047774" duration="152000" />
       <workItem from="1701020207394" duration="6391000" />
-      <workItem from="1701084609937" duration="16747000" />
+      <workItem from="1701084609937" duration="17601000" />
     </task>
     <task id="LOCAL-00001" summary="Server branch">
       <option name="closed" value="true" />
@@ -220,7 +219,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701115957375</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added protocol idea">
+      <option name="closed" value="true" />
+      <created>1701116200480</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1701116200480</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,7 +264,8 @@
     <MESSAGE value="Improved documentation." />
     <MESSAGE value="Added server shut down on close request." />
     <MESSAGE value="Email and Packet class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Email and Packet class" />
+    <MESSAGE value="Added protocol idea" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added protocol idea" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
