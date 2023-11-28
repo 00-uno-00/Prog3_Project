@@ -1,13 +1,18 @@
 package com.client.client;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -32,31 +37,41 @@ public class ClientController implements Initializable {
     @FXML
     private ListView<String> contactsList;
 
-    private List<Contact> contacts = new ArrayList<>();
+    @FXML
+    private TextField recipient;
 
-    private Stage stage = new Stage();
-    private Scene scene;
-    private Parent root;
+    private List<Contact> contacts = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         changeAccount.getStyleClass().setAll("btn","btn-default");
 
         loadContacts();
+        contactsList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                openPopup(contactsList.getSelectionModel().getSelectedItem());
+                contactsList.getSelectionModel().clearSelection();//TODO: fix this
+            }
+        });
     }
 
-    public void openPopup(MouseEvent event) {
+    public void openPopup(String contactName) {
+        Parent root;
+        Scene scene;
+        Stage stage;
         try {
-            root = javafx.fxml.FXMLLoader.load(getClass().getResource("email.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("email.fxml"));
+            root = loader.load();
+
+            emailController emailController = loader.getController();
+            emailController.setRecipient(contactName);
+
             scene = new Scene(root);
-            stage.setTitle("New Email");
+            stage = new Stage();
+            stage.setTitle("New Email to: " + contactName);
             stage.setScene(scene);
             stage.show();
-
-
-            // disable main window while popup is open
-            window.setDisable(true);
-            // TODO: add listener to enable main window when popup is closed
         } catch (Exception e) {
             System.out.println("Error opening popup");
         }
@@ -73,14 +88,14 @@ public class ClientController implements Initializable {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] contactData = line.split(",");
-                contacts.add(new Contact(contactData[0], contactData[1], contactData[2]));
+                contacts.add(new Contact(contactData[0], contactData[1]));
             }
         } catch (FileNotFoundException e){
             System.out.println("File not found");
         }
 
         for (Contact contact : contacts) {
-            contactsList.getItems().add(contact.getName() + " " + contact.getSurname());
+            contactsList.getItems().add(contact.getName());
         }
     }
 }

@@ -16,7 +16,8 @@
       <VBox.margin>
          <Insets />
       </VBox.margin></TextField>
-    <TextArea minWidth="150.0" prefHeight="200" prefWidth="300" promptText="Scrivi la tua email..." VBox.vgrow="ALWAYS" />
+   <TextField promptText="Oggetto" />
+    <TextArea id="body" fx:id="body" minWidth="150.0" prefHeight="200" prefWidth="300" promptText="Scrivi la tua email..." VBox.vgrow="ALWAYS" />
    <GridPane alignment="CENTER" hgap="5.0" prefWidth="200.0" VBox.vgrow="NEVER">
      <columnConstraints>
        <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" minWidth="100.0" prefWidth="100.0" />
@@ -28,12 +29,12 @@
       <children>
          <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.hgrow="ALWAYS">
             <children>
-                 <Button prefHeight="25.0" prefWidth="147.0" text="Invia" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                 <Button id="sendButton" fx:id="sendButton" prefHeight="25.0" prefWidth="147.0" text="Invia" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
             </children>
          </AnchorPane>
          <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS">
             <children>
-                 <Button prefHeight="25.0" prefWidth="147.0" text="Annulla" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                 <Button id="abortButton" fx:id="abortButton" onAction="#abort" prefHeight="25.0" prefWidth="147.0" text="Annulla" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
             </children>
          </AnchorPane>
       </children>
