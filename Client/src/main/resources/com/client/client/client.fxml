@@ -17,7 +17,7 @@
             <AnchorPane fx:id="buttonAnchor" prefHeight="598.0" prefWidth="345.0">
                <children>
                   <Button fx:id="changeAccount" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="266.0" text="Change Account" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <ListView fx:id="contactsList" layoutY="25.0" prefHeight="200.0" prefWidth="233.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0" />
+                  <ListView id="contactsList" fx:id="contactsList" layoutY="25.0" prefHeight="200.0" prefWidth="233.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0" />
                </children>
             </AnchorPane>
          </items>

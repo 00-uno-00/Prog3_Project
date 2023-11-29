@@ -2,19 +2,14 @@ package com.client.client;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -32,9 +27,6 @@ public class ClientController implements Initializable {
     private Button changeAccount;
 
     @FXML
-    private VBox window;
-
-    @FXML
     private ListView<String> contactsList;
 
     @FXML
@@ -42,24 +34,23 @@ public class ClientController implements Initializable {
 
     private List<Contact> contacts = new ArrayList<>();
 
+    Parent root;
+    Scene scene;
+    Stage stage;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         changeAccount.getStyleClass().setAll("btn","btn-default");
 
         loadContacts();
-        contactsList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                openPopup(contactsList.getSelectionModel().getSelectedItem());
-                contactsList.getSelectionModel().clearSelection();//TODO: fix this
-            }
+        contactsList.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
+            openPopup(contactsList.getSelectionModel().getSelectedItem());
         });
+
+        //TODO: add listener so that when the main client application is cloised, the email application is also closed
     }
 
     public void openPopup(String contactName) {
-        Parent root;
-        Scene scene;
-        Stage stage;
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("email.fxml"));
             root = loader.load();

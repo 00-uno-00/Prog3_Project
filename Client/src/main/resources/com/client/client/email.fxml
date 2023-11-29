@@ -16,7 +16,7 @@
       <VBox.margin>
          <Insets />
       </VBox.margin></TextField>
-   <TextField promptText="Oggetto" />
+   <TextField fx:id="subject" promptText="Oggetto" />
     <TextArea id="body" fx:id="body" minWidth="150.0" prefHeight="200" prefWidth="300" promptText="Scrivi la tua email..." VBox.vgrow="ALWAYS" />
    <GridPane alignment="CENTER" hgap="5.0" prefWidth="200.0" VBox.vgrow="NEVER">
      <columnConstraints>
@@ -29,7 +29,7 @@
       <children>
          <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.hgrow="ALWAYS">
             <children>
-                 <Button id="sendButton" fx:id="sendButton" prefHeight="25.0" prefWidth="147.0" text="Invia" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                 <Button id="sendButton" fx:id="sendButton" onAction="#send" prefHeight="25.0" prefWidth="147.0" text="Invia" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
             </children>
          </AnchorPane>
          <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS">

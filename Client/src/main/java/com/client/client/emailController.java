@@ -29,7 +29,7 @@ public class emailController implements Initializable {
     @FXML
     private TextArea body;
 
-    private Contact owner;
+    private Contact owner = new Contact("zioper","help"); // must be initialized with a valid contact
 
     private Email email;
 
@@ -51,7 +51,7 @@ public class emailController implements Initializable {
         stage.close();
     }
 
-    private void send() {
+    public void send() {
         email.setDate(new Date());
         ObjectMapper objectMapper = new ObjectMapper();
 
