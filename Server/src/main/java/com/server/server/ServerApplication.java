@@ -15,8 +15,6 @@ import java.util.Objects;
  * Extends the JavaFX Application class and overrides the start method.
  */
 public class ServerApplication extends Application {
-    // Declare the controller as a static variable
-    private static ServerController controller;
 
     /**
      * Sets up the stage and scene for the application.
@@ -31,7 +29,7 @@ public class ServerApplication extends Application {
         stage.getIcons().add(icon);
         // Load the FXML file for the server view
         FXMLLoader fxmlLoader = new FXMLLoader(ServerApplication.class.getResource("server-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load(), 480, 360);
         // Set the title for the stage
         stage.setTitle("Server");
         // Set the scene for the stage
@@ -40,8 +38,8 @@ public class ServerApplication extends Application {
         stage.setMinWidth(120);
         stage.setMinHeight(120);
         // Intercept the close request
-        controller = fxmlLoader.getController();
-        stage.setOnCloseRequest(event -> controller.handleCloseRequest());
+        ServerController controller = fxmlLoader.getController();
+        stage.setOnCloseRequest(controller :: handleCloseRequest);
         // Show the stage
         stage.show();
     }

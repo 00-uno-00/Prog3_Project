@@ -6,9 +6,11 @@
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Priority?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.server.server.controllers.ServerController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.server.server.controllers.ServerController" VBox.vgrow="ALWAYS">
    <children>
       <ToolBar prefHeight="40.0" prefWidth="200.0">
          <items>
@@ -23,6 +25,15 @@
             <Label id="connectionLabel" fx:id="connectionLabel" text="Connected to port : ..." />
          </items>
       </ToolBar>
-      <ListView id="logList" fx:id="logList" prefHeight="390.0" prefWidth="600.0" />
+      <HBox VBox.vgrow="ALWAYS">
+         <VBox HBox.hgrow="ALWAYS">
+            <Label text="Log events" />
+            <ListView id="logList" fx:id="logList" VBox.vgrow="ALWAYS" />
+         </VBox>
+         <VBox HBox.hgrow="ALWAYS">
+            <Label text="Date" />
+            <ListView id="dateList" fx:id="dateList" VBox.vgrow="ALWAYS" />
+         </VBox>
+      </HBox>
    </children>
 </VBox>
