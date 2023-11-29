@@ -1,4 +1,4 @@
-package com.server.server;
+package com.server.server.models;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -21,7 +21,7 @@ public class Logger {
         SimpleDateFormat formatter = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss");
         try{
             // Get the URI of the logs directory
-            URI uri = Objects.requireNonNull(Logger.class.getResource("logs/")).toURI();
+            URI uri = Objects.requireNonNull(getClass().getResource("logs/")).toURI();
             // Create a new log file name with the current timestamp
             String logFileName = "log_" + formatter.format(new Date()) + ".csv";
             // Create the new log file

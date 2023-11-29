@@ -4,8 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Added protocol idea">
+    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Added protocol idea and email and packet class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/Email.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Email.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Logger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/Packet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Packet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/ServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/ServerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/ServerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/controllers/ServerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/server-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/server-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/Email.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/Logger.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/Packet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/ServerApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/ServerApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/ServerController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/logs/log_27_11_2023_19_22_37.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/logs/log_27_11_2023_19_22_49.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/logs/log_28_11_2023_00_12_09.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/server-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/server-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/module-info.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +84,7 @@
     "git-widget-placeholder": "server",
     "ignore.virus.scanning.warn.message": "true",
     "jdk.selected.JAVA_MODULE": "18",
-    "last_opened_file_path": "/home/davide/Desktop/PROGIII/Prog3_Project/Client",
+    "last_opened_file_path": "/home/davide/Desktop/PROGIII/Prog3_Project",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -86,12 +103,14 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Server/target/classes/com/server/server/models" />
+      <recent name="$PROJECT_DIR$/Server/target/classes/com/server/server" />
       <recent name="E:\UNI\Prog3_Project" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/Server" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.HelloApplication">
+  <component name="RunManager" selected="Application.ServerApplication">
     <configuration name="BLACKBOXTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.client.client.BLACKBOXTest" />
       <module name="Client" />
@@ -136,7 +155,7 @@
       <module name="Server" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.server.server.*" />
+          <option name="PATTERN" value="com.server.server.models.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -146,8 +165,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.HelloApplication" />
         <item itemvalue="Application.ServerApplication" />
+        <item itemvalue="Application.HelloApplication" />
         <item itemvalue="Application.BLACKBOXTest" />
         <item itemvalue="Application.GPT3Test" />
       </list>
@@ -169,7 +188,9 @@
       <workItem from="1701005019552" duration="6845000" />
       <workItem from="1701020047774" duration="152000" />
       <workItem from="1701020207394" duration="6391000" />
-      <workItem from="1701084609937" duration="17601000" />
+      <workItem from="1701084609937" duration="17870000" />
+      <workItem from="1701168451806" duration="301000" />
+      <workItem from="1701181609905" duration="1435000" />
     </task>
     <task id="LOCAL-00001" summary="Server branch">
       <option name="closed" value="true" />
@@ -227,7 +248,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701116200480</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added protocol idea and email and packet class">
+      <option name="closed" value="true" />
+      <created>1701126958542</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1701126958542</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -265,9 +294,44 @@
     <MESSAGE value="Added server shut down on close request." />
     <MESSAGE value="Email and Packet class" />
     <MESSAGE value="Added protocol idea" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added protocol idea" />
+    <MESSAGE value="Added protocol idea and email and packet class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added protocol idea and email and packet class" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Logger.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Logger.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Logger.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Logger.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Logger.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Logger.java</url>
+          <line>20</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="contactsList.dirtyChildren" />

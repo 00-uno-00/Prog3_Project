@@ -1,5 +1,6 @@
 package com.server.server;
 
+import com.server.server.controllers.ServerController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

@@ -1,5 +1,7 @@
-package com.server.server;
+package com.server.server.controllers;
 
+import com.server.server.ServerApplication;
+import com.server.server.models.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
