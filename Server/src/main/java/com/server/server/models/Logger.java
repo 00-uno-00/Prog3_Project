@@ -37,7 +37,7 @@ public class Logger {
      * This method is synchronized to prevent concurrent write access to the log file.
      * @param message The message to log.
      */
-    public synchronized void log(String message) {
+    public synchronized void log(String message) { //TODO this method does not write on the view and cannot do it
         try (FileWriter writer = new FileWriter(logFile, true)) {
             // Write the message to the log file
             writer.write(message+",\n");
