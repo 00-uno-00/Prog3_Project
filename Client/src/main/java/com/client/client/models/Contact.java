@@ -1,4 +1,4 @@
-package com.client.client;
+package com.client.client.models;
 
 public class Contact {
     private String name;

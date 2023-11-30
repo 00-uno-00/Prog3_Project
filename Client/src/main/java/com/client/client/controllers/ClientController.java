@@ -1,6 +1,6 @@
 package com.client.client.controllers;
 
-import com.client.client.Contact;
+import com.client.client.models.Contact;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,9 +22,6 @@ public class ClientController implements Initializable {
     @FXML
     private ListView<String> contactsList;
 
-    @FXML
-    private TextField recipient;
-
     private List<Contact> contacts = new ArrayList<>();
 
     private List<Stage> emailStages = new ArrayList<>();
@@ -33,18 +30,36 @@ public class ClientController implements Initializable {
     Scene scene;
     Stage stage;
 
+    private Contact owner = new Contact("", ""); // must be initalized at startup
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        changeAccount.getStyleClass().setAll("btn","btn-default");
+        changeAccount.getStyleClass().setAll("btn", "btn-default");
 
         loadContacts();
+
         contactsList.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
-            openPopup(contactsList.getSelectionModel().getSelectedItem());
+            openEmailPopup(contactsList.getSelectionModel().getSelectedItem());
         });
 
     }
 
-    public void openPopup(String contactName) {
+    public void changeAccount() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+            root = loader.load();
+
+            scene = new Scene(root);
+            stage = new Stage();
+            stage.setTitle("Login");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            System.out.println("Error opening login popup");
+        }
+    }
+
+    public void openEmailPopup(String contactName) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("email.fxml"));
             root = loader.load();
@@ -57,7 +72,7 @@ public class ClientController implements Initializable {
             stage.setTitle("New Email to: " + contactName);
             stage.setScene(scene);
             emailStages.add(stage);
-            emailStages.get(emailStages.size()-1).setOnCloseRequest(this::popStage);
+            emailStages.get(emailStages.size() - 1).setOnCloseRequest(this::popStage);
             stage.show();
         } catch (Exception e) {
             System.out.println("Error opening popup");
@@ -69,7 +84,9 @@ public class ClientController implements Initializable {
      */
     public void loadContacts() {
         try {
-            File contactsFile = new File(getClass().getResource("contacts.csv").getFile());//use getClass().getResource("contacts.csv").getFile() or aneurysm
+            File contactsFile = new File(getClass().getResource("contacts.csv").getFile());// use
+                                                                                           // getClass().getResource("contacts.csv").getFile()
+                                                                                           // or aneurysm
             Scanner scanner = new Scanner(contactsFile);
 
             while (scanner.hasNextLine()) {
@@ -77,7 +94,7 @@ public class ClientController implements Initializable {
                 String[] contactData = line.split(",");
                 contacts.add(new Contact(contactData[0], contactData[1]));
             }
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
 
@@ -93,7 +110,7 @@ public class ClientController implements Initializable {
             alert.setHeaderText("Client has open emails");
             alert.setContentText("Are you sure you want to stop the client? Active emails will be closed.");
             Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK){
+            if (result.isPresent() && result.get() == ButtonType.OK) {
                 for (Stage stage : emailStages) {
                     stage.close();
                 }
@@ -106,7 +123,11 @@ public class ClientController implements Initializable {
         }
     }
 
-    public void popStage(javafx.stage.WindowEvent event){
+    public void popStage(javafx.stage.WindowEvent event) {
         emailStages.remove(event.getSource());
+    }
+
+    public void setOwner(Contact owner) {
+        this.owner = owner;
     }
 }

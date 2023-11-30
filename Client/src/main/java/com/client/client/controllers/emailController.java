@@ -1,7 +1,7 @@
 package com.client.client.controllers;
 
-import com.client.client.Contact;
-import com.client.client.Email;
+import com.client.client.models.Contact;
+import com.client.client.models.Email;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -10,10 +10,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class emailController implements Initializable {
 
     @FXML
@@ -31,13 +31,25 @@ public class emailController implements Initializable {
     @FXML
     private TextArea body;
 
-    private Contact owner = new Contact("zioper","help"); // must be initialized with a valid contact
+    private Contact owner = new Contact("zioper", "help"); // must be initialized with a valid contact
 
     private Email email;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        email = new Email(owner.getEmail(),recipient.getText(),body.getText(),subject.getText(), null, false );//date and time will be updated ta the moment the email is sent
+        email = new Email(owner.getEmail(), recipient.getText(), body.getText(), subject.getText(), null, false);// date
+                                                                                                                 // and
+                                                                                                                 // time
+                                                                                                                 // will
+                                                                                                                 // be
+                                                                                                                 // updated
+                                                                                                                 // at
+                                                                                                                 // the
+                                                                                                                 // moment
+                                                                                                                 // the
+                                                                                                                 // email
+                                                                                                                 // is
+                                                                                                                 // sent
     }
 
     public void setRecipient(String recipient) {
@@ -64,6 +76,6 @@ public class emailController implements Initializable {
             System.out.println("Error converting email to json");
             e.printStackTrace();
         }
-        //TODO: send email
+        // TODO: send email
     }
 }

@@ -1,4 +1,4 @@
-package com.client.client;
+package com.client.client.models;
 
 import java.util.Date;
 
@@ -81,5 +81,4 @@ public class Email {
     public void setRead(boolean read) {
         isRead = read;
     }
-
 }
