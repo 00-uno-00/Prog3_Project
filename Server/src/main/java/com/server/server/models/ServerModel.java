@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Date;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -33,11 +32,11 @@ public class ServerModel {
     public synchronized AtomicInteger retrieveID() {
         try {
             if (!idFile.exists() && idFile.createNewFile()) {
-                logger.log("Created Mail ID file (default: 0) ", new Date());
+                logger.log("Created Mail ID file (default: 0) ");
             }
             Scanner scanner = new Scanner(idFile);
             id.set(scanner.hasNextInt() ? scanner.nextInt() : 0);
-            logger.log("Retrieved Mail ID from file (" + id.get() + ") ", new Date());
+            logger.log("Retrieved Mail ID from file (" + id.get() + ") ");
             scanner.close();
         } catch (IOException e) {
             throw new RuntimeException("Error handling id file", e);
@@ -47,12 +46,12 @@ public class ServerModel {
 
     public synchronized void storeId() {
         if (!serverEverStarted) {
-            logger.log("Closing Application, won't store ID since Server never started ", new Date());
+            logger.log("Closing Application, won't store ID since Server never started ");
             return;
         }
         try (PrintWriter writer = new PrintWriter(idFile)) {
             writer.println(id);
-            logger.log("Stored Mail ID to file (" + id.get() + ") ", new Date());
+            logger.log("Stored Mail ID to file (" + id.get() + ") ");
         } catch (FileNotFoundException e) {
             System.out.println("Error writing to id file");
         }
@@ -60,17 +59,23 @@ public class ServerModel {
 
     public void startServer() {
         // Start the server here
-        serverEverStarted = true;
-        isOn = true;
-        logger.log("Started Server ", new Date());
-        id = retrieveID();
+        if(!serverEverStarted)
+            serverEverStarted = true;
+
+        if(!isOn) {
+            isOn = true;
+            logger.log("Started Server ");
+            id = retrieveID();
+        }
     }
 
-    public void stopServer() { //the log is not updated with the date (sync problem?) Signleton design pattern issue?
+    public void stopServer() {
         // Stop the server here
         storeId();
-        isOn = false;
-        logger.log("Stopped Server ", new Date());
+        if(isOn){
+            isOn = false;
+            logger.log("Stopped Server ");
+        }
     }
 
     public boolean isOn() {

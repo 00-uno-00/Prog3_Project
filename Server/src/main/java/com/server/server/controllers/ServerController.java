@@ -17,7 +17,6 @@ import javafx.scene.image.ImageView;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.URL;
-import java.util.Date;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -89,7 +88,7 @@ public class ServerController implements Initializable {
         try (ServerSocket serverSocket = new ServerSocket(0)) {
             port = serverSocket.getLocalPort();
         } catch (IOException e) {
-            logger.log("An error occurred while trying to get a free port", new Date());
+            logger.log("An error occurred while trying to get a free port");
         }
 
         logList.setItems(logItems);
