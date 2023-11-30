@@ -6,37 +6,42 @@
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.server.server.controllers.ServerController" VBox.vgrow="ALWAYS">
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.server.server.controllers.ServerController">
    <children>
-      <ToolBar prefHeight="40.0" prefWidth="200.0">
-         <items>
-            <Button id="onOffButton" mnemonicParsing="false" onAction="#onOffButtonClick" text="ON/OFF">
-               <graphic>
-                  <ImageView fx:id="statusIcon" fitHeight="20" fitWidth="20">
-                     <image>
-                        <Image url="@icons/off-button.png" />
-                     </image></ImageView>
-               </graphic>
-            </Button>
-            <Label id="connectionLabel" fx:id="connectionLabel" text="Connected to port : ..." />
-         </items>
-      </ToolBar>
-      <HBox VBox.vgrow="ALWAYS">
-         <VBox HBox.hgrow="ALWAYS">
-            <Label text="Log events" />
-            <ListView id="logList" fx:id="logList" VBox.vgrow="ALWAYS" />
-         </VBox>
-         <VBox HBox.hgrow="ALWAYS" minWidth="100" maxWidth="200" prefWidth="150">
-            <Label text="Type" />
-            <ListView id="typeList" fx:id="typeList" VBox.vgrow="ALWAYS" />
-         </VBox>
-         <VBox HBox.hgrow="ALWAYS">
-            <Label text="Date" />
-            <ListView id="dateList" fx:id="dateList" VBox.vgrow="ALWAYS" />
-         </VBox>
-      </HBox>
+      <VBox AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <ToolBar prefHeight="40.0">
+               <items>
+                  <Button id="onOffButton" mnemonicParsing="false" onAction="#onOffButtonClick" text="ON/OFF">
+                     <graphic>
+                        <ImageView fx:id="statusIcon" fitHeight="20" fitWidth="20">
+                           <image>
+                              <Image url="@icons/off-button.png" />
+                           </image></ImageView>
+                     </graphic>
+                  </Button>
+                  <Label id="connectionLabel" fx:id="connectionLabel" text="Connected to port : ..." />
+               </items>
+            </ToolBar>
+            <HBox VBox.vgrow="ALWAYS">
+               <VBox HBox.hgrow="ALWAYS" >
+                  <Label text="Log events" />
+                  <ListView id="logList" fx:id="logList" VBox.vgrow="ALWAYS" />
+               </VBox>
+               <VBox HBox.hgrow="ALWAYS" maxWidth="200">
+                  <Label text="Type" />
+                  <ListView id="typeList" fx:id="typeList" VBox.vgrow="ALWAYS" />
+               </VBox>
+               <VBox HBox.hgrow="ALWAYS">
+                  <Label text="Date" />
+                  <ListView id="dateList" fx:id="dateList" VBox.vgrow="ALWAYS" />
+               </VBox>
+            </HBox>
+         </children>
+      </VBox>
    </children>
-</VBox>
+</AnchorPane>

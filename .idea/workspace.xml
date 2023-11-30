@@ -4,20 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Fixed unresponsive logging and minor changes">
-      <change afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/ConnectionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/PacketHandler.java" afterDir="false" />
+    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Added Packet handler logic and log type">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/ServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/ServerApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/controllers/ServerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/controllers/ServerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Logger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Packet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Packet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/ServerModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/ServerModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/server-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/server-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/ServerApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/ServerApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/controllers/ServerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/controllers/ServerController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/Logger.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/Logger.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/Packet.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/Packet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/ServerModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/ServerModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/logs/log_30_11_2023_12_29_04.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/logs/log_30_11_2023_12_29_22.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/logs/log_30_11_2023_12_29_53.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/logs/log_30_11_2023_12_37_09.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/logs/log_30_11_2023_12_41_12.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/logs/log_30_11_2023_12_42_22.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/server-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/server-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/module-info.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +36,7 @@
       <list>
         <option value="FxmlFile" />
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -72,40 +80,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;server&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;18&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/davide/Desktop/PROGIII/Prog3_Project&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.intentionPowerPack&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "server",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "18",
+    "last_opened_file_path": "/home/davide/Desktop/PROGIII/Prog3_Project",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.intentionPowerPack",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;PLAIN_TEXT&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "PLAIN_TEXT"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Server/src/main/resources/com/server/server" />
       <recent name="$PROJECT_DIR$/Server/target/classes/com/server/server/models" />
       <recent name="$PROJECT_DIR$/Server/target/classes/com/server/server" />
       <recent name="E:\UNI\Prog3_Project" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/Server" />
     </key>
   </component>
   <component name="RunManager" selected="Application.ServerApplication">
@@ -245,7 +254,8 @@
       <workItem from="1701255640013" duration="2690000" />
       <workItem from="1701276171524" duration="6322000" />
       <workItem from="1701340434216" duration="4772000" />
-      <workItem from="1701354112081" duration="4641000" />
+      <workItem from="1701354112081" duration="4908000" />
+      <workItem from="1701369416807" duration="10791000" />
     </task>
     <task id="LOCAL-00001" summary="Server branch">
       <option name="closed" value="true" />
@@ -343,7 +353,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701345281741</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Added Packet handler logic and log type">
+      <option name="closed" value="true" />
+      <created>1701359007024</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1701359007024</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -406,15 +424,16 @@
     <MESSAGE value="Added ID variable and file" />
     <MESSAGE value="Added logger singleton and model split" />
     <MESSAGE value="Fixed unresponsive logging and minor changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed unresponsive logging and minor changes" />
+    <MESSAGE value="Added Packet handler logic and log type" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Packet handler logic and log type" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/controllers/ServerController.java</url>
-          <line>103</line>
-          <option name="timeStamp" value="5" />
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Logger.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

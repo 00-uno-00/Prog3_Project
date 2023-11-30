@@ -29,7 +29,7 @@ public class ServerApplication extends Application {
         stage.getIcons().add(icon);
         // Load the FXML file for the server view
         FXMLLoader fxmlLoader = new FXMLLoader(ServerApplication.class.getResource("server-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 480, 360);
+        Scene scene = new Scene(fxmlLoader.load(), 600, 300);
         // Set the title for the stage
         stage.setTitle("Server");
         // Set the scene for the stage

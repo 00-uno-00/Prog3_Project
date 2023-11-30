@@ -5,9 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.Objects;
 import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -30,13 +27,10 @@ public class ServerModel {
     }
 
     public ServerModel() {
-        try {
-            URI uri = Objects.requireNonNull(getClass().getResource("id/")).toURI();
-            idFile = new File(new File(uri), "id.txt");
-            id = new AtomicInteger(0);
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e+ " URI Syntax Exception");
-        }
+        String baseDir = System.getProperty("user.dir");
+        String relativePath = "/Server/src/main/resources/com/server/server/id/";
+        idFile = new File(baseDir + relativePath, "id.txt");
+        id = new AtomicInteger(0);
         logger = Logger.getInstance();
     }
 
@@ -77,15 +71,9 @@ public class ServerModel {
             logger.log("Started Server" , "System");
             id = retrieveID();
 
-            // Request a free port
-            try (ServerSocket tempSocket = new ServerSocket(0)) {
-                port = tempSocket.getLocalPort();
-            } catch (IOException e) {
-                logger.log("An error occurred while trying to get a free port", "Error");
-            }
-
             try {
-                serverSocket = new ServerSocket(port);
+                serverSocket = new ServerSocket(0);
+                port = serverSocket.getLocalPort();
                 executorService = Executors.newFixedThreadPool(10);
                 connectionHandler = new ConnectionHandler(serverSocket, executorService);
                 new Thread(connectionHandler).start();
