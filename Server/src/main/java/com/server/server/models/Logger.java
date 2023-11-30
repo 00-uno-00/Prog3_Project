@@ -15,6 +15,7 @@ public class Logger {
     private final File logFile;
     private final StringProperty latestLogEvent = new SimpleStringProperty();
     private final StringProperty latestLogDate = new SimpleStringProperty();
+    private final StringProperty latestLogType = new SimpleStringProperty();
     private final AtomicInteger logCounter = new AtomicInteger(0);
 
     private Logger() {
@@ -29,14 +30,17 @@ public class Logger {
         return instance;
     }
 
-    public synchronized void log(String message) {
+    public synchronized void log(String message, String type) {
         try (FileWriter writer = new FileWriter(logFile, true)) {
-            String formattedDate = new Date() + ", " + logCounter.incrementAndGet() ;
-            writer.write(message + ", " + formattedDate + "\n");
+            String stringDate = String.valueOf(new Date());
+            writer.write(message + ", " + type+ ", "+ stringDate + logCounter.incrementAndGet() + "\n");
             latestLogEvent.set(message);
-            latestLogDate.set(formattedDate);
+            latestLogDate.set(null); // Reset the latestLogDate
+            latestLogDate.set(stringDate);
+            latestLogType.set(null); // Reset the latestLogType
+            latestLogType.set(type);
         } catch (Exception e) {
-            log("Exception occurred while logging: " + e.getMessage());
+            log("Exception occurred while logging: " + e.getMessage(), "Error");
         }
     }
 
@@ -46,5 +50,9 @@ public class Logger {
 
     public StringProperty latestLogDateProperty() {
         return latestLogDate;
+    }
+
+    public StringProperty latestLogTypeProperty() {
+        return latestLogType;
     }
 }

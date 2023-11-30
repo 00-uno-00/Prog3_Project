@@ -4,15 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Added logger singleton and model split">
+    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Fixed unresponsive logging and minor changes">
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/ConnectionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/PacketHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/controllers/ServerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/controllers/ServerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Logger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Packet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Packet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/ServerModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/ServerModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/server-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/server-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/controllers/ServerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/controllers/ServerController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/Logger.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/Logger.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/Packet.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/Packet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/ServerModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/ServerModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/logs/log_29_11_2023_19_22_55.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/server-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/server-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -239,7 +244,8 @@
       <workItem from="1701251303262" duration="3746000" />
       <workItem from="1701255640013" duration="2690000" />
       <workItem from="1701276171524" duration="6322000" />
-      <workItem from="1701340434216" duration="4054000" />
+      <workItem from="1701340434216" duration="4772000" />
+      <workItem from="1701354112081" duration="4641000" />
     </task>
     <task id="LOCAL-00001" summary="Server branch">
       <option name="closed" value="true" />
@@ -329,7 +335,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701282484617</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Fixed unresponsive logging and minor changes">
+      <option name="closed" value="true" />
+      <created>1701345281741</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1701345281741</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -391,9 +405,19 @@
     <MESSAGE value="Reformatting and better folders" />
     <MESSAGE value="Added ID variable and file" />
     <MESSAGE value="Added logger singleton and model split" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added logger singleton and model split" />
+    <MESSAGE value="Fixed unresponsive logging and minor changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed unresponsive logging and minor changes" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/controllers/ServerController.java</url>
+          <line>103</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="contactsList.dirtyChildren" />

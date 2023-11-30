@@ -13,20 +13,20 @@ import java.io.Serializable;
  */
 public class Packet implements Serializable{
     String type;
-    Object object;
+    Object content;
 
     String sender;
 
     /**
      * Constructor for the Packet class.
-     * @param type  the operation type (e.g. "login", "register", "send", "receive", "refresh")
-     * @param object    the object to be sent (e.g.  User, Email, ArrayList<Email>)
+     * @param type  the operation type (e.g. "login", "logged", "register", "send", "receive", "refresh", "delete")
+     * @param content    the object to be sent (e.g.  User, Email, ArrayList<Email>)
      * @param sender    the sender of the packet
      */
-    public Packet (String type, Object object, String sender) {
+    public Packet (String type, Object content, String sender) {
         this.type = type;
         this.sender = sender;
-        this.object = object;
+        this.content = content;
     }
 
     //Getters and Setters
@@ -38,12 +38,12 @@ public class Packet implements Serializable{
         this.type = type;
     }
 
-    public Object getObject() {
-        return object;
+    public Object getContent() {
+        return content;
     }
 
-    public void setObject(Object object) {
-        this.object = object;
+    public void setContent(Object content) {
+        this.content = content;
     }
 
     public String getSender() {
@@ -53,4 +53,13 @@ public class Packet implements Serializable{
     public void setSender(String sender) {
         this.sender = sender;
     }
+
+    public Email getEmail() {
+        if (content instanceof Email) {
+            return (Email) content;
+        } else {
+            return null;
+        }
+    }
+
 }
