@@ -1,5 +1,7 @@
-package com.client.client;
+package com.client.client.controllers;
 
+import com.client.client.Contact;
+import com.client.client.Email;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;

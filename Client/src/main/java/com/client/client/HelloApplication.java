@@ -1,5 +1,6 @@
 package com.client.client;
 
+import com.client.client.controllers.ClientController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -22,6 +23,11 @@ public class HelloApplication extends Application {
 
         stage.setTitle("Client");
         stage.setScene(scene);
+
+        // Intercept the close request
+        ClientController controller = fxmlLoader.getController();
+        stage.setOnCloseRequest(controller :: handleCloseRequest);
+
         stage.show();
     }
 

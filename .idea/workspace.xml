@@ -5,15 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Trying to fix weird error with server folder">
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/emailController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/controllers/contacts.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/controllers/email.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/emailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/emailController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/ClientController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/emailController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/client.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/client.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/email.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/email.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/ServerApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/ServerApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/ServerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/ServerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/hello-view.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/module-info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/contacts.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/email.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/test.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/test.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +82,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\UNI\Prog3_Project\Client\src\main\resources\com\client\client\controllers" />
       <recent name="E:\UNI\Prog3_Project" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/Server" />
@@ -87,7 +94,7 @@
       <module name="Client" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.client.client.*" />
+          <option name="PATTERN" value="com.client.client.controllers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -100,7 +107,7 @@
       <module name="Client" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.client.client.*" />
+          <option name="PATTERN" value="com.client.client.controllers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -113,7 +120,7 @@
       <module name="Client" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.client.client.*" />
+          <option name="PATTERN" value="com.client.client.controllers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -161,6 +168,7 @@
       <workItem from="1701020207394" duration="6391000" />
       <workItem from="1701192739437" duration="10568000" />
       <workItem from="1701257513707" duration="1273000" />
+      <workItem from="1701354361752" duration="5291000" />
     </task>
     <servers />
   </component>
@@ -189,10 +197,14 @@
           <properties class="java.lang.IndexOutOfBoundsException" package="java.lang" />
           <option name="timeStamp" value="8" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Client/src/main/java/com/client/client/ClientController.java</url>
-          <line>55</line>
-          <option name="timeStamp" value="10" />
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/Client/src/main/java/com/client/client/Email.java</url>
+          <line>17</line>
+          <properties class="com.client.client.Email" method="&lt;init&gt;">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -205,6 +217,7 @@
     <watches-manager>
       <configuration name="Application">
         <watch expression="contactsList.dirtyChildren" />
+        <watch expression="emailStages" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
