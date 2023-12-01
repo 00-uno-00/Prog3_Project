@@ -24,9 +24,9 @@ public class Packet implements Serializable{
      * @param sender    the sender of the packet
      */
     public Packet (String type, Object content, String sender) {
-        this.type = type;
-        this.sender = sender;
-        this.content = content;
+        this.type = type; //operation type
+        this.sender = sender; //for security reasons
+        this.content = content; //payload
     }
 
     //Getters and Setters
@@ -52,14 +52,6 @@ public class Packet implements Serializable{
 
     public void setSender(String sender) {
         this.sender = sender;
-    }
-
-    public Email getEmail() {
-        if (content instanceof Email) {
-            return (Email) content;
-        } else {
-            return null;
-        }
     }
 
 }
