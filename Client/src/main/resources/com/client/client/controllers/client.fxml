@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -11,10 +10,12 @@
 
 <VBox id="window" fx:id="window" prefHeight="600.0" prefWidth="900.0" spacing="5.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.client.client.controllers.ClientController">
    <children>
-      <SplitPane dividerPositions="0.7" VBox.vgrow="ALWAYS">
+      <SplitPane dividerPositions="0.2, 0.5, 0.75" VBox.vgrow="ALWAYS">
          <items>
-            <ScrollPane prefHeight="598.0" prefWidth="436.0" />
-            <AnchorPane fx:id="buttonAnchor" prefHeight="598.0" prefWidth="345.0">
+            <ListView fx:id="subjectList" prefHeight="578.0" prefWidth="696.0" />
+            <ListView fx:id="senderList" prefHeight="578.0" prefWidth="0.0" />
+            <ListView fx:id="bodyList" prefHeight="200.0" prefWidth="200.0" />
+            <AnchorPane fx:id="buttonAnchor">
                <children>
                   <Button fx:id="changeAccount" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="266.0" text="Change Account" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <ListView id="contactsList" fx:id="contactsList" layoutY="25.0" prefHeight="200.0" prefWidth="233.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0" />

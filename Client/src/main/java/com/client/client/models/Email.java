@@ -9,18 +9,18 @@ public class Email {
     private String id;
     private String sender;
     private String recipient;
-    private String text;
-    private String title;
+    private String body;
+    private String subject;
     private Date date;
     private boolean isRead;
 
     // Constructor
-    public Email(String sender, String recipient, String text, String title, Date date, boolean isRead) {
+    public Email(String sender, String recipient, String body, String subject, Date date, boolean isRead) {
         this.id = "0";
         this.sender = sender;
         this.recipient = recipient;
-        this.text = text;
-        this.title = title;
+        this.body = body;
+        this.subject = subject;
         this.date = date;
         this.isRead = isRead;
     }
@@ -50,20 +50,20 @@ public class Email {
         this.recipient = recipient;
     }
 
-    public String getText() {
-        return text;
+    public String getBody() {
+        return body;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setBody(String body) {
+        this.body = this.body;
     }
 
-    public String getTitle() {
-        return title;
+    public String getSubject() {
+        return subject;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
     public Date getDate() {
@@ -81,4 +81,5 @@ public class Email {
     public void setRead(boolean read) {
         isRead = read;
     }
+
 }

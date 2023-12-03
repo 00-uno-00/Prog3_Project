@@ -27,16 +27,12 @@ public class loginController {
 
     private Stage stage = new Stage();
 
-    public Services services = new Services();
-
     /**
      * Checks if the email and username are valid and loads the client window
      */
     public void login() {
-        System.out.println(Services.isValidEmail(emailField.getText()));
-        if (usernameField.getText() != null && emailField.getText() != null
-                && Services.isValidEmail(emailField.getText())) {
-            Contact owner = new Contact(usernameField.getText(), emailField.getText());
+        if (emailField.getText() != null && Services.isValidEmail(emailField.getText())) {
+            Contact owner = new Contact(emailField.getText());
 
             ClientController controller = new ClientController();
             controller.setOwner(owner);
@@ -47,7 +43,7 @@ public class loginController {
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Dialog");
-            alert.setHeaderText("Invalid email or username");
+            alert.setHeaderText("Invalid email");
             Optional<ButtonType> result = alert.showAndWait();
         }
     }

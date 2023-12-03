@@ -1,9 +1,14 @@
 package com.client.client.controllers;
 
 import com.client.client.models.Contact;
+import com.client.client.models.Email;
+import com.client.client.models.EmailItem;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Orientation;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -22,7 +27,18 @@ public class ClientController implements Initializable {
     @FXML
     private ListView<String> contactsList;
 
+    @FXML
+    private ListView<EmailItem> senderList;
+
+    @FXML
+    private ListView<EmailItem> subjectList;
+
+    @FXML
+    private ListView<EmailItem> bodyList;
+
     private List<Contact> contacts = new ArrayList<>();
+
+    private HashMap<String, Email> emails = new HashMap<>();
 
     private List<Stage> emailStages = new ArrayList<>();
 
@@ -30,7 +46,7 @@ public class ClientController implements Initializable {
     Scene scene;
     Stage stage;
 
-    private Contact owner = new Contact("", ""); // must be initalized at startup
+    private Contact owner = new Contact(""); // must be initalized at startup
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -39,9 +55,43 @@ public class ClientController implements Initializable {
         loadContacts();
 
         contactsList.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
-            openEmailPopup(contactsList.getSelectionModel().getSelectedItem());
+            openNewEmailPopup(new String[]{"new", "1", contactsList.getSelectionModel().getSelectedItem(), "", ""});
         });
 
+        senderList.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
+            EmailItem selectedSender = senderList.getSelectionModel().getSelectedItem();
+            Email selectedEmail = emails.get(selectedSender.getId());
+            if (selectedEmail != null) {
+                openShowEmailPopup(selectedEmail, root);
+            }
+        });
+
+        subjectList.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
+            EmailItem selectedSubject = subjectList.getSelectionModel().getSelectedItem();
+            Email selectedEmail = emails.get(selectedSubject.getId());
+            if (selectedEmail != null) {
+                openShowEmailPopup(selectedEmail, root);
+            }
+        });
+
+        bodyList.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
+            EmailItem selectedBody = bodyList.getSelectionModel().getSelectedItem();
+            Email selectedEmail = emails.get(selectedBody.getId());
+            if (selectedEmail != null) {
+                openShowEmailPopup(selectedEmail, root);
+            }
+        });
+
+
+        Platform.runLater(() -> {
+            ScrollBar senderScrollBar = getVerticalScrollbar(senderList);
+            ScrollBar subjectScrollBar = getVerticalScrollbar(subjectList);
+            ScrollBar bodyScrollBar = getVerticalScrollbar(bodyList);
+
+            bindScrollBars(senderScrollBar, bodyScrollBar);
+            bindScrollBars(bodyScrollBar, subjectScrollBar);
+            bindScrollBars(subjectScrollBar, senderScrollBar);
+        });
     }
 
     public void changeAccount() {
@@ -59,47 +109,110 @@ public class ClientController implements Initializable {
         }
     }
 
-    public void openEmailPopup(String contactName) {
+    public void openNewEmailPopup(String[] args) {//args[0] is the type of new mail, args[1] is the number of recipients, args[2] is the recipient(s), args[3] is the subject, args[4] is the body
+        switch (args[0]){
+            case "new"://args[1] = 1
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("newEmail.fxml"));
+                    root = loader.load();
+
+                    newEmailController newEmailController = loader.getController();
+                    newEmailController.setRecipient(args[2]);
+                    newEmailController.setSubject(args[3]);
+                    newEmailController.setBody(args[4]);
+
+                    emailStages.add(newEmailController.showNewEmailPopup(root));
+                    emailStages.get(emailStages.size() - 1).setOnCloseRequest(this::popStage);
+                } catch (Exception e) {
+                    System.out.println("Error opening popup");
+                }
+                break;
+            case "reply"://args[1] = 1
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("newEmail.fxml"));
+                    root = loader.load();
+
+                    newEmailController newEmailController = loader.getController();
+                    newEmailController.setRecipient(args[2]);
+                    newEmailController.setSubject("Re: " + args[3]);
+                    newEmailController.setBody("\"" + args[4] + "\"");
+
+                    emailStages.add(newEmailController.showNewEmailPopup(root));
+                    emailStages.get(emailStages.size() - 1).setOnCloseRequest(this::popStage);
+                } catch (Exception e) {
+                    System.out.println("Error opening popup");
+                }
+                break;
+            case "forward"://args[1] = 1
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("newEmail.fxml"));
+                    root = loader.load();
+
+                    newEmailController newEmailController = loader.getController();
+                    newEmailController.setRecipient(args[2]);
+                    newEmailController.setSubject("Fwd: " + args[3]);
+                    newEmailController.setBody("\"" + args[4] + "\"");
+
+                    emailStages.add(newEmailController.showNewEmailPopup(root));
+                    emailStages.get(emailStages.size() - 1).setOnCloseRequest(this::popStage);
+                } catch (Exception e) {
+                    System.out.println("Error opening popup");
+                }
+                break;
+            case "replyAll"://args[1] = x
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("newEmail.fxml"));
+                    root = loader.load();
+
+                    newEmailController newEmailController = loader.getController();
+                    while (args[2].contains(",")){
+                        newEmailController.setRecipient(args[2].substring(0, args[2].indexOf(",")));
+                        args[2] = args[2].substring(args[2].indexOf(",") + 1);
+                    }
+                    newEmailController.setSubject("Re: " + args[3]);
+                    newEmailController.setBody("\"" + args[4] + "\"");
+
+                    emailStages.add(newEmailController.showNewEmailPopup(root));
+                    emailStages.get(emailStages.size() - 1).setOnCloseRequest(this::popStage);
+                } catch (Exception e) {
+                    System.out.println("Error opening popup");
+                }
+                break;
+        }
+    }
+
+
+    public void openShowEmailPopup(Email email, Parent root) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("email.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("showEmail.fxml"));
             root = loader.load();
 
-            emailController emailController = loader.getController();
-            emailController.setRecipient(contactName);
+            showEmailController showEmailController = loader.getController();
+            showEmailController.showEmailPopup(email);
 
-            scene = new Scene(root);
-            stage = new Stage();
-            stage.setTitle("New Email to: " + contactName);
-            stage.setScene(scene);
-            emailStages.add(stage);
-            emailStages.get(emailStages.size() - 1).setOnCloseRequest(this::popStage);
-            stage.show();
+            emailStages.add(showEmailController.showEmailPopup(email, root));
         } catch (Exception e) {
             System.out.println("Error opening popup");
         }
     }
-
     /**
      * Load contacts from a CSV file
      */
     public void loadContacts() {
         try {
-            File contactsFile = new File(getClass().getResource("contacts.csv").getFile());// use
-                                                                                           // getClass().getResource("contacts.csv").getFile()
-                                                                                           // or aneurysm
+            File contactsFile = new File(getClass().getResource("contacts.csv").getFile());
             Scanner scanner = new Scanner(contactsFile);
 
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                String[] contactData = line.split(",");
-                contacts.add(new Contact(contactData[0], contactData[1]));
+                contacts.add(new Contact(line));
             }
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
 
         for (Contact contact : contacts) {
-            contactsList.getItems().add(contact.getName());
+            contactsList.getItems().add(contact.getEmail());
         }
     }
 
@@ -123,11 +236,34 @@ public class ClientController implements Initializable {
         }
     }
 
+    public void handleEmail(Email email) {
+        emails.put(email.getId(), email);
+        senderList.getItems().add(new EmailItem(email.getSender(), email.getId()));
+        subjectList.getItems().add(new EmailItem(email.getSubject(), email.getId()));
+        bodyList.getItems().add(new EmailItem(email.getBody(), email.getId()));
+    }
+
     public void popStage(javafx.stage.WindowEvent event) {
         emailStages.remove(event.getSource());
     }
 
     public void setOwner(Contact owner) {
         this.owner = owner;
+    }
+
+    private ScrollBar getVerticalScrollbar(ListView<?> listView) {
+        ScrollBar scrollbar = null;
+        for (Node node : listView.lookupAll(".scroll-bar")) {
+            if (node instanceof ScrollBar bar) {
+                if (bar.getOrientation().equals(Orientation.VERTICAL)) {
+                    scrollbar = bar;
+                }
+            }
+        }
+        return scrollbar;
+    }
+
+    private void bindScrollBars(ScrollBar sb1, ScrollBar sb2) {
+        sb1.valueProperty().bindBidirectional(sb2.valueProperty());
     }
 }

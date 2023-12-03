@@ -3,18 +3,21 @@ package com.client.client.controllers;
 import com.client.client.models.Contact;
 import com.client.client.models.Email;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class emailController implements Initializable {
+public class newEmailController implements Initializable {
 
     @FXML
     public Button sendButton;
@@ -31,7 +34,7 @@ public class emailController implements Initializable {
     @FXML
     private TextArea body;
 
-    private Contact owner = new Contact("zioper", "help"); // must be initialized with a valid contact
+    private Contact owner = new Contact(""); // must be initialized with a valid contact
 
     private Email email;
 
@@ -52,8 +55,25 @@ public class emailController implements Initializable {
                                                                                                                  // sent
     }
 
+    public Stage showNewEmailPopup(Parent root) throws IOException {
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setTitle("New Email");
+        stage.setScene(scene);
+        stage.show();
+        return stage;
+    }
+
     public void setRecipient(String recipient) {
         this.recipient.setText(recipient);
+    }
+
+    public void setSubject(String subject) {
+        this.subject.setText(subject);
+    }
+
+    public void setBody(String body) {
+        this.body.setText(body);
     }
 
     public void setOwner(Contact owner) {
@@ -67,15 +87,7 @@ public class emailController implements Initializable {
 
     public void send() {
         email.setDate(new Date());
-        ObjectMapper objectMapper = new ObjectMapper();
 
-        try {
-            String json = objectMapper.writeValueAsString(email);
-            System.out.println(json);
-        } catch (Exception e) {
-            System.out.println("Error converting email to json");
-            e.printStackTrace();
-        }
         // TODO: send email
     }
 }

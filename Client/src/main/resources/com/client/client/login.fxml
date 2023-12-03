@@ -18,13 +18,10 @@
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Username" />
-            <Label text="email" GridPane.rowIndex="1" />
-            <TextField fx:id="usernameField" prefHeight="25.0" prefWidth="449.0" GridPane.columnIndex="1" />
-            <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="email" />
+            <TextField fx:id="emailField" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <Button fx:id="loginButton" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="198.0" text="Login">
