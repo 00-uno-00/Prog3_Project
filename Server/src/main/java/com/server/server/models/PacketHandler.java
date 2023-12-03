@@ -1,44 +1,55 @@
 package com.server.server.models;
 
+import com.server.server.utils.*;
+import com.server.server.utils.handleStrategies.DeletePacketStrategy;
+import com.server.server.utils.handleStrategies.RegisterPacketStrategy;
+import com.server.server.utils.handleStrategies.LoginPacketStrategy;
+import com.server.server.utils.handleStrategies.EmailPacketStrategy;
+
+import java.io.ObjectOutputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class PacketHandler implements Runnable {
     private final Packet packet;
     private final AtomicInteger id;
+    private final ObjectOutputStream objectOutputStream;
+    private final Map<String, PacketHandlerStrategy> strategies;
 
-    public PacketHandler(Packet packet, AtomicInteger id) {
+    public PacketHandler(Packet packet, AtomicInteger id, ObjectOutputStream objectOutputStream) {
         this.packet = packet;
         this.id = id;
+        this.objectOutputStream = objectOutputStream;
+        this.strategies = new HashMap<>();
+        this.strategies.put("register", new RegisterPacketStrategy());
+        this.strategies.put("login", new LoginPacketStrategy());
+        this.strategies.put("mail", new EmailPacketStrategy());
+        this.strategies.put("delete", new DeletePacketStrategy());
     }
 
     @Override
-    public void run() { //TODO verify the sender
+    public void run() {
         Logger logger = Logger.getInstance();
-        logger.log("Received packet: " + packet, "Packet");
-        switch (packet.getType()) {
-            case "mail":
-                Email mail = (Email) packet.getContent();
-                logger.log("Received mail: " + mail, "Email");
-                id.get(); //ecc...
-                //TODO handle email
-                /*
-                 Email handling logic :
-                 1) Verify if sender was valid
-                 2) Verify if recipient was valid
-                      -> If valid: step 3
-                      -> If !valid: write Email to sender folder ("recipient not valid. Sincerely, the Server")
-                          |-> Send "not sent" Packet to client
-                 3) Write Email file into recipient folder
-                 4) Send "confirmation" Packet to client
-                 */
-                break;
-            case "login":
-                //retrieve user
-                logger.log("Received login request from : + user", "Login" );
-                //TODO handle login successful or not
-                break;
-            default:
-                logger.log("Received unknown packet type: " + packet.getType(), "Error");
+        if(!PacketUtils.isValidSender(packet.getSender())){
+            logger.log("Received packet with invalid sender: " + packet.getSender(), "Error");
+            Packet responsePacket = new Packet("failed", "invalid sender", "server");
+            PacketUtils.sendPacket(responsePacket, objectOutputStream);
+            return;
+        }
+
+        PacketHandlerStrategy strategy = strategies.get(packet.getType());
+        if (strategy != null) {
+            if(strategy instanceof EmailPacketStrategy){ //introduce id to email
+                Email email = (Email) packet.getPayload();
+                email.setId(id.getAndIncrement());
+                packet.setPayload(email);
+            }
+            strategy.handlePacket(packet, objectOutputStream, logger);
+        } else {
+            Packet responsePacket = new Packet("failed", "unknown packet type", "server");
+            PacketUtils.sendPacket(responsePacket, objectOutputStream);
+            logger.log("Received unknown packet type: " + packet.getType(), "Error");
         }
     }
 }

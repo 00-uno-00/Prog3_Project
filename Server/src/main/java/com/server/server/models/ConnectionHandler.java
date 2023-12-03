@@ -33,8 +33,9 @@ public class ConnectionHandler implements Runnable {
             try {
                 Socket socket = serverSocket.accept();
                 ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
                 Packet packet = (Packet) objectInputStream.readObject();
-                executorService.submit(new PacketHandler(packet, id));
+                executorService.submit(new PacketHandler(packet, id, objectOutputStream));
             } catch (IOException e) {
                 if (running) {
                     logger.log("Error with network connection: " + e.getMessage(), "Error");

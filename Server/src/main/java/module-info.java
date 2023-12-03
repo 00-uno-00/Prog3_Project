@@ -3,6 +3,7 @@ module com.example.server {
     requires javafx.fxml;
 
     requires org.kordamp.bootstrapfx.core;
+    requires com.google.gson;
 
     opens com.server.server to javafx.fxml;
     exports com.server.server;
