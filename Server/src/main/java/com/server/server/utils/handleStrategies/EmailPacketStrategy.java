@@ -22,7 +22,7 @@ public class EmailPacketStrategy implements PacketHandlerStrategy {
             return;
         }
 
-        if(responsePacket.getType().equals("successful")){
+        if(responsePacket.getOperation().equals("successful")){
             PacketUtils.sendPacket(responsePacket, objectOutputStream);
             logger.log("Sent email from : " + packet.getPayload(), "Email" );
         } else {

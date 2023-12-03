@@ -38,18 +38,18 @@ public class PacketHandler implements Runnable {
             return;
         }
 
-        PacketHandlerStrategy strategy = strategies.get(packet.getType());
+        PacketHandlerStrategy strategy = strategies.get(packet.getOperation());
         if (strategy != null) {
             if(strategy instanceof EmailPacketStrategy){ //introduce id to email
-                Email email = (Email) packet.getPayload();
+                Email email = (Email) packet.getPayload(); //check if payload is email
                 email.setId(id.getAndIncrement());
                 packet.setPayload(email);
             }
             strategy.handlePacket(packet, objectOutputStream, logger);
         } else {
-            Packet responsePacket = new Packet("failed", "unknown packet type", "server");
+            Packet responsePacket = new Packet("failed", "unknown packet operation", "server");
             PacketUtils.sendPacket(responsePacket, objectOutputStream);
-            logger.log("Received unknown packet type: " + packet.getType(), "Error");
+            logger.log("Received unknown packet type: " + packet.getOperation(), "Error");
         }
     }
 }

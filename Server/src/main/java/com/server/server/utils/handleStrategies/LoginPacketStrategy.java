@@ -21,7 +21,7 @@ public class LoginPacketStrategy implements PacketHandlerStrategy {
             return;
         }
 
-        if(responsePacket.getType().equals("successful")){
+        if(responsePacket.getOperation().equals("successful")){
             PacketUtils.sendPacket(responsePacket, objectOutputStream);
             logger.log("Logged in user : " + packet.getPayload(), "Login" );
         } else {

@@ -56,7 +56,7 @@ public class EmailHandler {
     private Packet writeEmailToMultiple(Email email, List<String> usernames) {
         for (String username : usernames) {
             Packet responsePacket = writeEmail(email, username);
-            if (!responsePacket.getType().equals("successful")) {
+            if (!responsePacket.getOperation().equals("successful")) {
                 return responsePacket;
             }
         }

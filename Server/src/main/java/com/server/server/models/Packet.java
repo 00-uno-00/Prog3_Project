@@ -12,30 +12,30 @@ import java.io.Serializable;
  * The server receives a packet, reads the type, and performs the operation accordingly. (e.g. casts the object to the appropriate type)
  */
 public class Packet implements Serializable{
-    String type;
+    String operation;
     Object payload;
 
     String sender;
 
     /**
      * Constructor for the Packet class.
-     * @param type  the operation type (e.g. "login", "logged", "register", "send", "receive", "refresh", "delete")
+     * @param operation  the operation type (e.g. "login", "logged", "register", "send", "receive", "refresh", "delete")
      * @param payload    the object to be sent (e.g.  User, Email, ArrayList<Email>)
      * @param sender    the sender of the packet
      */
-    public Packet (String type, Object payload, String sender) {
-        this.type = type; //operation type
+    public Packet (String operation, Object payload, String sender) {
+        this.operation = operation; //operation type
         this.sender = sender; //for security reasons
         this.payload = payload; //payload
     }
 
     //Getters and Setters
-    public String getType() {
-        return type;
+    public String getOperation() {
+        return operation;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setOperation(String operation) {
+        this.operation = operation;
     }
 
     public Object getPayload() {

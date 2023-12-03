@@ -21,12 +21,11 @@ public class RegisterPacketStrategy implements PacketHandlerStrategy {
             return;
         }
 
-        if(responsePacket.getType().equals("successful")){
-            PacketUtils.sendPacket(responsePacket, objectOutputStream);
+        if(responsePacket.getOperation().equals("successful")){
             logger.log("Registered user : " + packet.getPayload(), "Register" );
         } else {
-            PacketUtils.sendPacket(responsePacket, objectOutputStream);
             logger.log("Failed to register user : " + packet.getPayload(), "Error" );
         }
+        PacketUtils.sendPacket(responsePacket, objectOutputStream);
     }
 }
