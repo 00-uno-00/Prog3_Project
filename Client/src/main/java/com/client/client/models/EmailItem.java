@@ -2,9 +2,9 @@ package com.client.client.models;
 
 public class EmailItem {
     private String displayString;
-    private String id;
+    private int id;
 
-    public EmailItem(String displayString, String id) {
+    public EmailItem(String displayString, int id) {
         this.displayString = displayString;
         this.id = id;
     }
@@ -13,7 +13,7 @@ public class EmailItem {
         return displayString;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 

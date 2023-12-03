@@ -14,7 +14,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class newEmailController implements Initializable {
@@ -40,7 +42,7 @@ public class newEmailController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        email = new Email(owner.getEmail(), recipient.getText(), body.getText(), subject.getText(), null, false);// date
+        email = new Email(owner.getEmail(), parseRecipients(recipient.getText()), body.getText(), subject.getText(), null, false);// date
                                                                                                                  // and
                                                                                                                  // time
                                                                                                                  // will
@@ -89,5 +91,14 @@ public class newEmailController implements Initializable {
         email.setDate(new Date());
 
         // TODO: send email
+    }
+
+    private List<String> parseRecipients(String recipients) {
+        List<String> recipientList = new ArrayList<>();
+        String[] recipientArray = recipients.split(",");
+        for (String recipient : recipientArray) {
+            recipientList.add(recipient.trim());
+        }
+        return recipientList;
     }
 }

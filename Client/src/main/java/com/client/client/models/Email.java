@@ -1,22 +1,20 @@
 package com.client.client.models;
 
 import java.util.Date;
+import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Email {
-    private String id;
+    private int id;
     private String sender;
-    private String recipient;
+    private List<String> recipient;
     private String body;
     private String subject;
     private Date date;
     private boolean isRead;
 
     // Constructor
-    public Email(String sender, String recipient, String body, String subject, Date date, boolean isRead) {
-        this.id = "0";
+    public Email(String sender, List<String> recipient, String body, String subject, Date date, boolean isRead) {
+        this.id = 0;
         this.sender = sender;
         this.recipient = recipient;
         this.body = body;
@@ -26,11 +24,11 @@ public class Email {
     }
 
     // Getters and Setters
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -42,11 +40,11 @@ public class Email {
         this.sender = sender;
     }
 
-    public String getRecipient() {
+    public List<String> getRecipient() {
         return recipient;
     }
 
-    public void setRecipient(String recipient) {
+    public void setRecipients(List<String > recipient) {
         this.recipient = recipient;
     }
 
@@ -55,7 +53,7 @@ public class Email {
     }
 
     public void setBody(String body) {
-        this.body = this.body;
+        this.body = body;
     }
 
     public String getSubject() {
@@ -80,6 +78,24 @@ public class Email {
 
     public void setRead(boolean read) {
         isRead = read;
+    }
+
+    // Methods
+    /**
+     * Checks if the username String has the shape of an email address
+     * @param email the username to be checked
+     * @return true if the username String has the shape of an email address, false otherwise
+     */
+    public static boolean isValidFormat(String email) {
+        //check if the username String has the shape of an email address
+        //match the regex pattern for email addresses :
+        //It allows numeric values from 0 to 9
+        //Both uppercase and lowercase letters from a to z are allowed
+        //Underscore "_", hyphen "-", and dot "." are allowed
+        //Dot isn’t allowed at the start and end of the local part
+        //Consecutive dots aren’t allowed
+        //For the local part, a maximum of 64 characters are allowed
+        return !email.matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\\\.[A-Za-z0-9-]+)*(\\\\.[A-Za-z]{2,})$");
     }
 
 }

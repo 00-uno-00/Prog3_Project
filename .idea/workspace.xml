@@ -5,13 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Added handlers for specific packets and send logic">
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/ClientModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/PacketHandlerStrategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/PacketUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/handleStrategies/DeletePacketStrategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/handleStrategies/EmailPacketStrategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/handleStrategies/LoginPacketStrategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/handleStrategies/RegisterPacketStrategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/specificHandlers/DeleteHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/specificHandlers/EmailHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/specificHandlers/LoginHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/specificHandlers/RegisterHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Packet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Packet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/PacketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/PacketHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/EmailPacketStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/EmailPacketStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/LoginPacketStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/LoginPacketStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RegisterPacketStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RegisterPacketStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/EmailHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/EmailHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/newEmailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/newEmailController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/Email.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/Email.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/EmailItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/EmailItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/Packet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/Packet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/PacketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/PacketHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/Services.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,11 +93,11 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;server&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;18&quot;,
     &quot;last.edited.regexp&quot;: &quot;Sample.Text@mymail.com&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/davide/Desktop/PROGIII/Prog3_Project&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/UNI/Prog3_Project/Client/src/main/java/com/client/client/utils/handleStrategies&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -107,12 +119,20 @@
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.server.server.utils" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\UNI\Prog3_Project\Client\src\main\java\com\client\client\utils\handleStrategies" />
+      <recent name="E:\UNI\Prog3_Project\Client\src\main\java\com\client\client\utils\specificHandlers" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Server/src/main/resources/com/server/server" />
       <recent name="$PROJECT_DIR$/Server/target/classes/com/server/server/models" />
       <recent name="$PROJECT_DIR$/Server/target/classes/com/server/server" />
       <recent name="E:\UNI\Prog3_Project" />
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.client.client.models" />
+      <recent name="com.client.client.utils" />
     </key>
   </component>
   <component name="RunManager" selected="Application.ServerApplication">
@@ -260,6 +280,7 @@
       <workItem from="1701454741833" duration="17813000" />
       <workItem from="1701562957455" duration="1065000" />
       <workItem from="1701603240636" duration="1176000" />
+      <workItem from="1701621995407" duration="926000" />
     </task>
     <task id="LOCAL-00001" summary="Server branch">
       <option name="closed" value="true" />
@@ -459,6 +480,21 @@
     <option name="LAST_COMMIT_MESSAGE" value="Added handlers for specific packets and send logic" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="com.client.client.ClientController" memberName="recipient" />
+        <PinnedItemInfo parentTag="com.client.client.ClientController" memberName="contacts" />
+      </pinned-members>
+    </pin-to-top-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="contactsList.dirtyChildren" />

@@ -1,5 +1,6 @@
 package com.client.client.controllers;
 
+import com.client.client.models.ClientModel;
 import com.client.client.models.Contact;
 import com.client.client.models.Email;
 import com.client.client.models.EmailItem;
@@ -25,6 +26,9 @@ public class ClientController implements Initializable {
     private Button changeAccount;
 
     @FXML
+    private Button refresh;
+
+    @FXML
     private ListView<String> contactsList;
 
     @FXML
@@ -38,13 +42,15 @@ public class ClientController implements Initializable {
 
     private List<Contact> contacts = new ArrayList<>();
 
-    private HashMap<String, Email> emails = new HashMap<>();
+    private HashMap<Integer, Email> emails = new HashMap<>();
 
     private List<Stage> emailStages = new ArrayList<>();
 
     Parent root;
     Scene scene;
     Stage stage;
+
+    private static ClientModel client;
 
     private Contact owner = new Contact(""); // must be initalized at startup
 
@@ -92,6 +98,8 @@ public class ClientController implements Initializable {
             bindScrollBars(bodyScrollBar, subjectScrollBar);
             bindScrollBars(subjectScrollBar, senderScrollBar);
         });
+
+        client = new ClientModel();
     }
 
     public void changeAccount() {
@@ -109,6 +117,11 @@ public class ClientController implements Initializable {
         }
     }
 
+    public void refresh() {
+        //TODO refresh
+    }
+
+    //can be changed into ViewClass
     public void openNewEmailPopup(String[] args) {//args[0] is the type of new mail, args[1] is the number of recipients, args[2] is the recipient(s), args[3] is the subject, args[4] is the body
         switch (args[0]){
             case "new"://args[1] = 1
