@@ -21,17 +21,13 @@ public class ConnectionHandler implements Runnable {
     public ConnectionHandler(Socket socket, ExecutorService executorService) {
         this.socket = socket;
         this.executorService = executorService;
-        this.connected = true;
     }
 
     @Override
     public void run() {
-        while (connected) {// must ping server to keep connection alive
+        while (true) {// must ping server to keep connection alive
             try {
-                ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
-                ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-                Packet packet = (Packet) objectInputStream.readObject();
-                executorService.submit(new PacketHandler(packet, objectOutputStream));
+                executorService.submit(new PacketHandler(socket));
             } catch (IOException e) {
 
             } catch (ClassNotFoundException e) {

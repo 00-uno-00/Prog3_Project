@@ -1,19 +1,16 @@
 package com.client.client.models;
 
-import com.client.client.controllers.ClientController;
 import com.client.client.utils.PacketHandlerStrategy;
 import com.client.client.utils.PacketUtils;
 import com.client.client.utils.handleStrategies.DeletePacketStrategy;
 import com.client.client.utils.handleStrategies.EmailPacketStrategy;
 import com.client.client.utils.handleStrategies.LoginPacketStrategy;
-import com.client.client.utils.handleStrategies.RegisterPacketStrategy;
 
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
 
 public class PacketHandler implements Runnable {
 
@@ -21,21 +18,34 @@ public class PacketHandler implements Runnable {
     private String baseDir = System.getProperty("user.dir");
     private String relativePath= "/Client/src/main/resources/com/client/client/email/";
 
-    private final Packet packet;
+    private final ObjectOutputStream objectOutputStream;
+
+    private final ObjectInputStream objectInputStream;
+
+    private Packet packet;
 
     private final Map<String, PacketHandlerStrategy> strategies;
-    /**
-     * Handles the packet and generates a response packet
-     * @param packet
-     * @param objectOutputStream
-     */
-    public PacketHandler(Packet packet, ObjectOutputStream objectOutputStream) {
+
+    public PacketHandler(Socket socket) {
         this.strategies = new HashMap<>();
-        this.strategies.put("register", new RegisterPacketStrategy());
         this.strategies.put("login", new LoginPacketStrategy());
         this.strategies.put("mail", new EmailPacketStrategy());
         this.strategies.put("delete", new DeletePacketStrategy());
-        this.packet = packet;
+        try {
+            this.objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            this.objectInputStream = new ObjectInputStream(socket.getInputStream());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            this.packet = (Packet) objectInputStream.readObject();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

@@ -1,8 +1,13 @@
 package com.client.client.controllers;
-
+//move this into client controller
+import com.client.client.models.ClientModel;
 import com.client.client.models.Contact;
+import com.client.client.models.Email;
+import com.client.client.models.Packet;
+import com.client.client.utils.handleStrategies.LoginPacketStrategy;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -10,11 +15,12 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.kordamp.bootstrapfx.BootstrapFX;
-import com.client.client.models.Services;
+import java.net.URL;
+import java.util.*;
 
 import java.util.Optional;
 
-public class loginController {
+public class loginController implements Initializable {
 
     @FXML
     private Button loginButton;
@@ -31,15 +37,35 @@ public class loginController {
      * Checks if the email and username are valid and loads the client window
      */
     public void login() {
-        if (emailField.getText() != null && Services.isValidEmail(emailField.getText())) {
-            Contact owner = new Contact(emailField.getText());
+        if (emailField.getText() != null && Email.isValidFormat(emailField.getText())) {
+            //newpacket login
+            Packet packet = new Packet("login", new Contact(emailField.getText()), "client");
 
-            ClientController controller = new ClientController();
-            controller.setOwner(owner);
-            loadClient(controller);
+            LoginPacketStrategy loginPacketStrategy = new LoginPacketStrategy();
+            if (loginPacketStrategy.handlePacketWithResp(packet, null, null)) {
+                openClient();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Dialog");
+                alert.setHeaderText("Invalid email");
+                Optional<ButtonType> result = alert.showAndWait();
+            }
 
-            Stage stage = (Stage) loginButton.getScene().getWindow();
-            stage.close();
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("Invalid email");
+            Optional<ButtonType> result = alert.showAndWait();
+        }
+    }
+
+    /**
+     * Checks if the email and username are valid and loads the client window
+     */
+    public void register() {
+        if (emailField.getText() != null && Email.isValidFormat(emailField.getText())) {
+            //newpacket register
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Dialog");
@@ -73,5 +99,21 @@ public class loginController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        ClientModel clientModel = new ClientModel();
+    }
+
+    private void openClient(){
+        Contact owner = new Contact(emailField.getText());
+
+        ClientController controller = new ClientController();
+        controller.setOwner(owner);
+        loadClient(controller);
+
+        Stage stage = (Stage) loginButton.getScene().getWindow();
+        stage.close();
     }
 }

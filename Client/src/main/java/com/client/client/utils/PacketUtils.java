@@ -4,6 +4,7 @@ import com.client.client.models.Packet;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class PacketUtils {
@@ -18,7 +19,7 @@ public class PacketUtils {
         return new File("Server/src/main/resources/com/server/server/accounts/" + sender).exists();
     }
 
-    public static void sendPacket(Packet packet, ObjectOutputStream objectOutputStream) {
+    public static void sendPacket(Packet packet, ObjectOutputStream objectOutputStream) {//TODO send/recieve
         try {
             objectOutputStream.writeObject(packet);
         } catch (IOException e) {
@@ -31,4 +32,12 @@ public class PacketUtils {
         }
     }
 
+    public static Packet getResponse(ObjectInputStream objectInputStream) {
+        try {
+            return (Packet) objectInputStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("Error getting response from client: " + e.getMessage());
+            return null;
+        }
+    }
 }
