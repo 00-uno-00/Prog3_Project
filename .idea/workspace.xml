@@ -5,25 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Added handlers for specific packets and send logic">
-      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/ClientModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/PacketHandlerStrategy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/PacketUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/handleStrategies/DeletePacketStrategy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/handleStrategies/EmailPacketStrategy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/handleStrategies/LoginPacketStrategy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/handleStrategies/RegisterPacketStrategy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/specificHandlers/DeleteHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/specificHandlers/EmailHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/specificHandlers/LoginHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/specificHandlers/RegisterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/ConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_11_23,_18_28_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_11_23__18_28__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/newEmailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/newEmailController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/Email.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/Email.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/EmailItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/EmailItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/Packet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/Packet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/ClientModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/ClientModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/PacketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/PacketHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/Services.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -281,6 +268,7 @@
       <workItem from="1701562957455" duration="1065000" />
       <workItem from="1701603240636" duration="1176000" />
       <workItem from="1701621995407" duration="926000" />
+      <workItem from="1701680494214" duration="1648000" />
     </task>
     <task id="LOCAL-00001" summary="Server branch">
       <option name="closed" value="true" />

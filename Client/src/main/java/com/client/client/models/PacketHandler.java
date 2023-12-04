@@ -8,30 +8,34 @@ import com.client.client.utils.handleStrategies.EmailPacketStrategy;
 import com.client.client.utils.handleStrategies.LoginPacketStrategy;
 import com.client.client.utils.handleStrategies.RegisterPacketStrategy;
 
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
 
 public class PacketHandler implements Runnable {
 
-    private final Socket clientSocket;
 
-    private final Thread thread;
-    private String baseDir;
-    private String relativePath;
+    private String baseDir = System.getProperty("user.dir");
+    private String relativePath= "/Client/src/main/resources/com/client/client/email/";
+
+    private final Packet packet;
 
     private final Map<String, PacketHandlerStrategy> strategies;
-    public PacketHandler(Socket clientSocket, Thread thread) {//packet pure qua? chiedere a davide
-        this.clientSocket = clientSocket;
-        this.thread = thread;
-         baseDir = System.getProperty("user.dir");
-         relativePath = "/Client/src/main/resources/com/client/client/email/";
+    /**
+     * Handles the packet and generates a response packet
+     * @param packet
+     * @param objectOutputStream
+     */
+    public PacketHandler(Packet packet, ObjectOutputStream objectOutputStream) {
         this.strategies = new HashMap<>();
         this.strategies.put("register", new RegisterPacketStrategy());
         this.strategies.put("login", new LoginPacketStrategy());
         this.strategies.put("mail", new EmailPacketStrategy());
         this.strategies.put("delete", new DeletePacketStrategy());
+        this.packet = packet;
     }
 
     @Override
@@ -40,12 +44,11 @@ public class PacketHandler implements Runnable {
         if (strategy != null) {
             if(strategy instanceof EmailPacketStrategy){ //introduce id to email
                 Email email = (Email) packet.getPayload(); //check if payload is email
-                email.setId(id.getAndIncrement());
                 packet.setPayload(email);
             }
             strategy.handlePacket(packet, objectOutputStream);
         } else {
-            Packet responsePacket = new Packet("failed", "unknown packet operation", "server");
+            Packet responsePacket = new Packet("failed", "unknown packet operation", "client");
             PacketUtils.sendPacket(responsePacket, objectOutputStream);
         }
         /*
