@@ -8,16 +8,6 @@ import com.server.server.utils.AccountUtils;
 import java.util.HashMap;
 import java.util.List;
 
-/*
-Email handling logic :
-1) Verify if sender was valid (moved to PacketUtils.isValidSender)
-2) Verify if recipient was valid
-     -> If valid: step 3
-     -> If !valid: write Email to sender folder ("recipient not valid. Sincerely, the Server")
-         |-> Send "not sent" Packet to client
-3) Write Email file into recipient folder
-4) Send "confirmation" Packet to client
-*/
 public class EmailHandler {
     private boolean isValidRecipient(List<String> recipient) {
         if (recipient == null || recipient.isEmpty()) {

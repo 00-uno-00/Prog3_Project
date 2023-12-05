@@ -5,23 +5,18 @@ import com.server.server.models.Packet;
 import com.server.server.utils.AccountUtils;
 
 import java.util.HashMap;
+import java.util.List;
 
-public class DeleteHandler {
-    public Packet delete(int id, String username) {
+public class RefreshHandler {
+    public Packet refresh(String username, List<Integer> presentIds) {
         String accountFolder = AccountUtils.getAccountFolder(username);
         HashMap<Integer, Email> emails;
         if(AccountUtils.doesAccountExist(username)){
             return new Packet("failed", "Account does not exist", "server");
         }
         emails = AccountUtils.retrieveEmails(accountFolder);
-        if(emails==null){
-            return new Packet("failed", "Could not retrieve emails", "server");
-        }
-        if(emails.containsKey(id)){
-            emails.remove(id);
-            return new Packet("successful", "email deleted", "server");
-        } else {
-            return new Packet("failed", "Could not retrieve emails", "server");
-        }
+        List<Email> neededEmails;
+        //TODO cycle through emails and if the email is not in presentIds, add it to neededEmails
+        return new Packet("successful", emails, "server");
     }
 }

@@ -8,7 +8,7 @@ import com.server.server.utils.PacketUtils;
 
 import java.io.ObjectOutputStream;
 
-public class LoginPacketStrategy implements PacketHandlerStrategy {
+public class LoginStrategy implements PacketHandlerStrategy {
     @Override
     public void handlePacket(Packet packet, ObjectOutputStream objectOutputStream, Logger logger) {
         Packet responsePacket;

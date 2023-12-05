@@ -4,14 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Added handlers for specific packets and send logic">
+    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Useful renames">
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/DeleteStrategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/ResfreshStrategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/RefreshHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_11_23,_18_28_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_11_23__18_28__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Packet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Packet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/ConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Logger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/PacketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/PacketHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/EmailPacketStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/EmailPacketStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/LoginPacketStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/LoginPacketStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RegisterPacketStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RegisterPacketStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/AccountUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/AccountUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/DeletePacketStrategy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/EmailPacketStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/EmailStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/LoginPacketStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/LoginStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RegisterPacketStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RegisterStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/DeleteHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/DeleteHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/EmailHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/EmailHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/ConnectionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/ConnectionHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/Email.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/Email.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/Logger.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/Logger.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/Packet.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/Packet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/PacketHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/PacketHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/module-info.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +60,14 @@
     &quot;state&quot;: &quot;OPEN&quot;
   }
 }</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="ce91cf13-0503-44c1-90cf-7beb791f4bdf" />
+        <option name="url" value="https://github.com/00-uno-00/Prog3_Project.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Server/src/main/java/com/server/server/models/ServerModel.java" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -94,7 +117,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.intentionPowerPack&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -259,7 +282,10 @@
       <workItem from="1701454608982" duration="109000" />
       <workItem from="1701454741833" duration="17813000" />
       <workItem from="1701562957455" duration="1065000" />
-      <workItem from="1701603240636" duration="1176000" />
+      <workItem from="1701603240636" duration="2921000" />
+      <workItem from="1701694477152" duration="7039000" />
+      <workItem from="1701801693489" duration="832000" />
+      <workItem from="1701814924745" duration="2050000" />
     </task>
     <task id="LOCAL-00001" summary="Server branch">
       <option name="closed" value="true" />
@@ -389,7 +415,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701564013265</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Useful renames">
+      <option name="closed" value="true" />
+      <created>1701604463272</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1701604463272</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -456,7 +490,8 @@
     <MESSAGE value="Implemented list sync scroll and readability improvements" />
     <MESSAGE value="Added email handling logic and minor fixes" />
     <MESSAGE value="Added handlers for specific packets and send logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added handlers for specific packets and send logic" />
+    <MESSAGE value="Useful renames" />
+    <option name="LAST_COMMIT_MESSAGE" value="Useful renames" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

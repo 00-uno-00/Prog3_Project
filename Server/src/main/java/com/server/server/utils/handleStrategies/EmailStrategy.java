@@ -9,7 +9,7 @@ import com.server.server.models.Logger;
 
 import java.io.ObjectOutputStream;
 
-public class EmailPacketStrategy implements PacketHandlerStrategy {
+public class EmailStrategy implements PacketHandlerStrategy {
     @Override
     public void handlePacket(Packet packet, ObjectOutputStream objectOutputStream, Logger logger) {
         Packet responsePacket;

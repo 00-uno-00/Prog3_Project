@@ -32,16 +32,11 @@ public class ConnectionHandler implements Runnable {
         while (running) {
             try {
                 Socket socket = serverSocket.accept();
-                ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
-                ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-                Packet packet = (Packet) objectInputStream.readObject();
-                executorService.submit(new PacketHandler(packet, id, objectOutputStream));
+                executorService.submit(new PacketHandler(id, socket));
             } catch (IOException e) {
                 if (running) {
                     logger.log("Error with network connection: " + e.getMessage(), "Error");
                 }
-            } catch (ClassNotFoundException e) {
-                logger.log("Error reading packet: " + e.getMessage(), "Error");
             }
         }
         storeId();
@@ -75,6 +70,8 @@ public class ConnectionHandler implements Runnable {
         }
         try (PrintWriter writer = new PrintWriter(idFile)) {
             writer.println(id);
+            writer.flush();
+            writer.close();
             Logger logger = Logger.getInstance();
             logger.log("Stored Mail ID to file (" + id.get() + ") ", "System");
         } catch (FileNotFoundException e) {
