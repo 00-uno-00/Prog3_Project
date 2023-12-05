@@ -12,6 +12,10 @@ public class ConnectionHandler implements Runnable {
     private final Socket socket;
     private final ExecutorService executorService;
 
+    private final PacketHandler packetHandler;
+
+    private Packet packet;
+
     private volatile boolean connected;
     /**
      * Handles the connection to the server
@@ -21,17 +25,13 @@ public class ConnectionHandler implements Runnable {
     public ConnectionHandler(Socket socket, ExecutorService executorService) {
         this.socket = socket;
         this.executorService = executorService;
+        this.packetHandler = new PacketHandler(socket, null);
     }
 
     @Override
     public void run() {
         while (true) {// must ping server to keep connection alive
-            try {
-                executorService.submit(new PacketHandler(socket));
-            } catch (IOException e) {
-
-            } catch (ClassNotFoundException e) {
-            }
+            executorService.submit(new PacketHandler(socket, packet));
         }
     }
 
@@ -59,5 +59,9 @@ public class ConnectionHandler implements Runnable {
 
         // If the response packet's operation is not "online", return false
         connected = false;
+    }
+
+    public void setPacket(Packet packet){
+        this.packet = packet;
     }
 }

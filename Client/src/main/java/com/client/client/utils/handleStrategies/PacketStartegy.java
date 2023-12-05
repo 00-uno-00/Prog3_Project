@@ -8,7 +8,7 @@ import com.client.client.utils.PacketUtils;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class LoginPacketStrategy implements PacketHandlerStrategy {
+public class PacketStartegy implements PacketHandlerStrategy {
 
     @Override
     public void handlePacket(Packet packet, ObjectOutputStream objectOutputStream) {
@@ -17,7 +17,7 @@ public class LoginPacketStrategy implements PacketHandlerStrategy {
 
     @Override
     public Boolean handlePacketWithResp(Packet packet, ObjectOutputStream objectOutputStream, ObjectInputStream objectInputStream) {
-        Packet sendPacket = new Packet("login", packet.getPayload(),"client");
+        Packet sendPacket = new Packet("login", packet.getPayload(), "client");
         PacketUtils.sendPacket(sendPacket, objectOutputStream);
 
         int attempts = 0;
@@ -40,5 +40,6 @@ public class LoginPacketStrategy implements PacketHandlerStrategy {
                 e.printStackTrace();
             }
         }
+        return attempts < 3;
     }
 }

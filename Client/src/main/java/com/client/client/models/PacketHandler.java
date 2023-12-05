@@ -4,7 +4,7 @@ import com.client.client.utils.PacketHandlerStrategy;
 import com.client.client.utils.PacketUtils;
 import com.client.client.utils.handleStrategies.DeletePacketStrategy;
 import com.client.client.utils.handleStrategies.EmailPacketStrategy;
-import com.client.client.utils.handleStrategies.LoginPacketStrategy;
+import com.client.client.utils.handleStrategies.PacketStartegy;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -26,9 +26,9 @@ public class PacketHandler implements Runnable {
 
     private final Map<String, PacketHandlerStrategy> strategies;
 
-    public PacketHandler(Socket socket) {
+    public PacketHandler(Socket socket, Packet packet) {
         this.strategies = new HashMap<>();
-        this.strategies.put("login", new LoginPacketStrategy());
+        this.strategies.put("login", new PacketStartegy());
         this.strategies.put("mail", new EmailPacketStrategy());
         this.strategies.put("delete", new DeletePacketStrategy());
         try {

@@ -3,8 +3,6 @@ package com.client.client.controllers;
 import com.client.client.models.ClientModel;
 import com.client.client.models.Contact;
 import com.client.client.models.Email;
-import com.client.client.models.Packet;
-import com.client.client.utils.handleStrategies.LoginPacketStrategy;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,23 +24,19 @@ public class loginController implements Initializable {
     private Button loginButton;
 
     @FXML
-    private TextField usernameField;
-
-    @FXML
     private TextField emailField;
 
     private Stage stage = new Stage();
+
+    private ClientModel model;
 
     /**
      * Checks if the email and username are valid and loads the client window
      */
     public void login() {
         if (emailField.getText() != null && Email.isValidFormat(emailField.getText())) {
-            //newpacket login
-            Packet packet = new Packet("login", new Contact(emailField.getText()), "client");
 
-            LoginPacketStrategy loginPacketStrategy = new LoginPacketStrategy();
-            if (loginPacketStrategy.handlePacketWithResp(packet, null, null)) {
+            if (model.login(emailField.getText())) {
                 openClient();
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -50,8 +44,6 @@ public class loginController implements Initializable {
                 alert.setHeaderText("Invalid email");
                 Optional<ButtonType> result = alert.showAndWait();
             }
-
-
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Dialog");
@@ -66,6 +58,7 @@ public class loginController implements Initializable {
     public void register() {
         if (emailField.getText() != null && Email.isValidFormat(emailField.getText())) {
             //newpacket register
+
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Dialog");
@@ -103,7 +96,7 @@ public class loginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ClientModel clientModel = new ClientModel();
+        model = new ClientModel();
     }
 
     private void openClient(){

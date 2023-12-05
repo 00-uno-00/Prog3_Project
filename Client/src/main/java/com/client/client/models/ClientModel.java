@@ -31,4 +31,14 @@ public class ClientModel {
 
     }
 
+    public boolean login(String email){
+        //newpacket login
+        Packet packet = new Packet("login", new Contact(email), "client");
+        connectionHandler.setPacket(packet);
+        if () {
+            return true;
+        }
+        return false;
+    }
+
 }
