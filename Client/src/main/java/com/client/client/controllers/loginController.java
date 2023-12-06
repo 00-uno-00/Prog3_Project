@@ -24,6 +24,9 @@ public class loginController implements Initializable {
     private Button loginButton;
 
     @FXML
+    private Button registerButton;
+
+    @FXML
     private TextField emailField;
 
     private Stage stage = new Stage();
@@ -35,9 +38,9 @@ public class loginController implements Initializable {
      */
     public void login() {
         if (emailField.getText() != null && Email.isValidFormat(emailField.getText())) {
-
-            if (model.login(emailField.getText())) {
-                openClient();
+            model.setEmail(emailField.getText());
+            if (model.login()) {
+                openClient(model);
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Dialog");
@@ -57,8 +60,15 @@ public class loginController implements Initializable {
      */
     public void register() {
         if (emailField.getText() != null && Email.isValidFormat(emailField.getText())) {
-            //newpacket register
-
+            model.setEmail(emailField.getText());
+            if (model.register(emailField.getText())) {
+                openClient(model);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Dialog");
+                alert.setHeaderText("Invalid email");
+                Optional<ButtonType> result = alert.showAndWait();
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Dialog");
@@ -97,12 +107,13 @@ public class loginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         model = new ClientModel();
+        model.setEmail(emailField.getText());
     }
 
-    private void openClient(){
+    private void openClient(ClientModel model){
         Contact owner = new Contact(emailField.getText());
 
-        ClientController controller = new ClientController();
+        ClientController controller = new ClientController(model);
         controller.setOwner(owner);
         loadClient(controller);
 

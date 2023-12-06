@@ -58,7 +58,7 @@ public class showEmailController {
     }
 
     public void delete() {
-
+        
     }
 
     public Stage showEmailPopup(Email email, Parent root) throws IOException {

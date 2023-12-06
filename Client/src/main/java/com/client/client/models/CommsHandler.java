@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.List;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
@@ -32,33 +33,44 @@ public class CommsHandler {
         this.email = email;
     }
 
-    public boolean login(){
+    public boolean login() throws ExecutionException, InterruptedException {
         Packet loginPacket = new Packet("login", new Contact(email), email);
 
         Future<Packet> future = executorService.submit(new PacketHandler(socket, loginPacket, email));
 
-        return true;
+        if ("successful".equals(future.get().getPayload())) {
+            return true;
+        } else {//TODO add connection error
+            return false;
+        }
+    }
+
+    public boolean register() throws ExecutionException, InterruptedException {
+        Packet registerPacket = new Packet("register", new Contact(email), email);
+
+        Future<Packet> future = executorService.submit(new PacketHandler(socket, registerPacket, email));
+        if ("successful".equals(future.get().getPayload())) {
+            return true;
+        } else {//TODO add connection error
+            return false;
+        }
     }
 
     //send empty list for first refresh
-    /*
-    public void refresh(String email, List<Integer> emailIDs) {
-        try {
+
+    public List<Email> refresh(List<Integer> emailIDs) throws ExecutionException, InterruptedException {
+
             // Create a new "online" packet
             Packet onlinePacket = new Packet("refresh", emailIDs, email);
 
-            Future<Packet> responsePacket = executorService.submit(new PacketHandler(socket, onlinePacket));
+            Future<Packet> responsePacket = executorService.submit(new PacketHandler(socket, onlinePacket, email));
 
             // If the response packet's operation is "online", return true
-            if ("succesful".equals(responsePacket.get().getOperation())) {//TODO FIX
-
+            if ("succesful".equals(responsePacket.get().getOperation())) {
+                return (List<Email>) responsePacket.get().getPayload();
+            } else {
+                return null;//can be handled by model
             }
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        // If the response packet's operation is not "online", return false
-        connected = false;
     }
-    */
+
 }

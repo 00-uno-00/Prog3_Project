@@ -50,7 +50,11 @@ public class ClientController implements Initializable {
     Scene scene;
     Stage stage;
 
-    private static ClientModel client;
+    private ClientModel model;
+
+    public ClientController(ClientModel model) {
+        this.model = model;
+    }
 
     private Contact owner = new Contact(""); // must be initalized at startup
 
@@ -98,8 +102,7 @@ public class ClientController implements Initializable {
             bindScrollBars(bodyScrollBar, subjectScrollBar);
             bindScrollBars(subjectScrollBar, senderScrollBar);
         });
-
-        client = new ClientModel();
+        refresh();
     }
 
     public void changeAccount() {
@@ -118,7 +121,16 @@ public class ClientController implements Initializable {
     }
 
     public void refresh() {
-        //TODO refresh
+        if (model.refresh(new ArrayList<>(emails.keySet())) == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("Connection error");
+            Optional<ButtonType> result = alert.showAndWait();
+        } else {
+            for (Email email : model.refresh(new ArrayList<>(emails.keySet()))) {
+                handleEmail(email);
+            }
+        }
     }
 
     //can be changed into ViewClass

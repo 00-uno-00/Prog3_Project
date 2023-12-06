@@ -5,21 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Added handlers for specific packets and send logic">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/ClientApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/loginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/loginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/showEmailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/showEmailController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/ClientModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/ClientModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/CommsHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/PacketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/PacketHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/PacketHandlerStrategy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/PacketUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/PacketUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/handleStrategies/DeletePacketStrategy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/handleStrategies/EmailPacketStrategy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/handleStrategies/OutcomeHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/handleStrategies/PacketStartegy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/specificHandlers/DeleteHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/specificHandlers/EmailHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/utils/specificHandlers/LoginHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/CommsHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/CommsHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/login.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/controllers/ServerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/controllers/ServerController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/ConnectionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/ConnectionHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/Email.class" beforeDir="false" afterPath="$PROJECT_DIR$/Server/target/classes/com/server/server/models/Email.class" afterDir="false" />
@@ -247,7 +240,10 @@
       <workItem from="1701603240636" duration="1176000" />
       <workItem from="1701621995407" duration="926000" />
       <workItem from="1701680494214" duration="1648000" />
-      <workItem from="1701802409914" duration="14156000" />
+      <workItem from="1701802409914" duration="14519000" />
+      <workItem from="1701870285903" duration="1301000" />
+      <workItem from="1701872837554" duration="3305000" />
+      <workItem from="1701879665973" duration="832000" />
     </task>
     <task id="LOCAL-00001" summary="Server branch">
       <option name="closed" value="true" />
@@ -447,15 +443,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Added handlers for specific packets and send logic" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java</url>
-          <line>58</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="com.client.client.ClientController" memberName="recipient" />
