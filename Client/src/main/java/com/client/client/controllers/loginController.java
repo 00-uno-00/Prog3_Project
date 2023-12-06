@@ -1,7 +1,6 @@
 package com.client.client.controllers;
 //move this into client controller
 import com.client.client.models.ClientModel;
-import com.client.client.models.Contact;
 import com.client.client.models.Email;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -111,10 +110,8 @@ public class loginController implements Initializable {
     }
 
     private void openClient(ClientModel model){
-        Contact owner = new Contact(emailField.getText());
-
         ClientController controller = new ClientController(model);
-        controller.setOwner(owner);
+        controller.setOwner(emailField.getText());
         loadClient(controller);
 
         Stage stage = (Stage) loginButton.getScene().getWindow();

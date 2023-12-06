@@ -14,8 +14,6 @@ public class ClientModel {
 
     private ExecutorService executorService;
 
-    private PacketHandler packetHandler;
-
     private CommsHandler commsHandler;
 
     private String email;
@@ -63,5 +61,6 @@ public class ClientModel {
 
     public void setEmail(String email){
         this.email = email;
+        commsHandler.setEmail(email);
     }
 }

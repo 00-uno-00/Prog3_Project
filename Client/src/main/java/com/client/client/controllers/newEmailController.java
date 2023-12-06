@@ -1,6 +1,5 @@
 package com.client.client.controllers;
 
-import com.client.client.models.Contact;
 import com.client.client.models.Email;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,13 +35,13 @@ public class newEmailController implements Initializable {
     @FXML
     private TextArea body;
 
-    private Contact owner = new Contact(""); // must be initialized with a valid contact
+    private String owner = ""; // must be initialized with a valid contact
 
     private Email email;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        email = new Email(owner.getEmail(), parseRecipients(recipient.getText()), body.getText(), subject.getText(), null, false);// date
+        email = new Email(owner, parseRecipients(recipient.getText()), body.getText(), subject.getText(), null, false);// date
                                                                                                                  // and
                                                                                                                  // time
                                                                                                                  // will
@@ -78,7 +77,7 @@ public class newEmailController implements Initializable {
         this.body.setText(body);
     }
 
-    public void setOwner(Contact owner) {
+    public void setOwner(String owner) {
         this.owner = owner;
     }
 

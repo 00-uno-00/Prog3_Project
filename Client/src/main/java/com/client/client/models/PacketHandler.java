@@ -15,17 +15,14 @@ public class PacketHandler implements Callable<Packet> {
     //private String baseDir = System.getProperty("user.dir");
     //private String relativePath= "/Client/src/main/resources/com/client/client/email/";
 
-    private final ObjectOutputStream objectOutputStream;
+    private ObjectOutputStream objectOutputStream;
 
-    private final ObjectInputStream objectInputStream;
+    private ObjectInputStream objectInputStream;
 
     private Packet packet;
 
-    private String email;
-
-    public PacketHandler(Socket socket, Packet packet, String email) {
+    public PacketHandler(Socket socket, Packet packet) {
         this.packet = packet;
-        this.email = email;
         try {
             this.objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
         } catch (Exception e) {
@@ -39,7 +36,7 @@ public class PacketHandler implements Callable<Packet> {
     }
 
     public Packet call() throws Exception {
-        Packet sendPacket = new Packet(packet.getOperation(), packet.getPayload(), email);
+        Packet sendPacket = new Packet(packet.getOperation(), packet.getPayload(), packet.getSender());
         PacketUtils.sendPacket(sendPacket, objectOutputStream);
 
         int attempts = 0;

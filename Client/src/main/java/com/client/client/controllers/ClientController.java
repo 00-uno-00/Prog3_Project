@@ -1,7 +1,6 @@
 package com.client.client.controllers;
 
 import com.client.client.models.ClientModel;
-import com.client.client.models.Contact;
 import com.client.client.models.Email;
 import com.client.client.models.EmailItem;
 import javafx.application.Platform;
@@ -40,7 +39,7 @@ public class ClientController implements Initializable {
     @FXML
     private ListView<EmailItem> bodyList;
 
-    private List<Contact> contacts = new ArrayList<>();
+    private List<String> contacts = new ArrayList<>();
 
     private HashMap<Integer, Email> emails = new HashMap<>();
 
@@ -56,7 +55,7 @@ public class ClientController implements Initializable {
         this.model = model;
     }
 
-    private Contact owner = new Contact(""); // must be initalized at startup
+    private String owner =  ""; // must be initalized at startup
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -230,14 +229,14 @@ public class ClientController implements Initializable {
 
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                contacts.add(new Contact(line));
+                contacts.add(line);
             }
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
 
-        for (Contact contact : contacts) {
-            contactsList.getItems().add(contact.getEmail());
+        for (String contact : contacts) {
+            contactsList.getItems().add(contact);
         }
     }
 
@@ -272,7 +271,7 @@ public class ClientController implements Initializable {
         emailStages.remove(event.getSource());
     }
 
-    public void setOwner(Contact owner) {
+    public void setOwner(String owner) {
         this.owner = owner;
     }
 
