@@ -41,3 +41,4 @@ build/
 # Log Files #
 log*.csv
 
+*.class
