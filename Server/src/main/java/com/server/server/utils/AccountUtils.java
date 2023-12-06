@@ -90,4 +90,8 @@ public class AccountUtils {
             return false;
         }
     }
+
+    public static String getAccountFolder(String username){
+        return "Server/src/main/resources/com/server/server/accounts/" + username;
+    }
 }

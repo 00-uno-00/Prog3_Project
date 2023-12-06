@@ -8,7 +8,7 @@ import com.server.server.utils.specificHandlers.RegisterHandler;
 
 import java.io.ObjectOutputStream;
 
-public class RegisterPacketStrategy implements PacketHandlerStrategy {
+public class RegisterStrategy implements PacketHandlerStrategy {
     @Override
     public void handlePacket(Packet packet, ObjectOutputStream objectOutputStream, Logger logger) {
         Packet responsePacket;

@@ -34,6 +34,8 @@ public class Logger {
         try (FileWriter writer = new FileWriter(logFile, true)) {
             String stringDate = String.valueOf(new Date());
             writer.write(message + ", " + type+ ", "+ stringDate + logCounter.incrementAndGet() + "\n");
+            writer.flush();
+            writer.close();
             Platform.runLater(() -> {
                 latestLogEvent.set(message);
                 latestLogDate.set(null); // Reset the latestLogDate since there can be duplicates

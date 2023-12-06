@@ -1,31 +1,62 @@
 package com.server.server.models;
 
 import com.server.server.utils.*;
-import com.server.server.utils.handleStrategies.DeletePacketStrategy;
-import com.server.server.utils.handleStrategies.RegisterPacketStrategy;
-import com.server.server.utils.handleStrategies.LoginPacketStrategy;
-import com.server.server.utils.handleStrategies.EmailPacketStrategy;
+import com.server.server.utils.handleStrategies.DeleteStrategy;
+import com.server.server.utils.handleStrategies.RegisterStrategy;
+import com.server.server.utils.handleStrategies.LoginStrategy;
+import com.server.server.utils.handleStrategies.EmailStrategy;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class PacketHandler implements Runnable {
-    private final Packet packet;
+    private Packet packet;
     private final AtomicInteger id;
-    private final ObjectOutputStream objectOutputStream;
+    private Socket socket;
+    private ObjectOutputStream objectOutputStream;
+    private ObjectInputStream objectInputStream;
     private final Map<String, PacketHandlerStrategy> strategies;
 
-    public PacketHandler(Packet packet, AtomicInteger id, ObjectOutputStream objectOutputStream) {
-        this.packet = packet;
+    public PacketHandler(AtomicInteger id, Socket socket) {
         this.id = id;
-        this.objectOutputStream = objectOutputStream;
+        this.socket = socket;
+        try {
+            this.objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+        } catch (IOException e) {
+            System.err.println("Error creating output stream: " + e.getMessage());
+        }
+        try {
+            this.objectInputStream = new ObjectInputStream(socket.getInputStream());
+        } catch (IOException e) {
+            System.err.println("Error creating input stream: " + e.getMessage());
+        }
+        try {
+            this.packet = (Packet) objectInputStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("Error reading packet: " + e.getMessage());
+        }
         this.strategies = new HashMap<>();
-        this.strategies.put("register", new RegisterPacketStrategy());
-        this.strategies.put("login", new LoginPacketStrategy());
-        this.strategies.put("mail", new EmailPacketStrategy());
-        this.strategies.put("delete", new DeletePacketStrategy());
+        this.strategies.put("register", new RegisterStrategy());
+        this.strategies.put("login", new LoginStrategy());
+        this.strategies.put("mail", new EmailStrategy());
+        this.strategies.put("delete", new DeleteStrategy());
+    }
+
+    private void closeConnections() {
+        if (socket != null) {
+            try {
+                objectInputStream.close();
+                objectOutputStream.close();
+                socket.close();
+            } catch (IOException e) {
+                System.err.println("Error closing connections: " + e.getMessage());
+            }
+        }
     }
 
     @Override
@@ -40,7 +71,7 @@ public class PacketHandler implements Runnable {
 
         PacketHandlerStrategy strategy = strategies.get(packet.getOperation());
         if (strategy != null) {
-            if(strategy instanceof EmailPacketStrategy){ //introduce id to email
+            if(strategy instanceof EmailStrategy){ //introduce id to email
                 Email email = (Email) packet.getPayload(); //check if payload is email
                 email.setId(id.getAndIncrement());
                 packet.setPayload(email);
@@ -51,5 +82,6 @@ public class PacketHandler implements Runnable {
             PacketUtils.sendPacket(responsePacket, objectOutputStream);
             logger.log("Received unknown packet type: " + packet.getOperation(), "Error");
         }
+        closeConnections();
     }
 }
