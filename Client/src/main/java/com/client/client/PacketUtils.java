@@ -1,4 +1,4 @@
-package com.client.client.utils;
+package com.client.client;
 
 import com.client.client.models.Packet;
 
