@@ -53,7 +53,7 @@ public class EmailHandler {
         return new Packet("successful", "emails written", "server");
     }
 
-    public Packet handleEmail(Email mail, List<String> usernames) {
+    public Packet email(Email mail, List<String> usernames) {
         if (!isValidRecipient(mail.getRecipient())) {
             return new Packet("failed", "invalid recipient", "server");
         }

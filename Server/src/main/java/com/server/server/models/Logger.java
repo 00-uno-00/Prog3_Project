@@ -17,11 +17,15 @@ public class Logger {
     private final StringProperty latestLogType = new SimpleStringProperty();
     private final AtomicInteger logCounter = new AtomicInteger(0);
 
-    private Logger() { //error creating/accessing the file
+    private Logger() {
         SimpleDateFormat formatter = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss");
         String baseDir = System.getProperty("user.dir");
         String relativePath = "/Server/src/main/resources/com/server/server/logs/";
-        logFile = new File(baseDir + relativePath, "log_" + formatter.format(new Date()) + ".csv");
+        File directory = new File(baseDir + relativePath);
+        if (!directory.exists()) {
+            directory.mkdirs(); // This will create the directory if it doesn't exist
+        }
+        logFile = new File(directory, "log_" + formatter.format(new Date()) + ".csv");
     }
     public static Logger getInstance() {
         if (instance == null) {
