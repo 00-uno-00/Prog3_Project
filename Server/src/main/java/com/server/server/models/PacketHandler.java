@@ -1,10 +1,7 @@
 package com.server.server.models;
 
 import com.server.server.utils.*;
-import com.server.server.utils.handleStrategies.DeleteStrategy;
-import com.server.server.utils.handleStrategies.RegisterStrategy;
-import com.server.server.utils.handleStrategies.LoginStrategy;
-import com.server.server.utils.handleStrategies.EmailStrategy;
+import com.server.server.utils.handleStrategies.*;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -17,7 +14,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class PacketHandler implements Runnable {
     private Packet packet;
     private final AtomicInteger id;
-    private Socket socket;
+    private final Socket socket;
     private ObjectOutputStream objectOutputStream;
     private ObjectInputStream objectInputStream;
     private final Map<String, PacketHandlerStrategy> strategies;
@@ -45,6 +42,7 @@ public class PacketHandler implements Runnable {
         this.strategies.put("login", new LoginStrategy());
         this.strategies.put("mail", new EmailStrategy());
         this.strategies.put("delete", new DeleteStrategy());
+        this.strategies.put("refresh", new RefreshStrategy());
     }
 
     private void closeConnections() {
