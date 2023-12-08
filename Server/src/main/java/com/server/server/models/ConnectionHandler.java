@@ -32,6 +32,7 @@ public class ConnectionHandler implements Runnable {
         while (running) {
             try {
                 Socket socket = serverSocket.accept();
+                logger.log("New connection from " + socket.getInetAddress().getHostAddress(), "System");
                 executorService.submit(new PacketHandler(id, socket));
             } catch (IOException e) {
                 if (running) {
