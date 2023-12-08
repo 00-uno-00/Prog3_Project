@@ -1,9 +1,14 @@
 package com.server.server.models;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Email {
+public class Email implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 5950169519310163575L;
     private int id;
     private String sender;
     private List<String> recipient;

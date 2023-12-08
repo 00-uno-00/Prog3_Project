@@ -1,5 +1,6 @@
 package com.client.client.models;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -12,6 +13,9 @@ import java.io.Serializable;
  * The server receives a packet, reads the type, and performs the operation accordingly. (e.g. casts the object to the appropriate type)
  */
 public class Packet implements Serializable{
+
+    @Serial
+    private static final long serialVersionUID = 6529685098267757691L;
     String operation;
     Object payload;
 
@@ -54,4 +58,8 @@ public class Packet implements Serializable{
         this.sender = sender;
     }
 
+    @Override
+    public String toString(){
+        return "Packet: " + operation + " " + payload + " " + sender;
+    }
 }

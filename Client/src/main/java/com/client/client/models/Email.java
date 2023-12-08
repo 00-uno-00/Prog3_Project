@@ -1,9 +1,13 @@
 package com.client.client.models;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Email {
+public class Email implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 5950169519310163575L;
     private int id;
     private String sender;
     private List<String> recipient;
@@ -14,7 +18,7 @@ public class Email {
 
     // Constructor
     public Email(String sender, List<String> recipient, String body, String subject, Date date, boolean isRead) {
-        this.id = 0;
+        this.id = -1;
         this.sender = sender;
         this.recipient = recipient;
         this.body = body;

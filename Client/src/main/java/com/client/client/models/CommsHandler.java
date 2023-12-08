@@ -1,11 +1,7 @@
 package com.client.client.models;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.List;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
@@ -24,8 +20,6 @@ public class CommsHandler {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    private volatile boolean connected;
     /**
      * Handles the connection to the server
      * @param socket
@@ -53,6 +47,7 @@ public class CommsHandler {
         Packet registerPacket = new Packet("register", email, email);
 
         Future<Packet> future = executorService.submit(new PacketHandler(socket, registerPacket));
+
         if ("successful".equals(future.get().getPayload())) {
             return true;
         } else {//TODO add connection error
@@ -76,5 +71,22 @@ public class CommsHandler {
                 return null;//can be handled by model
             }
     }
+
+    public boolean send(Email email) throws ExecutionException, InterruptedException {
+        Packet sendPacket = new Packet("send", email, email.getSender());
+
+        Future<Packet> responsePacket = executorService.submit(new PacketHandler(socket, sendPacket));
+
+        return "successful".equals(responsePacket.get().getPayload());
+    }
+
+    public boolean delete(List<Integer> emailIDs) throws ExecutionException, InterruptedException {
+        Packet deletePacket = new Packet("delete", emailIDs, email);
+
+        Future<Packet> responsePacket = executorService.submit(new PacketHandler(socket, deletePacket));
+
+        return "successful".equals(responsePacket.get().getPayload());
+    }
+
 
 }

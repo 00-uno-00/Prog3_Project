@@ -1,7 +1,5 @@
 package com.client.client.models;
 
-import com.client.client.PacketUtils;
-
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.List;
