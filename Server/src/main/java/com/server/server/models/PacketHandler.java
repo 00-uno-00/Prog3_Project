@@ -12,7 +12,6 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class PacketHandler implements Runnable {
-    private Packet packet;
     private final AtomicInteger id;
     private final Socket socket;
     private ObjectOutputStream objectOutputStream;
@@ -31,11 +30,6 @@ public class PacketHandler implements Runnable {
             this.objectInputStream = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
             System.err.println("Error creating input stream: " + e.getMessage());
-        }
-        try {
-            this.packet = (Packet) objectInputStream.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            System.err.println("Error reading packet: " + e.getMessage());
         }
         this.strategies = new HashMap<>();
         this.strategies.put("register", new RegisterStrategy());
@@ -60,26 +54,33 @@ public class PacketHandler implements Runnable {
     @Override
     public void run() {
         Logger logger = Logger.getInstance();
-        if(!PacketUtils.isValidSender(packet.getSender())){
-            logger.log("Received packet with invalid sender: " + packet.getSender(), "Error");
-            Packet responsePacket = new Packet("failed", "invalid sender", "server");
-            PacketUtils.sendPacket(responsePacket, objectOutputStream);
-            return;
-        }
+        try {
+            Packet packet = (Packet) objectInputStream.readObject(); //wait for packet
 
-        PacketHandlerStrategy strategy = strategies.get(packet.getOperation());
-        if (strategy != null) {
-            if(strategy instanceof EmailStrategy){ //introduce id to email
-                Email email = (Email) packet.getPayload(); //check if payload is email
-                email.setId(id.getAndIncrement());
-                packet.setPayload(email);
+            if(!PacketUtils.isValidSender(packet.getSender())){
+                logger.log("Received packet with invalid sender: " + packet.getSender(), "Error");
+                Packet responsePacket = new Packet("failed", "invalid sender", "server");
+                PacketUtils.sendPacket(responsePacket, objectOutputStream);
+                return;
             }
-            strategy.handlePacket(packet, objectOutputStream, logger);
-        } else {
-            Packet responsePacket = new Packet("failed", "unknown packet operation", "server");
-            PacketUtils.sendPacket(responsePacket, objectOutputStream);
-            logger.log("Received unknown packet type: " + packet.getOperation(), "Error");
+
+            PacketHandlerStrategy strategy = strategies.get(packet.getOperation());
+            if (strategy != null) {
+                if(strategy instanceof EmailStrategy){ //introduce id to email
+                    Email email = (Email) packet.getPayload(); //check if payload is email
+                    email.setId(id.getAndIncrement());
+                    packet.setPayload(email);
+                }
+                strategy.handlePacket(packet, objectOutputStream, logger);
+            } else {
+                Packet responsePacket = new Packet("failed", "unknown packet operation", "server");
+                PacketUtils.sendPacket(responsePacket, objectOutputStream);
+                logger.log("Received unknown packet type: " + packet.getOperation(), "Error");
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("Error reading packet: " + e.getMessage());
+        } finally {
+            closeConnections();
         }
-        closeConnections();
     }
 }
