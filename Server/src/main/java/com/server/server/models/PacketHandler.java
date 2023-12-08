@@ -55,7 +55,9 @@ public class PacketHandler implements Runnable {
     public void run() {
         Logger logger = Logger.getInstance();
         try {
+            System.out.println("Waiting for packet");
             Packet packet = (Packet) objectInputStream.readObject(); //wait for packet
+            System.out.println("Received packet");
 
             if(!PacketUtils.isValidSender(packet.getSender())){
                 logger.log("Received packet with invalid sender: " + packet.getSender(), "Error");
