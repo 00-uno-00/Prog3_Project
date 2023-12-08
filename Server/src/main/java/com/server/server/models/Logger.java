@@ -24,10 +24,11 @@ public class Logger {
         File directory = new File(baseDir + relativePath);
         if (!directory.exists()) {
             boolean created = directory.mkdirs(); // This will create the directory if it doesn't exist
-            if (created) {
-                System.out.println("Created logs directory");
-            } else {
-                System.out.println("Failed to create logs directory");
+            if(created){
+                System.out.println("Created directory for logs");
+            }
+            else{
+                System.err.println("Failed to create directory for logs");
             }
         }
         logFile = new File(directory, "log_" + formatter.format(new Date()) + ".csv");
