@@ -13,7 +13,7 @@ import java.util.concurrent.Future;
 //Mandare pacchetti con risposta & refresh periodico
 public class CommsHandler {
 
-    private final Socket socket;
+    private Socket socket;
     private final ExecutorService executorService;
 
     private Packet packet;
@@ -28,7 +28,6 @@ public class CommsHandler {
      * @param executorService
      */
     public CommsHandler( ExecutorService executorService, String email) throws IOException {
-        this.socket = new Socket(InetAddress.getLocalHost().getHostName(),8081);
         this.executorService = executorService;
         this.email = email;
     }
@@ -45,11 +44,11 @@ public class CommsHandler {
         }
     }
 
-    public boolean register() throws ExecutionException, InterruptedException {
-        Packet registerPacket = new Packet("register", email, email);
+    public boolean register() throws ExecutionException, InterruptedException, IOException {
+        socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
+        Packet registerPacket = new Packet("register", email, "client");
 
         Future<Packet> future = executorService.submit(new PacketHandler(socket, registerPacket));
-
         if ("successful".equals(future.get().getPayload())) {
             return true;
         } else {//TODO add connection error

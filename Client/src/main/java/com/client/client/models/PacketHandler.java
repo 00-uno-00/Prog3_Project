@@ -18,7 +18,10 @@ public class PacketHandler implements Callable<Packet> {
 
     private Packet packet;
 
+    private Socket socket;
+
     public PacketHandler(Socket socket, Packet packet) {
+        this.socket = socket;
         this.packet = packet;
         try {
             this.objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
@@ -32,7 +35,7 @@ public class PacketHandler implements Callable<Packet> {
         }
     }
 
-    public Packet call() {
+    public Packet call() throws IOException {
         System.out.println(packet.toString());
         sendPacket(packet, objectOutputStream);
 
@@ -52,6 +55,7 @@ public class PacketHandler implements Callable<Packet> {
                 e.printStackTrace();
             }
         }
+        socket.close();
         return new Packet("connectionError", null, "client");
     }
 
@@ -73,7 +77,7 @@ public class PacketHandler implements Callable<Packet> {
         try {
             return (Packet) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            System.err.println("Error getting response from client: " + e.getMessage());
+            System.err.println("Error getting response from Server: " + e.getMessage());
             return null;
         }
     }
