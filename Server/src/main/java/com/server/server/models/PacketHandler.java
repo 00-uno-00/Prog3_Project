@@ -52,7 +52,15 @@ public class PacketHandler implements Runnable {
         Logger logger = Logger.getInstance();
         try {
             System.out.println("Waiting for packet");
-            Packet packet = (Packet) objectInputStream.readObject(); //wait for packet
+            Packet packet = null;
+            //Packet packet = (Packet) objectInputStream.readObject(); //wait for packet
+            Object originalPacket = objectInputStream.readObject();
+            System.out.println(originalPacket.getClass());
+            if(originalPacket instanceof Packet){
+                packet = (Packet) originalPacket;
+            } else{
+                System.err.println("look man, it is what it is...");
+            }
             System.out.println("Received packet");
 
             if(!PacketUtils.isValidSender(packet.getSender())){
@@ -76,7 +84,7 @@ public class PacketHandler implements Runnable {
                 logger.log("Received unknown packet type: " + packet.getOperation(), "Error");
             }
         } catch (IOException | ClassNotFoundException e) {
-            System.err.println("Error reading packet: " + e.getMessage());
+            System.err.println("Error reading packet: " + e);
         } finally {
             closeConnections();
         }

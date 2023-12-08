@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
+import com.server.server.models.Packet;
 
 
 //Mandare pacchetti con risposta & refresh periodico
@@ -46,7 +47,7 @@ public class CommsHandler {
 
     public boolean register() throws ExecutionException, InterruptedException, IOException {
         socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
-        Packet registerPacket = new Packet("register", email, "client");
+        Packet registerPacket = new Packet("register", email, email);
 
         Future<Packet> future = executorService.submit(new PacketHandler(socket, registerPacket));
         if ("successful".equals(future.get().getPayload())) {

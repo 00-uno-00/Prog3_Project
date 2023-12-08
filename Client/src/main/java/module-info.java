@@ -5,6 +5,7 @@ module com.client.client {
     requires org.kordamp.bootstrapfx.core;
     requires com.fasterxml.jackson.annotation;
     requires com.fasterxml.jackson.databind;
+    requires com.example.server;
 
     opens com.client.client to javafx.fxml;
     exports com.client.client;
