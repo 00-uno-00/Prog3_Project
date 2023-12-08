@@ -42,13 +42,13 @@ public class PacketHandler implements Callable<Packet> {
         int attempts = 0;
         while (attempts < 3) {
             try {
-                Thread.sleep(3000);
 
                 Packet responsePacket = getResponse(objectInputStream);
 
                 if (responsePacket != null && "successful".equals(responsePacket.getPayload()) && "failed".equals(responsePacket.getPayload())) {
                     return responsePacket;
                 } else {
+                    Thread.sleep(3000);
                     attempts++;
                 }
             } catch (InterruptedException e) {
