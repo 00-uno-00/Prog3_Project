@@ -15,7 +15,7 @@ public class PacketUtils {
         // check if the sender String is equal to
         // the name of a folder in the directory:
         //  "Server/src/main/resources/com/server/server/accounts"
-        return new File("Server/src/main/resources/com/server/server/accounts/" + sender).exists();
+        return new File("Server/src/main/resources/com/server/server/accounts/" + sender).exists() || sender.equals("client");
     }
 
     public static void sendPacket(Packet packet, ObjectOutputStream objectOutputStream) {
