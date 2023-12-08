@@ -23,13 +23,9 @@ public class PacketHandler implements Runnable {
         this.socket = socket;
         try {
             this.objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-        } catch (IOException e) {
-            System.err.println("Error creating output stream: " + e.getMessage());
-        }
-        try {
             this.objectInputStream = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
-            System.err.println("Error creating input stream: " + e.getMessage());
+            System.err.println("Error creating input or output stream: " + e.getMessage());
         }
         this.strategies = new HashMap<>();
         this.strategies.put("register", new RegisterStrategy());
