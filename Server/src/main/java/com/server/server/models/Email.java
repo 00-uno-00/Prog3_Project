@@ -100,7 +100,7 @@ public class Email implements Serializable {
         //Dot isn’t allowed at the start and end of the local part
         //Consecutive dots aren’t allowed
         //For the local part, a maximum of 64 characters are allowed
-        return !username.matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\\\.[A-Za-z0-9-]+)*(\\\\.[A-Za-z]{2,})$");
+        return username.matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\\\.[A-Za-z0-9-]+)*(\\\\.[A-Za-z]{2,})$");
     }
 
 }
