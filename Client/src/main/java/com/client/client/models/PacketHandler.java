@@ -33,6 +33,7 @@ public class PacketHandler implements Callable<Packet> {
     }
 
     public Packet call() {
+        System.out.println(packet.toString());
         sendPacket(packet, objectOutputStream);
 
         int attempts = 0;

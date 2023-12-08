@@ -23,7 +23,12 @@ public class Logger {
         String relativePath = "/Server/src/main/resources/com/server/server/logs/";
         File directory = new File(baseDir + relativePath);
         if (!directory.exists()) {
-            directory.mkdirs(); // This will create the directory if it doesn't exist
+            boolean created = directory.mkdirs(); // This will create the directory if it doesn't exist
+            if (created) {
+                System.out.println("Created logs directory");
+            } else {
+                System.out.println("Failed to create logs directory");
+            }
         }
         logFile = new File(directory, "log_" + formatter.format(new Date()) + ".csv");
     }
@@ -41,10 +46,11 @@ public class Logger {
             writer.flush();
             writer.close();
             Platform.runLater(() -> {
+                latestLogEvent.set(null); // Reset the latestLogEvent since there can be duplicates
                 latestLogEvent.set(message);
-                latestLogDate.set(null); // Reset the latestLogDate since there can be duplicates
+                latestLogDate.set(null); // Reset the latestLogDate same reason of latestLogEvent
                 latestLogDate.set(stringDate);
-                latestLogType.set(null); // Reset the latestLogType, same reason of LogDate
+                latestLogType.set(null); // Reset the latestLogType, same reason of latestLogEvent
                 latestLogType.set(type);
             });
         } catch (Exception e) {
