@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Verbose logging server side and run configs">
+      <change afterPath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/icons/mail.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/PacketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/PacketHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Logger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/ClientApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/ClientApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,8 +78,8 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Application.ClientApplication.executor": "Debug",
-    "Application.ServerApplication.executor": "Debug",
+    "Application.ClientApplication.executor": "Run",
+    "Application.ServerApplication.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
@@ -92,7 +92,7 @@
     "jdk.selected.JAVA_MODULE": "18",
     "kotlin-language-version-configured": "true",
     "last.edited.regexp": "Sample.Text@mymail.com",
-    "last_opened_file_path": "/home/davide/Desktop/PROGIII/Prog3_Project",
+    "last_opened_file_path": "/home/davide/Desktop/PROGIII/Prog3_Project/Client/src/main/resources/com/client/client/icons",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -114,6 +114,9 @@
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.server.server.utils" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Client/src/main/resources/com/client/client/icons" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Server/src/main/resources/com/server/server" />
@@ -454,7 +457,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Logger.java</url>
           <line>41</line>
-          <properties class="com.server.server.models.Logger" method="log">
+          <properties class="com.server.server.models.Logger">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
