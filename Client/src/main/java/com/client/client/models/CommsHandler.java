@@ -3,7 +3,6 @@ package com.client.client.models;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -45,15 +44,15 @@ public class CommsHandler {
         }
     }
 
-    public boolean register() throws ExecutionException, InterruptedException, IOException {
+    public String register() throws ExecutionException, InterruptedException, IOException {
         socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
         Packet registerPacket = new Packet("register", email, "client");
 
         Future<Packet> future = executorService.submit(new PacketHandler(socket, registerPacket));
-        if ("successful".equals(future.get().getPayload())) {
-            return true;
-        } else {//TODO add connection error
-            return false;
+        if ("successful".equals(future.get().getOperation())) {
+            return "successful";
+        } else {
+            return future.get().getPayload().toString();
         }
     }
 

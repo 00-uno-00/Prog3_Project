@@ -62,11 +62,6 @@ public class loginController implements Initializable {
             model.setEmail(emailField.getText());
             if (model.register(emailField.getText())) {
                 openClient(model);
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Dialog");
-                alert.setHeaderText("Register Error");
-                Optional<ButtonType> result = alert.showAndWait();
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);

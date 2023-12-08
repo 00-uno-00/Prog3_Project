@@ -40,13 +40,15 @@ public class PacketHandler implements Callable<Packet> {
         System.out.println(packet.toString());
         sendPacket(packet, objectOutputStream);
 
+        Packet responsePacket = null;
+
         int attempts = 0;
         while (attempts < 3) {
             try {
 
-                Packet responsePacket = getResponse(objectInputStream);
+                responsePacket = getResponse(objectInputStream);
 
-                if (responsePacket != null && "successful".equals(responsePacket.getPayload()) && "failed".equals(responsePacket.getPayload())) {
+                if (responsePacket != null && ("successful".equals(responsePacket.getOperation()) || "failed".equals(responsePacket.getOperation()))) {
                     return responsePacket;
                 } else {
                     Thread.sleep(3000);
@@ -54,10 +56,12 @@ public class PacketHandler implements Callable<Packet> {
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
+            } finally {
+                socket.close();
             }
         }
-        socket.close();
-        return new Packet("connectionError", null, "client");
+    
+        return responsePacket;
     }
 
     public static void sendPacket(Packet packet, ObjectOutputStream objectOutputStream) {

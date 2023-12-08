@@ -3,8 +3,12 @@ package com.client.client.models;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 public class ClientModel {
 
@@ -35,7 +39,17 @@ public class ClientModel {
 
     public boolean register(String email){
         try {
-            return commsHandler.register();
+            String response = commsHandler.register();
+            if ("succesful".equals(response)) {
+                return true;
+            } else {//TODO add connection error
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Dialog");
+                alert.setHeaderText("Register Error");
+                alert.setContentText(response);
+                Optional<ButtonType> result = alert.showAndWait();
+                return false; 
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
