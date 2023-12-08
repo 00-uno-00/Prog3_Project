@@ -19,11 +19,11 @@ public class RegisterHandler {
             responsePacket = new Packet("failed", "username already taken", "server");
             return responsePacket;
         }
-        if(!AccountUtils.createAccountFolder(username)) {
+        if(!AccountUtils.createAccountFolder(accountFolder)) {
             responsePacket = new Packet("failed", "error creating account folder", "server");
             return responsePacket;
         }
-        if(!AccountUtils.initializeAccountFolder(username)){
+            if(!AccountUtils.initializeAccountFolder(accountFolder)){
             responsePacket = new Packet("failed", "error initializing account folder", "server");
             return responsePacket;
         }
