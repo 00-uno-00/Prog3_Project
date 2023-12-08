@@ -1,6 +1,9 @@
 package com.client.client.models;
 
+import java.io.IOException;
+import java.net.InetAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -22,11 +25,10 @@ public class CommsHandler {
     }
     /**
      * Handles the connection to the server
-     * @param socket
      * @param executorService
      */
-    public CommsHandler(Socket socket, ExecutorService executorService, String email) {
-        this.socket = socket;
+    public CommsHandler( ExecutorService executorService, String email) throws IOException {
+        this.socket = new Socket(InetAddress.getLocalHost().getHostName(),8081);
         this.executorService = executorService;
         this.email = email;
     }

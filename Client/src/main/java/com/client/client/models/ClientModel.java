@@ -7,8 +7,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class ClientModel {
-    private Socket clientSocket;
-    private int port;
 
     private ExecutorService executorService;
 
@@ -16,16 +14,11 @@ public class ClientModel {
 
     private String email;
 
-    public int getPort() {
-        return port;
-    }
 
     public ClientModel() {
             try {
-                clientSocket = new Socket(InetAddress.getLocalHost().getHostName(),8081);
-                port = clientSocket.getLocalPort();
                 executorService = Executors.newFixedThreadPool(2);
-                commsHandler = new CommsHandler(clientSocket, executorService, email);
+                commsHandler = new CommsHandler( executorService, email);
                 System.out.println("Client model started");
             } catch (Exception e) {
                 throw new RuntimeException(e);

@@ -43,7 +43,7 @@ public class loginController implements Initializable {
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Dialog");
-                alert.setHeaderText("Invalid email");
+                alert.setHeaderText("login Error");
                 Optional<ButtonType> result = alert.showAndWait();
             }
         } else {
@@ -65,7 +65,7 @@ public class loginController implements Initializable {
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Dialog");
-                alert.setHeaderText("Invalid email");
+                alert.setHeaderText("Register Error");
                 Optional<ButtonType> result = alert.showAndWait();
             }
         } else {
