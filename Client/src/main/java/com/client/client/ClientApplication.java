@@ -13,7 +13,7 @@ public class ClientApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        // Load the server icon
+        // Load the Client icon
         Image icon = new Image(Objects.requireNonNull(ClientApplication.class.getResource("icons/mail.png")).toExternalForm());
         // Set the icon for the stage
         stage.getIcons().add(icon);

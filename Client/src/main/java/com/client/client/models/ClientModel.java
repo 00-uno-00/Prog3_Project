@@ -40,7 +40,7 @@ public class ClientModel {
     public boolean register(String email){
         try {
             String response = commsHandler.register();
-            if ("succesful".equals(response)) {
+            if ("successful" == response) {
                 return true;
             } else {//TODO add connection error
                 Alert alert = new Alert(Alert.AlertType.ERROR);

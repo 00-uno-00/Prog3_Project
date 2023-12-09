@@ -3,6 +3,7 @@ package com.client.client.models;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -32,8 +33,9 @@ public class CommsHandler {
         this.email = email;
     }
 
-    public boolean login() throws ExecutionException, InterruptedException {
-        Packet loginPacket = new Packet("login", email, email);
+    public boolean login() throws ExecutionException, InterruptedException, IOException {
+        socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
+        Packet loginPacket = new Packet("login", email, "client");
 
         Future<Packet> future = executorService.submit(new PacketHandler(socket, loginPacket));
 

@@ -5,6 +5,7 @@ import com.client.client.models.Email;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -36,10 +37,10 @@ public class loginController implements Initializable {
      * Checks if the email and username are valid and loads the client window
      */
     public void login() {
-        if (emailField.getText() != null && Email.isValidFormat(emailField.getText())) {
-            model.setEmail(emailField.getText());
+        /*if (emailField.getText() != null && Email.isValidFormat(emailField.getText())) {
+            
             if (model.login()) {
-                openClient(model);
+                
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Dialog");
@@ -52,6 +53,10 @@ public class loginController implements Initializable {
             alert.setHeaderText("Invalid email");
             Optional<ButtonType> result = alert.showAndWait();
         }
+        */model.setEmail(emailField.getText());
+        openClient(model);
+        Stage lstage = (Stage) loginButton.getScene().getWindow();
+        lstage.close();
     }
 
     /**
