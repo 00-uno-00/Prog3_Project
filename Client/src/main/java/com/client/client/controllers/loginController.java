@@ -13,6 +13,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.kordamp.bootstrapfx.BootstrapFX;
+
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.*;
 
@@ -81,7 +83,11 @@ public class loginController implements Initializable {
      */
     private void loadClient(ClientController controller) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("client.fxml"));
+            URL resource = getClass().getResource("/com/client/client/controllers/client.fxml");
+            if (resource == null) {
+                throw new FileNotFoundException("Cannot find resource: /com/client/client/controllers/client.fxml");
+            }
+            FXMLLoader fxmlLoader = new FXMLLoader(resource);
             Scene scene = new Scene(fxmlLoader.load(), 800, 600);
             scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
 
@@ -94,12 +100,14 @@ public class loginController implements Initializable {
 
             // Intercept the close request
             controller = fxmlLoader.getController();
+            controller.setModel(model);  // Set the model here
             stage.setOnCloseRequest(controller::handleCloseRequest);
 
             stage.show();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            System.err.println("Error: " + e + e.getCause());
         }
     }
 

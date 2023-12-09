@@ -27,6 +27,7 @@ public class PacketHandler implements Callable<Packet> {
         try {
             this.objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
         } catch (Exception e) {
+            System.out.println("Error creating output stream");
             throw new RuntimeException(e);
         }
         try {

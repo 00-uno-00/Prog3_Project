@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="is valid format is now working">
+    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="fixed the creation of accounts in Register Handler">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aa@bb.cc/emails.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/loginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/loginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/PacketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/PacketHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +127,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ServerApplication">
+  <component name="RunManager" selected="Application.ClientApplication">
     <configuration name="ServerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.server.server.ServerApplication" />
       <module name="Server" />
@@ -200,7 +202,10 @@
       <workItem from="1702055307861" duration="3000" />
       <workItem from="1702057336233" duration="234000" />
       <workItem from="1702057775456" duration="1662000" />
-      <workItem from="1702060132803" duration="731000" />
+      <workItem from="1702060132803" duration="1057000" />
+      <workItem from="1702061271249" duration="3000" />
+      <workItem from="1702061402445" duration="117000" />
+      <workItem from="1702141532472" duration="3901000" />
     </task>
     <task id="LOCAL-00001" summary="Server branch">
       <option name="closed" value="true" />
@@ -394,7 +399,23 @@
       <option name="project" value="LOCAL" />
       <updated>1702058766587</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="fixed the creation of accounts in Register Handler">
+      <option name="closed" value="true" />
+      <created>1702061060963</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1702061060963</updated>
+    </task>
+    <task id="LOCAL-00026" summary="fixed the creation of accounts in Register Handler">
+      <option name="closed" value="true" />
+      <created>1702061075892</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1702061075892</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -444,7 +465,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added usefulLinks.txt file" />
     <MESSAGE value="Server branch" />
     <MESSAGE value="Server buttons" />
     <MESSAGE value="Improved server interface UI and added logging features" />
@@ -469,19 +489,38 @@
     <MESSAGE value="Added client icon" />
     <MESSAGE value="now &quot;client&quot; is a valid sender" />
     <MESSAGE value="is valid format is now working" />
-    <option name="LAST_COMMIT_MESSAGE" value="is valid format is now working" />
+    <MESSAGE value="fixed the creation of accounts in Register Handler" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed the creation of accounts in Register Handler" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/Client/src/main/java/com/client/client/models/CommsHandler.java</url>
-          <line>46</line>
-          <properties class="com.client.client.models.CommsHandler">
+          <line>48</line>
+          <properties class="com.client.client.models.CommsHandler" method="register">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/loginController.java</url>
+          <line>83</line>
+          <properties class="com.client.client.controllers.loginController" method="loadClient">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/Client/src/main/java/com/client/client/models/CommsHandler.java</url>
+          <line>35</line>
+          <properties class="com.client.client.models.CommsHandler" method="login">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

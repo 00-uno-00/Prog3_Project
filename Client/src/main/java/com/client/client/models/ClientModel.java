@@ -31,6 +31,7 @@ public class ClientModel {
 
     public boolean login(){
         try {
+            System.out.println("Login called from model");
             return commsHandler.login();
         } catch (Exception e) {
             throw new RuntimeException(e);

@@ -51,10 +51,18 @@ public class ClientController implements Initializable {
 
     private ClientModel model;
 
+    //the FXML uses this by default
+    public ClientController() {
+        this.model = new ClientModel();
+    }
+
     public ClientController(ClientModel model) {
         this.model = model;
     }
 
+    public void setModel(ClientModel model) {
+        this.model = model;
+    }
     private String owner =  ""; // must be initalized at startup
 
     @Override
@@ -120,7 +128,7 @@ public class ClientController implements Initializable {
     }
 
     public void refresh() {
-        if (model.refresh(new ArrayList<>(emails.keySet())) == null) {
+        if (model != null && model.refresh(new ArrayList<>(emails.keySet())) == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Dialog");
             alert.setHeaderText("Connection error");
@@ -137,7 +145,7 @@ public class ClientController implements Initializable {
         switch (args[0]){
             case "new"://args[1] = 1
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("newEmail.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/newEmail.fxml"));
                     root = loader.load();
 
                     newEmailController newEmailController = loader.getController();
@@ -153,7 +161,7 @@ public class ClientController implements Initializable {
                 break;
             case "reply"://args[1] = 1
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("newEmail.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/newEmail.fxml"));
                     root = loader.load();
 
                     newEmailController newEmailController = loader.getController();
@@ -224,7 +232,11 @@ public class ClientController implements Initializable {
      */
     public void loadContacts() {
         try {
-            File contactsFile = new File(getClass().getResource("contacts.csv").getFile());
+            URL resource = getClass().getResource("contacts.csv");
+            if (resource == null) {
+                throw new FileNotFoundException("Cannot find resource: contacts.csv");
+            }
+            File contactsFile = new File(resource.getFile());
             Scanner scanner = new Scanner(contactsFile);
 
             while (scanner.hasNextLine()) {
@@ -288,6 +300,8 @@ public class ClientController implements Initializable {
     }
 
     private void bindScrollBars(ScrollBar sb1, ScrollBar sb2) {
-        sb1.valueProperty().bindBidirectional(sb2.valueProperty());
+        if (sb1 != null && sb2 != null) {
+            sb1.valueProperty().bindBidirectional(sb2.valueProperty());
+        }
     }
 }

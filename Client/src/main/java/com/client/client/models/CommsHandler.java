@@ -34,7 +34,9 @@ public class CommsHandler {
     }
 
     public boolean login() throws ExecutionException, InterruptedException, IOException {
+        System.out.println("Login called");
         socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
+        System.out.println("Socket created");
         Packet loginPacket = new Packet("login", email, "client");
 
         Future<Packet> future = executorService.submit(new PacketHandler(socket, loginPacket));
