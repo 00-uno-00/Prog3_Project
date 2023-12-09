@@ -39,10 +39,10 @@ public class loginController implements Initializable {
      * Checks if the email and username are valid and loads the client window
      */
     public void login() {
-        /*if (emailField.getText() != null && Email.isValidFormat(emailField.getText())) {
+        if (emailField.getText() != null && Email.isValidFormat(emailField.getText())) {
             
             if (model.login()) {
-                
+                openClient(model);
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Dialog");
@@ -55,10 +55,6 @@ public class loginController implements Initializable {
             alert.setHeaderText("Invalid email");
             Optional<ButtonType> result = alert.showAndWait();
         }
-        */model.setEmail(emailField.getText());
-        openClient(model);
-        Stage lstage = (Stage) loginButton.getScene().getWindow();
-        lstage.close();
     }
 
     /**
