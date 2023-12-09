@@ -41,7 +41,7 @@ public class CommsHandler {
 
         Future<Packet> future = executorService.submit(new PacketHandler(socket, loginPacket));
 
-        if ("successful".equals(future.get().getPayload())) {
+        if ("successful".equals(future.get().getOperation())) {
             return true;
         } else {//TODO add connection error
             return false;

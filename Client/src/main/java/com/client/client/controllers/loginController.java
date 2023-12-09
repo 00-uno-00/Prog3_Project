@@ -40,7 +40,7 @@ public class loginController implements Initializable {
      */
     public void login() {
         if (emailField.getText() != null && Email.isValidFormat(emailField.getText())) {
-            
+            model.setEmail(emailField.getText());
             if (model.login()) {
                 openClient(model);
             } else {
