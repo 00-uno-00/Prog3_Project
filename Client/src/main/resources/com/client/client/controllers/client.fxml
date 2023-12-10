@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?xml-stylesheet type="text/css" href="style.css"?>
 
-<VBox id="window" fx:id="window"  prefHeight="600.0" prefWidth="900.0" spacing="5.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.client.client.controllers.ClientController">
+<VBox id="window" fx:id="window" prefHeight="600.0" prefWidth="900.0" spacing="5.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.client.client.controllers.ClientController">
    <children>
       <SplitPane dividerPositions="0.2, 0.5, 0.75" VBox.vgrow="ALWAYS">
          <items>
@@ -19,7 +19,8 @@
                <children>
                   <Button fx:id="changeAccount" layoutY="2.0" mnemonicParsing="false" onAction="#changeAccount" prefHeight="25.0" prefWidth="266.0" text="Change Account" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <Button fx:id="refresh" layoutX="8.0" layoutY="25.0" mnemonicParsing="false" onAction="#refresh" prefHeight="25.0" prefWidth="204.0" text="Receive All" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0" />
-                  <ListView id="contactsList" fx:id="contactsList" layoutY="50.0" prefHeight="528.0" prefWidth="216.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
+                  <Button fx:id="newEmailButton" layoutX="82.0" layoutY="50.0" mnemonicParsing="false" text="New Email" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
+                  <ListView id="contactsList" fx:id="contactsList" layoutY="50.0" prefHeight="528.0" prefWidth="216.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0" />
                </children>
             </AnchorPane>
          </items>
