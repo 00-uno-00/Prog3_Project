@@ -17,7 +17,7 @@ public class RefreshHandler {
             return new Packet("failed", "Account does not exist", "server");
         }
         emails = AccountUtils.retrieveEmails(accountFolder);
-        if(emails.isEmpty()) {
+        if(emails.isEmpty() || emails == null) {
             return new Packet("successful", new ArrayList<Email>(), "server");
         } else {
          emailList = new ArrayList<>(emails.values());

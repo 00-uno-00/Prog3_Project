@@ -6,12 +6,10 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.concurrent.Callable;
 import com.server.server.models.Packet;
+import com.server.server.models.Email;
 
 public class PacketHandler implements Callable<Packet> {
 
-
-    //private String baseDir = System.getProperty("user.dir");
-    //private String relativePath= "/Client/src/main/resources/com/client/client/email/";
 
     private ObjectOutputStream objectOutputStream;
 

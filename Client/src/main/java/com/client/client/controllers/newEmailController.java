@@ -1,7 +1,7 @@
 package com.client.client.controllers;
 
 import com.client.client.models.ClientModel;
-import com.client.client.models.Email;
+import com.server.server.models.Email;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;

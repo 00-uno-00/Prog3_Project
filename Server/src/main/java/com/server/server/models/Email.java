@@ -12,18 +12,20 @@ public class Email implements Serializable {
     private int id;
     private String sender;
     private List<String> recipient;
-    private String text;
-    private String title;
+    private String body;
+    private String subject;
     private Date date;
     private boolean isRead;
 
+    public Email() {
+    }
     // Constructor
-    public Email(String sender, List<String> recipient, String text, String title, Date date, boolean isRead) {
+    public Email(String sender, List<String> recipient, String body, String subject, Date date, boolean isRead) {
         this.id = 0;
         this.sender = sender;
         this.recipient = recipient;
-        this.text = text;
-        this.title = title;
+        this.body = body;
+        this.subject = subject;
         this.date = date;
         this.isRead = isRead;
     }
@@ -53,20 +55,20 @@ public class Email implements Serializable {
         this.recipient = recipient;
     }
 
-    public String getText() {
-        return text;
+    public String getBody() {
+        return body;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setBody(String body) {
+        this.body = body;
     }
 
-    public String getTitle() {
-        return title;
+    public String getSubject() {
+        return subject;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
     public Date getDate() {
@@ -100,7 +102,6 @@ public class Email implements Serializable {
         //Dot isn’t allowed at the start and end of the local part
         //Consecutive dots aren’t allowed
         //For the local part, a maximum of 64 characters are allowed
-        return username.matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\\\.[A-Za-z0-9-]+)*(\\\\.[A-Za-z]{2,})$");
+        return username.matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\\\.[A-Za-z0-9-]+)*(\\\\.[A-Za-z]{2,})$");//TODO fix this weirdass regx
     }
-
 }

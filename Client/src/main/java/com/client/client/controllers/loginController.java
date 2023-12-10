@@ -2,7 +2,7 @@ package com.client.client.controllers;
 
 //move this into client controller
 import com.client.client.models.ClientModel;
-import com.client.client.models.Email;
+import com.server.server.models.Email;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -46,7 +46,7 @@ public class loginController implements Initializable {
      * Checks if the email and username are valid and loads the client window
      */
     public void login() {
-        if (emailField.getText() != null && Email.isValidFormat(emailField.getText())) {
+        if (emailField.getText() != null && !Email.isValidFormat(emailField.getText())) {
             model.setEmail(emailField.getText());// redundant because at model creation the email is null
             if (model.login()) {
                 openClient();

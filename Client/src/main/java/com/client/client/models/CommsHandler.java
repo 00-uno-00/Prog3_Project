@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
+
+import com.server.server.models.Email;
 import com.server.server.models.Packet;
 
 //Mandare pacchetti con risposta & refresh periodico
@@ -78,7 +80,7 @@ public class CommsHandler {
     public String send(Email email) throws ExecutionException, InterruptedException, UnknownHostException, IOException {
         socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
 
-        Packet sendPacket = new Packet("send", email, "client");
+        Packet sendPacket = new Packet("mail", email, "client");
 
         Future<Packet> responsePacket = executorService.submit(new PacketHandler(socket, sendPacket));
 

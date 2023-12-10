@@ -1,14 +1,14 @@
 package com.client.client.models;
 
-import java.net.InetAddress;
-import java.net.Socket;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import com.server.server.models.Email;
 
 public class ClientModel {
 
@@ -75,7 +75,7 @@ public class ClientModel {
     public boolean send(Email email) {
         try {
             String response = commsHandler.send(email);
-            if (response == "successful") {
+            if (Objects.equals(response, "successful")) {
                 return true;
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -84,7 +84,6 @@ public class ClientModel {
                 alert.setContentText(response);
                 Optional<ButtonType> result = alert.showAndWait();
                 return false;
-                
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

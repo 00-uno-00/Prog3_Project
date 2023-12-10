@@ -1,6 +1,8 @@
 package com.server.server.utils;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.server.server.models.Email;
 
@@ -59,7 +61,7 @@ public class AccountUtils {
 
     public static HashMap<Integer, Email> retrieveEmails(String accountFolder) {
         String emailFile = accountFolder + "/emails.json";
-        HashMap<Integer, Email> emails;
+        HashMap<Integer, Email> emails = new HashMap<>();
         Gson gson = new Gson();
 
         // Step 1: Retrieve the emails.json file from the sender's folder
@@ -67,9 +69,9 @@ public class AccountUtils {
             // Step 2: Convert the JSON back into HashMap<ID, Email>
             Type type = new TypeToken<HashMap<Integer, Email>>(){}.getType();
             emails = gson.fromJson(reader, type);
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.err.println("Error reading emails.json: " + e.getMessage());
-            return null;
+            return emails;
         }
         return emails;
     }
