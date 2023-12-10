@@ -10,7 +10,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 import com.server.server.models.Packet;
 
-
 //Mandare pacchetti con risposta & refresh periodico
 public class CommsHandler {
 
@@ -24,27 +23,27 @@ public class CommsHandler {
     public void setEmail(String email) {
         this.email = email;
     }
+
     /**
      * Handles the connection to the server
+     * 
      * @param executorService
      */
-    public CommsHandler( ExecutorService executorService, String email) throws IOException {
+    public CommsHandler(ExecutorService executorService, String email) throws IOException {
         this.executorService = executorService;
         this.email = email;
     }
 
-    public boolean login() throws ExecutionException, InterruptedException, IOException {
-        System.out.println("Login called");
+    public String login() throws ExecutionException, InterruptedException, IOException {
         socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
-        System.out.println("Socket created");
         Packet loginPacket = new Packet("login", email, "client");
 
         Future<Packet> future = executorService.submit(new PacketHandler(socket, loginPacket));
 
         if ("successful".equals(future.get().getOperation())) {
-            return true;
-        } else {//TODO add connection error
-            return false;
+            return "successful";
+        } else {
+            return future.get().getPayload().toString();
         }
     }
 
@@ -60,29 +59,34 @@ public class CommsHandler {
         }
     }
 
-    //send empty list for first refresh
+    // send empty list for first refresh
 
-    public List<Email> refresh(List<Integer> emailIDs) throws ExecutionException, InterruptedException {
+    public List<Email> refresh(List<Integer> emailIDs) throws ExecutionException, InterruptedException, IOException {
+        socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
+        Packet onlinePacket = new Packet("refresh", emailIDs, email);
 
-            // Create a new "online" packet
-            Packet onlinePacket = new Packet("refresh", emailIDs, email);
+        Future<Packet> responsePacket = executorService.submit(new PacketHandler(socket, onlinePacket));
 
-            Future<Packet> responsePacket = executorService.submit(new PacketHandler(socket, onlinePacket));
-
-            // If the response packet's operation is "online", return true
-            if ("succesful".equals(responsePacket.get().getOperation())) {
-                return (List<Email>) responsePacket.get().getPayload();
-            } else {
-                return null;//can be handled by model
-            }
+        // If the response packet's operation is "online", return true
+        if ("succesful".equals(responsePacket.get().getOperation())) {
+            return (List<Email>) responsePacket.get().getPayload();
+        } else {
+            return null;// can be handled by model
+        }
     }
 
-    public boolean send(Email email) throws ExecutionException, InterruptedException {
-        Packet sendPacket = new Packet("send", email, email.getSender());
+    public String send(Email email) throws ExecutionException, InterruptedException, UnknownHostException, IOException {
+        socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
+
+        Packet sendPacket = new Packet("send", email, "client");
 
         Future<Packet> responsePacket = executorService.submit(new PacketHandler(socket, sendPacket));
 
-        return "successful".equals(responsePacket.get().getPayload());
+        if ("successful".equals(responsePacket.get().getOperation())) {
+            return "successful";
+        } else {
+            return responsePacket.get().getPayload().toString();
+        }
     }
 
     public boolean delete(List<Integer> emailIDs) throws ExecutionException, InterruptedException {
@@ -92,6 +96,5 @@ public class CommsHandler {
 
         return "successful".equals(responsePacket.get().getPayload());
     }
-
 
 }

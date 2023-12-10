@@ -28,6 +28,9 @@ public class ClientController implements Initializable {
     private Button refresh;
 
     @FXML
+    private Button newEmailButton;
+
+    @FXML
     private ListView<String> contactsList;
 
     @FXML
@@ -51,6 +54,10 @@ public class ClientController implements Initializable {
 
     private ClientModel model;
 
+    public void setModel(ClientModel model) {
+        this.model = model;
+    }
+
     //the FXML uses this by default
     public ClientController() {
         this.model = new ClientModel();
@@ -60,19 +67,21 @@ public class ClientController implements Initializable {
         this.model = model;
     }
 
-    public void setModel(ClientModel model) {
-        this.model = model;
-    }
+
+    //TODO fix owner setup
     private String owner =  ""; // must be initalized at startup
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        changeAccount.getStyleClass().setAll("btn", "btn-default");
 
         loadContacts();
 
         contactsList.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
             openNewEmailPopup(new String[]{"new", "1", contactsList.getSelectionModel().getSelectedItem(), "", ""});
+        });
+
+        newEmailButton.onActionProperty().setValue(actionEvent -> {
+            openNewEmailPopup(new String[]{"new", "1", "", "", ""});
         });
 
         senderList.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
@@ -109,12 +118,11 @@ public class ClientController implements Initializable {
             bindScrollBars(bodyScrollBar, subjectScrollBar);
             bindScrollBars(subjectScrollBar, senderScrollBar);
         });
-        refresh();
     }
 
     public void changeAccount() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/client/client/login.fxml"));
             root = loader.load();
 
             scene = new Scene(root);
@@ -128,32 +136,39 @@ public class ClientController implements Initializable {
     }
 
     public void refresh() {
-        if (model != null && model.refresh(new ArrayList<>(emails.keySet())) == null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error Dialog");
-            alert.setHeaderText("Connection error");
-            Optional<ButtonType> result = alert.showAndWait();
-        } else {
-            for (Email email : model.refresh(new ArrayList<>(emails.keySet()))) {
+        List<Email> refreshedEmails = model.refresh(new ArrayList<>(emails.keySet()));
+        if (refreshedEmails != null && !refreshedEmails.isEmpty()) {
+            for (Email email : refreshedEmails) {
                 handleEmail(email);
             }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("No New Emails");
+            alert.setHeaderText(null);
+            alert.setContentText("There are no new emails.");
+            alert.showAndWait();
         }
     }
 
     //can be changed into ViewClass
+    /**
+     * Opens a new email popup
+     * @param args args[0] is the type of new mail, args[1] is the number of recipients, args[2] is the recipient(s), args[3] is the subject, args[4] is the body
+     */
     public void openNewEmailPopup(String[] args) {//args[0] is the type of new mail, args[1] is the number of recipients, args[2] is the recipient(s), args[3] is the subject, args[4] is the body
         switch (args[0]){
             case "new"://args[1] = 1
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/newEmail.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/client/client/controllers/newEmail.fxml"));
                     root = loader.load();
 
                     newEmailController newEmailController = loader.getController();
                     newEmailController.setRecipient(args[2]);
                     newEmailController.setSubject(args[3]);
                     newEmailController.setBody(args[4]);
+                    newEmailController.setOwner(owner);
 
-                    emailStages.add(newEmailController.showNewEmailPopup(root));
+                    emailStages.add(newEmailController.showNewEmailPopup(root, model));
                     emailStages.get(emailStages.size() - 1).setOnCloseRequest(this::popStage);
                 } catch (Exception e) {
                     System.out.println("Error opening popup");
@@ -161,7 +176,7 @@ public class ClientController implements Initializable {
                 break;
             case "reply"://args[1] = 1
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/newEmail.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/client/client/controllers/newEmail.fxml"));
                     root = loader.load();
 
                     newEmailController newEmailController = loader.getController();
@@ -169,7 +184,7 @@ public class ClientController implements Initializable {
                     newEmailController.setSubject("Re: " + args[3]);
                     newEmailController.setBody("\"" + args[4] + "\"");
 
-                    emailStages.add(newEmailController.showNewEmailPopup(root));
+                    emailStages.add(newEmailController.showNewEmailPopup(root, model));
                     emailStages.get(emailStages.size() - 1).setOnCloseRequest(this::popStage);
                 } catch (Exception e) {
                     System.out.println("Error opening popup");
@@ -177,7 +192,7 @@ public class ClientController implements Initializable {
                 break;
             case "forward"://args[1] = 1
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("newEmail.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/client/client/controllers/newEmail.fxml"));
                     root = loader.load();
 
                     newEmailController newEmailController = loader.getController();
@@ -185,7 +200,7 @@ public class ClientController implements Initializable {
                     newEmailController.setSubject("Fwd: " + args[3]);
                     newEmailController.setBody("\"" + args[4] + "\"");
 
-                    emailStages.add(newEmailController.showNewEmailPopup(root));
+                    emailStages.add(newEmailController.showNewEmailPopup(root, model));
                     emailStages.get(emailStages.size() - 1).setOnCloseRequest(this::popStage);
                 } catch (Exception e) {
                     System.out.println("Error opening popup");
@@ -193,7 +208,7 @@ public class ClientController implements Initializable {
                 break;
             case "replyAll"://args[1] = x
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("newEmail.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/client/client/controllers/newEmail.fxml"));
                     root = loader.load();
 
                     newEmailController newEmailController = loader.getController();
@@ -204,7 +219,7 @@ public class ClientController implements Initializable {
                     newEmailController.setSubject("Re: " + args[3]);
                     newEmailController.setBody("\"" + args[4] + "\"");
 
-                    emailStages.add(newEmailController.showNewEmailPopup(root));
+                    emailStages.add(newEmailController.showNewEmailPopup(root, model));
                     emailStages.get(emailStages.size() - 1).setOnCloseRequest(this::popStage);
                 } catch (Exception e) {
                     System.out.println("Error opening popup");
@@ -216,7 +231,7 @@ public class ClientController implements Initializable {
 
     public void openShowEmailPopup(Email email, Parent root) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("showEmail.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/client/client/controllers/showEmail.fxml"));
             root = loader.load();
 
             showEmailController showEmailController = loader.getController();

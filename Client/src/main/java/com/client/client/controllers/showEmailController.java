@@ -1,5 +1,6 @@
 package com.client.client.controllers;
 
+import com.client.client.models.ClientModel;
 import com.client.client.models.Email;
 import com.client.client.controllers.newEmailController;
 import javafx.fxml.FXML;
@@ -33,6 +34,8 @@ public class showEmailController {
     @FXML
     private TextArea body;
 
+    private ClientModel model;
+
     Parent root;
 
     public void showEmailPopup(Email email) {
@@ -47,7 +50,7 @@ public class showEmailController {
         controller.setSubject("Re: " + subject.getText());
         controller.setBody("\"" + body.getText() + "\"");
         try {
-            controller.showNewEmailPopup(root);
+            controller.showNewEmailPopup(root, model);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

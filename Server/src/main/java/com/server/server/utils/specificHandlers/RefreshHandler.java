@@ -13,18 +13,18 @@ public class RefreshHandler {
         String accountFolder = AccountUtils.getAccountFolder(username);
         HashMap<Integer, Email> emails;
         List<Email> emailList;
-        if(AccountUtils.doesAccountExist(username)){
+        if(AccountUtils.doesAccountExist(accountFolder)){
             return new Packet("failed", "Account does not exist", "server");
         }
         emails = AccountUtils.retrieveEmails(accountFolder);
-        if(emails == null) {
+        if(emails.isEmpty()) {
             return new Packet("successful", new ArrayList<Email>(), "server");
         } else {
          emailList = new ArrayList<>(emails.values());
         }
         List<Email> neededEmails = new ArrayList<>();
         //foreach email in emails check if it's id is present in presentIds, if not add it to neededEmails
-        if(presentIds == null){
+        if(presentIds.isEmpty()){
             return new Packet("successful", emailList, "server");
         }
         for(Email email : emailList){

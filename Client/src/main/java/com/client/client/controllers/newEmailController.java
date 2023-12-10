@@ -1,8 +1,8 @@
 package com.client.client.controllers;
 
+import com.client.client.models.ClientModel;
 import com.client.client.models.Email;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -35,32 +35,23 @@ public class newEmailController implements Initializable {
     @FXML
     private TextArea body;
 
+    private ClientModel model;
+
     private String owner = ""; // must be initialized with a valid contact
 
     private Email email;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        email = new Email(owner, parseRecipients(recipient.getText()), body.getText(), subject.getText(), null, false);// date
-                                                                                                                 // and
-                                                                                                                 // time
-                                                                                                                 // will
-                                                                                                                 // be
-                                                                                                                 // updated
-                                                                                                                 // at
-                                                                                                                 // the
-                                                                                                                 // moment
-                                                                                                                 // the
-                                                                                                                 // email
-                                                                                                                 // is
-                                                                                                                 // sent
+        email = new Email(owner, parseRecipients(recipient.getText()), body.getText(), subject.getText(), null, false);// date and time will be updated at the moment the email is sent
     }
 
-    public Stage showNewEmailPopup(Parent root) throws IOException {
+    public Stage showNewEmailPopup(Parent root, ClientModel model) throws IOException {
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setTitle("New Email");
         stage.setScene(scene);
+        this.model = model;
         stage.show();
         return stage;
     }
@@ -88,8 +79,14 @@ public class newEmailController implements Initializable {
 
     public void send() {
         email.setDate(new Date());
-
-        // TODO: send email
+        try {
+            if (model.send(email)) {
+                Stage stage = (Stage) recipient.getScene().getWindow();
+                stage.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private List<String> parseRecipients(String recipients) {

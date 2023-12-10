@@ -1,4 +1,5 @@
 package com.client.client.controllers;
+
 //move this into client controller
 import com.client.client.models.ClientModel;
 import com.client.client.models.Email;
@@ -35,19 +36,20 @@ public class loginController implements Initializable {
 
     private ClientModel model;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        model = new ClientModel();
+        model.setEmail(emailField.getText());
+    }
+
     /**
      * Checks if the email and username are valid and loads the client window
      */
     public void login() {
         if (emailField.getText() != null && Email.isValidFormat(emailField.getText())) {
-            model.setEmail(emailField.getText());
+            model.setEmail(emailField.getText());// redundant because at model creation the email is null
             if (model.login()) {
-                openClient(model);
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Dialog");
-                alert.setHeaderText("login Error");
-                Optional<ButtonType> result = alert.showAndWait();
+                openClient();
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -64,7 +66,7 @@ public class loginController implements Initializable {
         if (emailField.getText() != null && Email.isValidFormat(emailField.getText())) {
             model.setEmail(emailField.getText());
             if (model.register(emailField.getText())) {
-                openClient(model);
+                openClient();
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -74,10 +76,17 @@ public class loginController implements Initializable {
         }
     }
 
+    private void openClient() {
+        loadClient();
+
+        Stage stage = (Stage) loginButton.getScene().getWindow();
+        stage.close();
+    }
+
     /**
      * Loads the client window
      */
-    private void loadClient(ClientController controller) {
+    private void loadClient() {
         try {
             URL resource = getClass().getResource("/com/client/client/controllers/client.fxml");
             if (resource == null) {
@@ -85,7 +94,13 @@ public class loginController implements Initializable {
             }
             FXMLLoader fxmlLoader = new FXMLLoader(resource);
             Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-            scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+            ClientController controller = fxmlLoader.getController();
+            controller.setModel(model);
+            controller.setOwner(emailField.getText());
+            controller.refresh();
+
+
+
 
             // minimum window size can only be set through the stage
             stage.setMinWidth(400);
@@ -93,32 +108,13 @@ public class loginController implements Initializable {
 
             stage.setTitle("Client");
             stage.setScene(scene);
-
-            // Intercept the close request
-            controller = fxmlLoader.getController();
-            controller.setModel(model);  // Set the model here
             stage.setOnCloseRequest(controller::handleCloseRequest);
 
             stage.show();
 
         } catch (Exception e) {
-            //e.printStackTrace();
+            // e.printStackTrace();
             System.err.println("Error: " + e + e.getCause());
         }
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        model = new ClientModel();
-        model.setEmail(emailField.getText());
-    }
-
-    private void openClient(ClientModel model){
-        ClientController controller = new ClientController(model);
-        controller.setOwner(emailField.getText());
-        loadClient(controller);
-
-        Stage stage = (Stage) loginButton.getScene().getWindow();
-        stage.close();
     }
 }

@@ -23,7 +23,7 @@ public class RefreshStrategy implements PacketHandlerStrategy {
             logger.log("Received refresh request with invalid Payload type : " + packet.getPayload().getClass(), "Refresh" );
             return;
         }
-
+        logger.log("Sending refresh response to : " + username, "Refresh" );
         if(responsePacket.getOperation().equals("successful")){
             logger.log("Successfully sent emails to : " + username, "Refresh" );
         } else {

@@ -18,38 +18,46 @@ public class ClientModel {
 
     private String email;
 
-
     public ClientModel() {
-            try {
-                executorService = Executors.newFixedThreadPool(2);
-                commsHandler = new CommsHandler( executorService, email);
-                System.out.println("Client model started");
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-    }
-
-    public boolean login(){
         try {
-            System.out.println("Login called from model");
-            return commsHandler.login();
+            executorService = Executors.newFixedThreadPool(2);
+            commsHandler = new CommsHandler(executorService, email);
+            System.out.println("Client model started");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public boolean register(String email){
+    public boolean login() {
+        try {
+            String response = commsHandler.login();
+            if ("successful" == response) {
+                return true;
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Register Error");
+                alert.setContentText(response);
+                Optional<ButtonType> result = alert.showAndWait();
+                return false;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean register(String email) {
         try {
             String response = commsHandler.register();
             if ("successful" == response) {
                 return true;
-            } else {//TODO add connection error
+            } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Dialog");
+                alert.setTitle("Error");
                 alert.setHeaderText("Register Error");
                 alert.setContentText(response);
                 Optional<ButtonType> result = alert.showAndWait();
-                return false; 
+                return false;
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -61,11 +69,29 @@ public class ClientModel {
             return commsHandler.refresh(emailIDs);
         } catch (Exception e) {
             throw new RuntimeException(e);
-
         }
     }
 
-    public void setEmail(String email){
+    public boolean send(Email email) {
+        try {
+            String response = commsHandler.send(email);
+            if (response == "successful") {
+                return true;
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Send Error");
+                alert.setContentText(response);
+                Optional<ButtonType> result = alert.showAndWait();
+                return false;
+                
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void setEmail(String email) {
         this.email = email;
         commsHandler.setEmail(email);
     }
