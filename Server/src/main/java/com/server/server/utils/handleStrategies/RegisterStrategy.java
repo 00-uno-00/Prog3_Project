@@ -8,7 +8,21 @@ import com.server.server.utils.specificHandlers.RegisterHandler;
 
 import java.io.ObjectOutputStream;
 
+/**
+ * Strategy for handling register requests.
+ * Implements the PacketHandlerStrategy interface.
+ */
 public class RegisterStrategy implements PacketHandlerStrategy {
+
+    /**
+     * Method to handle a register request packet.
+     * If the payload of the packet is a String, it logs the request and calls the register method of RegisterHandler.
+     * If the payload is not a String, it logs an error and returns.
+     * After handling the packet, it sends a response packet indicating the result of the operation.
+     * @param packet The packet to handle
+     * @param objectOutputStream The ObjectOutputStream to write the response to
+     * @param logger The logger to log events
+     */
     @Override
     public void handlePacket(Packet packet, ObjectOutputStream objectOutputStream, Logger logger) {
         Packet responsePacket;

@@ -6,8 +6,17 @@ import java.io.File;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
+/**
+ * Utility class for handling packets.
+ */
 public class PacketUtils {
 
+    /**
+     * Method to validate the sender of a packet.
+     * Checks if the sender is not null or empty, and if it corresponds to an existing account.
+     * @param sender The sender to validate
+     * @return true if the sender is valid, false otherwise
+     */
     public static boolean isValidSender(String sender) {
         if (sender == null || sender.isEmpty()) {
             return false;
@@ -18,6 +27,12 @@ public class PacketUtils {
         return new File("Server/src/main/resources/com/server/server/accounts/" + sender).exists() || sender.equals("client");
     }
 
+    /**
+     * Method to send a packet to a client.
+     * Writes the packet to the ObjectOutputStream and flushes the stream.
+     * @param packet The packet to send
+     * @param objectOutputStream The ObjectOutputStream to write the packet to
+     */
     public static void sendPacket(Packet packet, ObjectOutputStream objectOutputStream) {
         try {
             objectOutputStream.writeObject(packet);

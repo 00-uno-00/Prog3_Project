@@ -8,7 +8,21 @@ import com.server.server.utils.PacketUtils;
 
 import java.io.ObjectOutputStream;
 
+/**
+ * This class implements the PacketHandlerStrategy interface and provides a specific strategy to handle login packets.
+ */
 public class LoginStrategy implements PacketHandlerStrategy {
+
+    /**
+     * This method handles the incoming packet and performs the necessary operations based on the packet's payload.
+     * If the payload is a string, it logs the login request, creates a new LoginHandler, and calls its login method.
+     * If the payload is not a string, it logs an error message and returns without doing anything.
+     * After handling the packet, it sends a response packet back to the sender.
+     *
+     * @param packet The incoming packet to be handled.
+     * @param objectOutputStream The ObjectOutputStream to send the response packet.
+     * @param logger The logger to log the operations.
+     */
     @Override
     public void handlePacket(Packet packet, ObjectOutputStream objectOutputStream, Logger logger) {
         Packet responsePacket;

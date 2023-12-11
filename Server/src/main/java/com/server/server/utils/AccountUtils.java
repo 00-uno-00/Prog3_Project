@@ -1,8 +1,6 @@
 package com.server.server.utils;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonIOException;
-import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.server.server.models.Email;
 
@@ -13,21 +11,35 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 
+/**
+ * Utility class for handling account related operations.
+ */
 public class AccountUtils {
 
+    /**
+     * Checks if the account is already taken.
+     * @param accountFolder the path to the account folder
+     * @return true if the account is already taken
+     */
     public static boolean isAlreadyTaken(String accountFolder){
-        // check if the username String is equal to
-        // the name of a folder in the directory:
-        //  "Server/src/main/resources/com/server/server/accounts"
-        // if it is, then the username is already taken
         return !(new File(accountFolder).exists());
     }
 
+    /**
+     * Creates a new account folder.
+     * @param accountFolder the path to the account folder
+     * @return true if the directory was created successfully
+     */
     public static boolean createAccountFolder(String accountFolder) {
         File directory = new File(accountFolder);
         return directory.mkdirs();
     }
 
+    /**
+     * Initializes a new account folder with an empty emails.json file.
+     * @param accountFolder the path to the account folder
+     * @return true if the initialization was successful
+     */
     public static boolean initializeAccountFolder(String accountFolder) {
         HashMap<Integer, Email> emails = new HashMap<>();
         Gson gson = new Gson();
@@ -43,30 +55,34 @@ public class AccountUtils {
     }
 
     /**
-     * Checks if the account folder exists
+     * Checks if the account folder exists.
      * @param accountFolder the path to the account folder
      * @return true if the account folder does not exist
      */
-    public static boolean doesAccountExist(String accountFolder){ //TODO invert logic
+    public static boolean doesAccountExist(String accountFolder){
         return !new File(accountFolder).exists();
     }
 
+    /**
+     * Checks if the account is initialized.
+     * @param accountFolder the path to the account folder
+     * @return true if the account is initialized
+     */
     public static boolean isAccountInitialized(String accountFolder){
-        // check if the username String is equal to
-        // the name of a folder in the directory:
-        //  "Server/src/main/resources/com/server/server/accounts"
-        // if it is, then the username is already taken
         return new File(accountFolder + "/emails.json").exists();
     }
 
+    /**
+     * Retrieves the emails from the account folder.
+     * @param accountFolder the path to the account folder
+     * @return a HashMap of emails
+     */
     public static HashMap<Integer, Email> retrieveEmails(String accountFolder) {
         String emailFile = accountFolder + "/emails.json";
         HashMap<Integer, Email> emails = new HashMap<>();
         Gson gson = new Gson();
 
-        // Step 1: Retrieve the emails.json file from the sender's folder
         try (FileReader reader = new FileReader(emailFile)) {
-            // Step 2: Convert the JSON back into HashMap<ID, Email>
             Type type = new TypeToken<HashMap<Integer, Email>>(){}.getType();
             emails = gson.fromJson(reader, type);
         } catch (Exception e) {
@@ -76,14 +92,17 @@ public class AccountUtils {
         return emails;
     }
 
+    /**
+     * Stores the emails in the account folder.
+     * @param accountFolder the path to the account folder
+     * @param emails the emails to be stored
+     * @return true if the emails were stored successfully
+     */
     public static boolean storeEmails(String accountFolder, HashMap<Integer, Email> emails) {
         String emailFile = accountFolder + "/emails.json";
         Gson gson = new Gson();
-
-        // Step 1: Convert the HashMap back into JSON
         String json = gson.toJson(emails);
 
-        // Step 2: Write the JSON back into the emails.json file
         try (FileWriter writer = new FileWriter(emailFile)) {
             writer.write(json);
             return true;
@@ -93,6 +112,11 @@ public class AccountUtils {
         }
     }
 
+    /**
+     * Gets the account folder path.
+     * @param username the username of the account
+     * @return the path to the account folder
+     */
     public static String getAccountFolder(String username){
         return "Server/src/main/resources/com/server/server/accounts/" + username;
     }

@@ -19,6 +19,10 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for the server.
+ * This class handles the UI interactions for the server.
+ */
 public class ServerController implements Initializable {
 
     @FXML
@@ -28,9 +32,9 @@ public class ServerController implements Initializable {
     @FXML
     private ListView<String> logList;
     @FXML
-    private ListView<String> dateList; // Assuming you have a ListView for dates
+    private ListView<String> dateList; // ListView for dates
     @FXML
-    private ListView<String> typeList; // New ListView for log types
+    private ListView<String> typeList; // ListView for log types
 
     private final ObservableList<String> logItems = FXCollections.observableArrayList();
     private final ObservableList<String> dateItems = FXCollections.observableArrayList(); // ObservableList for dates
@@ -40,6 +44,11 @@ public class ServerController implements Initializable {
     private final Image onIcon = new Image(Objects.requireNonNull(ServerApplication.class.getResource("icons/on-button.png")).toExternalForm());
     private final Image offIcon = new Image(Objects.requireNonNull(ServerApplication.class.getResource("icons/off-button.png")).toExternalForm());
 
+    /**
+     * Method to get the vertical scrollbar of a ListView.
+     * @param listView ListView to get the scrollbar from
+     * @return vertical scrollbar of the ListView
+     */
     private ScrollBar getVerticalScrollbar(ListView<?> listView) {
         ScrollBar scrollbar = null;
         for (Node node : listView.lookupAll(".scroll-bar")) {
@@ -52,10 +61,20 @@ public class ServerController implements Initializable {
         return scrollbar;
     }
 
+    /**
+     * Method to bind two scrollbars together.
+     * @param sb1 first scrollbar
+     * @param sb2 second scrollbar
+     */
     private void bindScrollBars(ScrollBar sb1, ScrollBar sb2) {
         sb1.valueProperty().bindBidirectional(sb2.valueProperty());
     }
 
+    /**
+     * Method called to initialize the controller after its root element has been completely processed.
+     * @param url The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (connectionLabel != null) {
@@ -102,6 +121,10 @@ public class ServerController implements Initializable {
         server = new ServerModel();
     }
 
+    /**
+     * Method to handle the close request event.
+     * @param event WindowEvent
+     */
     public void handleCloseRequest(javafx.stage.WindowEvent event) {
         if (server.isOn()) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -119,6 +142,9 @@ public class ServerController implements Initializable {
         }
     }
 
+    /**
+     * Method to handle the on/off button click event.
+     */
     @FXML
     protected void onOffButtonClick() {
         if (server.isOn()) {

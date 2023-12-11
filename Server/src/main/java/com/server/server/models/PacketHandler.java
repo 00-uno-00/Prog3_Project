@@ -9,15 +9,26 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * Class responsible for handling packets received from clients.
+ * Implements Runnable to be used in a separate thread.
+ */
 public class PacketHandler implements Runnable {
-    private final AtomicInteger id;
-    private final Socket socket;
-    private ObjectOutputStream objectOutputStream;
-    private ObjectInputStream objectInputStream;
-    private final Map<String, PacketHandlerStrategy> strategies;
+    private final AtomicInteger id; // Unique ID for the packet handler
+    private final Socket socket; // Socket for communication with the client
+    private ObjectOutputStream objectOutputStream; // Output stream for sending data to the client
+    private ObjectInputStream objectInputStream; // Input stream for receiving data from the client
+    private final Map<String, PacketHandlerStrategy> strategies; // Map of strategies for handling different packet operations
 
+    /**
+     * Constructor for PacketHandler.
+     * Initializes the input and output streams and the strategies map.
+     * @param id Unique ID for the packet handler
+     * @param socket Socket for communication with the client
+     */
     public PacketHandler(AtomicInteger id, Socket socket) {
         this.id = id;
         this.socket = socket;
@@ -35,6 +46,9 @@ public class PacketHandler implements Runnable {
         this.strategies.put("refresh", new RefreshStrategy());
     }
 
+    /**
+     * Closes the input and output streams and the socket.
+     */
     private void closeConnections() {
         if (socket != null) {
             try {
@@ -47,13 +61,16 @@ public class PacketHandler implements Runnable {
         }
     }
 
+    /**
+     * Main method for the Runnable.
+     * Waits for a packet, validates it, and handles it using the appropriate strategy.
+     */
     @Override
     public void run() {
         Logger logger = Logger.getInstance();
         try {
             System.out.println("Waiting for packet");
             Packet packet = null;
-            //Packet packet = (Packet) objectInputStream.readObject(); //wait for packet
             Object originalPacket = objectInputStream.readObject();
             System.out.println(originalPacket.getClass());
             if(originalPacket instanceof Packet){
@@ -63,7 +80,7 @@ public class PacketHandler implements Runnable {
             }
             System.out.println("Received packet");
 
-            if(!PacketUtils.isValidSender(packet.getSender())){
+            if(!PacketUtils.isValidSender(Objects.requireNonNull(packet).getSender())){
                 logger.log("Received packet with invalid sender: " + packet.getSender(), "Error");
                 Packet responsePacket = new Packet("failed", "invalid sender", "server");
                 PacketUtils.sendPacket(responsePacket, objectOutputStream);

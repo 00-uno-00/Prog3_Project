@@ -8,7 +8,21 @@ import com.server.server.utils.specificHandlers.DeleteHandler;
 
 import java.io.ObjectOutputStream;
 
+/**
+ * This class implements the PacketHandlerStrategy interface and provides a specific strategy to handle delete packets.
+ */
 public class DeleteStrategy implements PacketHandlerStrategy {
+
+    /**
+     * This method handles the incoming packet and performs the necessary operations based on the packet's payload.
+     * If the payload is an integer, it logs the delete request, creates a new DeleteHandler, and calls its delete method.
+     * If the payload is not an integer, it logs an error message and returns without doing anything.
+     * After handling the packet, it sends a response packet back to the sender.
+     *
+     * @param packet The incoming packet to be handled.
+     * @param objectOutputStream The ObjectOutputStream to send the response packet.
+     * @param logger The logger to log the operations.
+     */
     @Override
     public void handlePacket(Packet packet, ObjectOutputStream objectOutputStream, Logger logger) {
         Packet responsePacket;
@@ -20,7 +34,6 @@ public class DeleteStrategy implements PacketHandlerStrategy {
             logger.log("Received delete request with invalid Payload type : " + packet.getPayload().getClass(), "Error" );
             return;
         }
-
         if(responsePacket.getOperation().equals("successful")){
             logger.log("Deleted email : " + id + " of user : " + packet.getSender(), "Delete" );
         } else {

@@ -7,6 +7,10 @@ import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * This class is responsible for handling connections to the server.
+ * It implements Runnable to be able to run in a separate thread.
+ */
 public class ConnectionHandler implements Runnable {
     private final ServerSocket serverSocket;
     private final ExecutorService executorService;
@@ -15,6 +19,12 @@ public class ConnectionHandler implements Runnable {
     private AtomicInteger id;
     private final File idFile;
 
+    /**
+     * Constructor for the ConnectionHandler class.
+     * @param serverSocket The server socket to accept connections on.
+     * @param executorService The executor service to run tasks on.
+     * @param serverEverStarted A flag indicating if the server has ever been started.
+     */
     public ConnectionHandler(ServerSocket serverSocket, ExecutorService executorService, boolean serverEverStarted) {
         this.serverSocket = serverSocket;
         this.executorService = executorService;
@@ -26,6 +36,10 @@ public class ConnectionHandler implements Runnable {
         this.id = retrieveID();
     }
 
+    /**
+     * The run method for the Runnable interface.
+     * Accepts connections and submits them to the executor service for processing.
+     */
     @Override
     public void run() {
         Logger logger = Logger.getInstance();
@@ -43,10 +57,17 @@ public class ConnectionHandler implements Runnable {
         storeId();
     }
 
+    /**
+     * Stops the connection handler from accepting new connections.
+     */
     public void stop() {
         this.running = false;
     }
 
+    /**
+     * Retrieves the ID from a file.
+     * @return The ID as an AtomicInteger.
+     */
     private synchronized AtomicInteger retrieveID() {
         Logger logger = Logger.getInstance();
         try {
@@ -63,6 +84,9 @@ public class ConnectionHandler implements Runnable {
         return id;
     }
 
+    /**
+     * Stores the ID to a file.
+     */
     private synchronized void storeId() {
         if (!serverEverStarted) {
             Logger logger = Logger.getInstance();
