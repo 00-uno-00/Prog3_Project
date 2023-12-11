@@ -1,6 +1,7 @@
 package com.client.client.controllers;
 
 //move this into client controller
+import com.client.client.ClientApplication;
 import com.client.client.models.ClientModel;
 import com.server.server.models.Email;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.kordamp.bootstrapfx.BootstrapFX;
 
@@ -105,6 +107,11 @@ public class loginController implements Initializable {
             // minimum window size can only be set through the stage
             stage.setMinWidth(400);
             stage.setMinHeight(300);
+
+            // Load the Client icon
+            Image icon = new Image(Objects.requireNonNull(ClientApplication.class.getResource("icons/mail.png")).toExternalForm());
+            // Set the icon for the stage
+            stage.getIcons().add(icon);
 
             stage.setTitle("Client");
             stage.setScene(scene);

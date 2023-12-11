@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="strategies schema review">
+    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="re-fixed visual logging on server">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Logger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/loginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/loginController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +140,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ServerApplication">
+  <component name="RunManager" selected="Application.ClientApplication">
     <configuration name="ServerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.server.server.ServerApplication" />
       <module name="Server" />
@@ -154,102 +154,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EmailTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.server.server.tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.server.server.tests" />
-      <option name="MAIN_CLASS_NAME" value="com.server.server.tests.EmailTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="EmailTest.isValidFormat_withValidEmail_returnsTrue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.server.server.tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.server.server.tests" />
-      <option name="MAIN_CLASS_NAME" value="com.server.server.tests.EmailTest" />
-      <option name="METHOD_NAME" value="isValidFormat_withValidEmail_returnsTrue" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LoggerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.server.server.tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.server.server.tests" />
-      <option name="MAIN_CLASS_NAME" value="com.server.server.tests.LoggerTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LoggerTest.log_updatesLatestLogEvent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.server.server.tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.server.server.tests" />
-      <option name="MAIN_CLASS_NAME" value="com.server.server.tests.LoggerTest" />
-      <option name="METHOD_NAME" value="log_updatesLatestLogEvent" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LoggerTest.log_updatesLatestLogType" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.server.server.tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.server.server.tests" />
-      <option name="MAIN_CLASS_NAME" value="com.server.server.tests.LoggerTest" />
-      <option name="METHOD_NAME" value="log_updatesLatestLogType" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.ServerApplication" />
       <item itemvalue="Application.ClientApplication" />
-      <item itemvalue="JUnit.EmailTest.isValidFormat_withValidEmail_returnsTrue" />
-      <item itemvalue="JUnit.LoggerTest" />
-      <item itemvalue="JUnit.LoggerTest.log_updatesLatestLogEvent" />
-      <item itemvalue="JUnit.LoggerTest.log_updatesLatestLogType" />
-      <item itemvalue="JUnit.EmailTest" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="JUnit.EmailTest.isValidFormat_withValidEmail_returnsTrue" />
-        <item itemvalue="JUnit.EmailTest" />
-        <item itemvalue="JUnit.LoggerTest" />
-        <item itemvalue="JUnit.LoggerTest.log_updatesLatestLogType" />
-        <item itemvalue="JUnit.LoggerTest.log_updatesLatestLogEvent" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -308,7 +216,7 @@
       <workItem from="1702230674459" duration="756000" />
       <workItem from="1702254209151" duration="529000" />
       <workItem from="1702254765437" duration="2343000" />
-      <workItem from="1702304280346" duration="6259000" />
+      <workItem from="1702304280346" duration="7013000" />
     </task>
     <task id="LOCAL-00001" summary="Server branch">
       <option name="closed" value="true" />
@@ -550,7 +458,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702308664926</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="re-fixed visual logging on server">
+      <option name="closed" value="true" />
+      <created>1702311890943</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1702311890943</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -600,7 +516,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added server shut down on close request." />
     <MESSAGE value="Email and Packet class" />
     <MESSAGE value="Added protocol idea" />
     <MESSAGE value="Added protocol idea and email and packet class" />
@@ -625,7 +540,8 @@
     <MESSAGE value="Added server docs &amp; fixed Email regex" />
     <MESSAGE value="handlers and strategies schemas + tests" />
     <MESSAGE value="strategies schema review" />
-    <option name="LAST_COMMIT_MESSAGE" value="strategies schema review" />
+    <MESSAGE value="re-fixed visual logging on server" />
+    <option name="LAST_COMMIT_MESSAGE" value="re-fixed visual logging on server" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -641,7 +557,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/loginController.java</url>
-          <line>88</line>
+          <line>90</line>
           <properties class="com.client.client.controllers.loginController" method="loadClient">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
