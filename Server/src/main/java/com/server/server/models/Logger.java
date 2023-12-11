@@ -16,9 +16,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Logger {
     private static Logger instance; // Singleton instance
     private final File logFile; // File where logs are written
-    private StringProperty latestLogEvent = new SimpleStringProperty(); // Latest log event
-    private StringProperty latestLogDate = new SimpleStringProperty(); // Date of the latest log event
-    private StringProperty latestLogType = new SimpleStringProperty(); // Type of the latest log event
+    private final StringProperty latestLogEvent = new SimpleStringProperty(); // Latest log event
+    private final StringProperty latestLogDate = new SimpleStringProperty(); // Date of the latest log event
+    private final StringProperty latestLogType = new SimpleStringProperty(); // Type of the latest log event
     private final AtomicInteger logCounter = new AtomicInteger(0); // Counter for log events
 
     /**
@@ -67,9 +67,12 @@ public class Logger {
             writer.flush();
             writer.close();
             Platform.runLater(() -> {
-                latestLogEvent = new SimpleStringProperty(message);
-                latestLogDate = new SimpleStringProperty(stringDate);
-                latestLogType = new SimpleStringProperty(type);
+                latestLogEvent.set(null); //reset to log duplicates
+                latestLogDate.set(null);
+                latestLogType.set(null);
+                latestLogEvent.set(message);
+                latestLogDate.set(stringDate);
+                latestLogType.set(type);
             });
         } catch (Exception e) {
             System.err.println("Exception occurred while logging: " + e.getMessage());

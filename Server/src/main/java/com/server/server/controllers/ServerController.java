@@ -87,21 +87,24 @@ public class ServerController implements Initializable {
         dateList.setItems(dateItems); // Set items for dateList
         typeList.setItems(typeItems); // Set items for typeList
 
-        logger.latestLogEventProperty().addListener((obs, oldLogEvent, newLogEvent) -> {
+        logger.latestLogEventProperty().addListener((obs) -> {
+            String newLogEvent = logger.latestLogEventProperty().get();
             if (newLogEvent != null) {
                 logItems.add(newLogEvent);
             }
         });
 
-        // Add listener for latestLogDateProperty
-        logger.latestLogDateProperty().addListener((obs, oldLogDate, newLogDate) -> {
+        // Add InvalidationListener for latestLogDateProperty
+        logger.latestLogDateProperty().addListener((obs) -> {
+            String newLogDate = logger.latestLogDateProperty().get();
             if (newLogDate != null) {
                 dateItems.add(newLogDate);
             }
         });
 
-        // Add listener for latestLogTypeProperty
-        logger.latestLogTypeProperty().addListener((obs, oldLogType, newLogType) -> {
+        // Add InvalidationListener for latestLogTypeProperty
+        logger.latestLogTypeProperty().addListener((obs) -> {
+            String newLogType = logger.latestLogTypeProperty().get();
             if (newLogType != null) {
                 typeItems.add(newLogType);
             }
