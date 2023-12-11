@@ -10,6 +10,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import com.server.server.models.Email;
 
+//TODO add javadoc move alerts to view controller
 public class ClientModel {
 
     private ExecutorService executorService;

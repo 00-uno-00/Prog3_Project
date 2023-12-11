@@ -86,25 +86,31 @@ public class ClientController implements Initializable {
 
         senderList.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
             EmailItem selectedSender = senderList.getSelectionModel().getSelectedItem();
-            Email selectedEmail = emails.get(selectedSender.getId());
-            if (selectedEmail != null) {
-                openShowEmailPopup(selectedEmail, root);
+            if (selectedSender != null) {
+                Email selectedEmail = emails.get(selectedSender.getId());
+                if (selectedEmail != null) {
+                    openShowEmailPopup(selectedEmail);
+                }
             }
         });
 
         subjectList.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
             EmailItem selectedSubject = subjectList.getSelectionModel().getSelectedItem();
-            Email selectedEmail = emails.get(selectedSubject.getId());
-            if (selectedEmail != null) {
-                openShowEmailPopup(selectedEmail, root);
+            if (selectedSubject != null) {
+                Email selectedEmail = emails.get(selectedSubject.getId());
+                if (selectedEmail != null) {
+                    openShowEmailPopup(selectedEmail);
+                }
             }
         });
 
         bodyList.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
             EmailItem selectedBody = bodyList.getSelectionModel().getSelectedItem();
-            Email selectedEmail = emails.get(selectedBody.getId());
-            if (selectedEmail != null) {
-                openShowEmailPopup(selectedEmail, root);
+            if (selectedBody != null) {
+                Email selectedEmail = emails.get(selectedBody.getId());
+                if (selectedEmail != null) {
+                    openShowEmailPopup(selectedEmail);
+                }
             }
         });
 
@@ -229,15 +235,14 @@ public class ClientController implements Initializable {
     }
 
 
-    public void openShowEmailPopup(Email email, Parent root) {
+    public void openShowEmailPopup(Email email) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/client/client/controllers/showEmail.fxml"));
-            root = loader.load();
-
-            showEmailController showEmailController = loader.getController();
-            showEmailController.showEmailPopup(email);
-
-            emailStages.add(showEmailController.showEmailPopup(email, root));
+            ArrayList<ListView<EmailItem>> showEmailList = new ArrayList<>();
+            showEmailList.add(senderList);
+            showEmailList.add(subjectList);
+            showEmailList.add(bodyList);
+            showEmailController showEmailController = new showEmailController();
+            showEmailController.showEmailPopup(email).setOnCloseRequest(event -> {deselectList(showEmailList);});
         } catch (Exception e) {
             System.out.println("Error opening popup");
         }
@@ -317,6 +322,14 @@ public class ClientController implements Initializable {
     private void bindScrollBars(ScrollBar sb1, ScrollBar sb2) {
         if (sb1 != null && sb2 != null) {
             sb1.valueProperty().bindBidirectional(sb2.valueProperty());
+        }
+    }
+
+    private <E> void deselectList(ArrayList<ListView<E>> listView)  {
+        for (ListView<?> list : listView) {
+            if (list.getSelectionModel().getSelectedItem() != null) {
+                list.getSelectionModel().clearSelection();
+            }
         }
     }
 }

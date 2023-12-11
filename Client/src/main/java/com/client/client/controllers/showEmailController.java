@@ -38,11 +38,12 @@ public class showEmailController {
 
     Parent root;
 
-    public void showEmailPopup(Email email) {
+    private void setEmailPopup(Email email) {
         sender.setText(email.getSender());
         subject.setText(email.getSubject());
         body.setText(email.getBody());
     }
+
 
     public void reply() {
         newEmailController controller = new newEmailController();
@@ -64,19 +65,17 @@ public class showEmailController {
         
     }
 
-    public Stage showEmailPopup(Email email, Parent root) throws IOException {
+    public Stage showEmailPopup(Email email) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("showEmail.fxml"));
-        root = loader.load();
+        Scene scene = new Scene(loader.load());
 
         showEmailController showEmailController = loader.getController();
-        showEmailController.showEmailPopup(email);
+        showEmailController.setEmailPopup(email);
 
-        Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setTitle("Email");
         stage.setScene(scene);
         stage.show();
         return stage;
-
     }
 }

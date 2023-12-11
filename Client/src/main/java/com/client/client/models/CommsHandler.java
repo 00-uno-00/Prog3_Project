@@ -70,7 +70,7 @@ public class CommsHandler {
         Future<Packet> responsePacket = executorService.submit(new PacketHandler(socket, onlinePacket));
 
         // If the response packet's operation is "online", return true
-        if ("succesful".equals(responsePacket.get().getOperation())) {
+        if ("successful".equals(responsePacket.get().getOperation())) {
             return (List<Email>) responsePacket.get().getPayload();
         } else {
             return null;// can be handled by model
