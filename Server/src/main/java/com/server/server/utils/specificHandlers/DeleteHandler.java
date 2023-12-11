@@ -36,6 +36,7 @@ public class DeleteHandler {
         // Check if the email with the specified id exists, and delete it if it does
         if(emails.containsKey(id)){
             emails.remove(id);
+            AccountUtils.storeEmails(accountFolder, emails); // Store the updated list of emails
             return new Packet("successful", "email deleted", "server");
         } else {
             return new Packet("failed", "Could not retrieve emails", "server");
