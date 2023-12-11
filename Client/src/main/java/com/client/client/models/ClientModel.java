@@ -91,6 +91,24 @@ public class ClientModel {
         }
     }
 
+    public boolean delete(Integer ID) {
+        try {
+            String response = commsHandler.delete(ID);
+            if (Objects.equals(response, "successful")) {
+                return true;
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Delete Error");
+                alert.setContentText(response);
+                Optional<ButtonType> result = alert.showAndWait();
+                return false;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void setEmail(String email) {
         this.email = email;
         commsHandler.setSender(email);

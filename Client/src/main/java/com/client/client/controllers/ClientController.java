@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -161,7 +162,7 @@ public class ClientController implements Initializable {
      * Opens a new email popup
      * @param args args[0] is the type of new mail, args[1] is the number of recipients, args[2] is the recipient(s), args[3] is the subject, args[4] is the body
      */
-    public void openNewEmailPopup(String[] args) {//args[0] is the type of new mail, args[1] is the number of recipients, args[2] is the recipient(s), args[3] is the subject, args[4] is the body
+    public void openNewEmailPopup(String[] args) {
         switch (args[0]){
             case "new"://args[1] = 1
                 try {
@@ -174,7 +175,7 @@ public class ClientController implements Initializable {
                     newEmailController.setBody(args[4]);
                     newEmailController.setOwner(owner);
 
-                    emailStages.add(newEmailController.showNewEmailPopup(root, model));
+                    emailStages.add(newEmailController.showNewEmailPopup(root, this));
                     emailStages.get(emailStages.size() - 1).setOnCloseRequest(this::popStage);
                 } catch (Exception e) {
                     System.out.println("Error opening popup");
@@ -190,7 +191,7 @@ public class ClientController implements Initializable {
                     newEmailController.setSubject("Re: " + args[3]);
                     newEmailController.setBody("\"" + args[4] + "\"");
 
-                    emailStages.add(newEmailController.showNewEmailPopup(root, model));
+                    emailStages.add(newEmailController.showNewEmailPopup(root, this));
                     emailStages.get(emailStages.size() - 1).setOnCloseRequest(this::popStage);
                 } catch (Exception e) {
                     System.out.println("Error opening popup");
@@ -206,7 +207,7 @@ public class ClientController implements Initializable {
                     newEmailController.setSubject("Fwd: " + args[3]);
                     newEmailController.setBody("\"" + args[4] + "\"");
 
-                    emailStages.add(newEmailController.showNewEmailPopup(root, model));
+                    emailStages.add(newEmailController.showNewEmailPopup(root, this));
                     emailStages.get(emailStages.size() - 1).setOnCloseRequest(this::popStage);
                 } catch (Exception e) {
                     System.out.println("Error opening popup");
@@ -225,7 +226,7 @@ public class ClientController implements Initializable {
                     newEmailController.setSubject("Re: " + args[3]);
                     newEmailController.setBody("\"" + args[4] + "\"");
 
-                    emailStages.add(newEmailController.showNewEmailPopup(root, model));
+                    emailStages.add(newEmailController.showNewEmailPopup(root, this));
                     emailStages.get(emailStages.size() - 1).setOnCloseRequest(this::popStage);
                 } catch (Exception e) {
                     System.out.println("Error opening popup");
@@ -242,7 +243,7 @@ public class ClientController implements Initializable {
             showEmailList.add(subjectList);
             showEmailList.add(bodyList);
             showEmailController showEmailController = new showEmailController();
-            showEmailController.showEmailPopup(email).setOnCloseRequest(event -> {deselectList(showEmailList);});
+            showEmailController.showEmailPopup(email,this).setOnCloseRequest(event -> {deselectList(showEmailList);});
         } catch (Exception e) {
             System.out.println("Error opening popup");
         }
@@ -292,6 +293,49 @@ public class ClientController implements Initializable {
         }
     }
 
+
+    public void deleteEmail(Email email, Stage stage) {
+        if (model.delete(email.getId())){
+            emails.remove(email.getId());
+            senderList.getItems().removeIf(item -> item.getId() == email.getId());
+            subjectList.getItems().removeIf(item -> item.getId() == email.getId());
+            bodyList.getItems().removeIf(item -> item.getId() == email.getId());
+
+            deselectList(new ArrayList<>(Arrays.asList(senderList, subjectList, bodyList)));//opens new email for some reason
+            stage.close();
+            operationSuccess("Delete");
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Delete Error");
+            alert.setContentText("There was an error deleting the email.");
+            Optional<ButtonType> result = alert.showAndWait();
+        }
+
+    }
+
+    public boolean sendEmail(Email email) {
+        if (model.send(email)) {
+            operationSuccess("Send");
+
+            return true;
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Send Error");
+            alert.setContentText("There was an error sending the email.");
+            Optional<ButtonType> result = alert.showAndWait();
+            return false;
+        }
+    }
+
+    public void forwardEmail(Email email) {
+        openNewEmailPopup(new String[]{"forward", "1", email.getSubject(), email.getBody()});
+    }
+
+    public void replyEmail(Email email) {
+        openNewEmailPopup(new String[]{"reply", "1", email.getSender(), email.getSubject(), email.getBody()});
+    }
     public void handleEmail(Email email) {
         emails.put(email.getId(), email);
         senderList.getItems().add(new EmailItem(email.getSender(), email.getId()));
@@ -331,5 +375,18 @@ public class ClientController implements Initializable {
                 list.getSelectionModel().clearSelection();
             }
         }
+    }
+
+    private void operationSuccess(String operation){
+        Tooltip tooltip = new Tooltip(operation + " successful");
+        tooltip.setAutoHide(true);
+
+        Scene scene = senderList.getScene();
+        Window window = scene.getWindow();
+
+        double xPosition = window.getX() + window.getWidth() / 2;
+        double yPosition = window.getY() + window.getHeight() / 2;
+
+        tooltip.show(senderList, xPosition, yPosition);
     }
 }

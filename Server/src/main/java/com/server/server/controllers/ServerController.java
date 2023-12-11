@@ -23,6 +23,8 @@ import java.util.ResourceBundle;
  * Controller class for the server.
  * This class handles the UI interactions for the server.
  */
+
+//TODO add add clear log button
 public class ServerController implements Initializable {
 
     @FXML

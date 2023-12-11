@@ -77,7 +77,7 @@ public class CommsHandler {
         }
     }
 
-    public String send(Email email) throws ExecutionException, InterruptedException, UnknownHostException, IOException {
+    public String send(Email email) throws ExecutionException, InterruptedException, IOException {
         socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
 
         Packet sendPacket = new Packet("email", email, this.sender);
@@ -91,12 +91,18 @@ public class CommsHandler {
         }
     }
 
-    public boolean delete(List<Integer> emailIDs) throws ExecutionException, InterruptedException {
-        Packet deletePacket = new Packet("delete", emailIDs, sender);
+    public String delete(Integer ID) throws ExecutionException, InterruptedException, IOException {
+        socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
+
+        Packet deletePacket = new Packet("delete", ID, sender);
 
         Future<Packet> responsePacket = executorService.submit(new PacketHandler(socket, deletePacket));
 
-        return "successful".equals(responsePacket.get().getPayload());
+        if ("successful".equals(responsePacket.get().getOperation())) {
+            return "successful";
+        } else {
+            return responsePacket.get().getPayload().toString();
+        }
     }
 
 }

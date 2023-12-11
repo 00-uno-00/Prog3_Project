@@ -23,7 +23,7 @@ public class DeleteHandler {
         HashMap<Integer, Email> emails;
 
         // Check if the account exists
-        if(AccountUtils.doesAccountExist(username)){
+        if(!AccountUtils.doesAccountExist(username)){
             return new Packet("failed", "Account does not exist", "server");
         }
 
@@ -32,7 +32,7 @@ public class DeleteHandler {
         if(emails==null){
             return new Packet("failed", "Could not retrieve emails", "server");
         }
-
+        //TODO implement either delete from file or flag email as deleted, this is broken right now
         // Check if the email with the specified id exists, and delete it if it does
         if(emails.containsKey(id)){
             emails.remove(id);

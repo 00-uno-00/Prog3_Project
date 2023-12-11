@@ -35,20 +35,18 @@ public class newEmailController {
     @FXML
     private TextArea body;
 
-    private ClientModel model;
+    ClientController controller;
 
     private String owner = ""; // must be initialized with a valid contact
 
     private Email email = new Email();
 
-
-
-    public Stage showNewEmailPopup(Parent root, ClientModel model) throws IOException {
+    public Stage showNewEmailPopup(Parent root, ClientController controller) throws IOException {
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setTitle("New Email");
         stage.setScene(scene);
-        this.model = model;
+        this.controller = controller;
         stage.show();
         return stage;
     }
@@ -81,7 +79,7 @@ public class newEmailController {
         email.setBody(body.getText());
         email.setSubject(subject.getText());
         try {
-            if (model.send(email)) {
+            if (controller.sendEmail(email)) {
                 Stage stage = (Stage) recipient.getScene().getWindow();
                 stage.close();
             }

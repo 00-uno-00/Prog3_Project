@@ -34,48 +34,58 @@ public class showEmailController {
     @FXML
     private TextArea body;
 
-    private ClientModel model;
+    private ClientController clientController;
 
-    Parent root;
+    private Email email;
 
-    private void setEmailPopup(Email email) {
+    private Stage stage;
+
+    protected void setEmailPopup(Email email) {
         sender.setText(email.getSender());
         subject.setText(email.getSubject());
         body.setText(email.getBody());
     }
 
+    public void setClientController(ClientController clientController) {
+        this.clientController = clientController;
+    }
+
+    public void setEmail(Email email) {
+        this.email = email;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 
     public void reply() {
-        newEmailController controller = new newEmailController();
-        controller.setRecipient(sender.getText());
-        controller.setSubject("Re: " + subject.getText());
-        controller.setBody("\"" + body.getText() + "\"");
-        try {
-            controller.showNewEmailPopup(root, model);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        clientController.replyEmail(email);
     }
 
     public void forward() {
-
+        clientController.forwardEmail(email);
     }
 
     public void delete() {
-        
+        clientController.deleteEmail(email, stage);
     }
 
-    public Stage showEmailPopup(Email email) throws IOException {
+    public Stage showEmailPopup(Email inputEmail, ClientController clientController) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("showEmail.fxml"));
         Scene scene = new Scene(loader.load());
 
         showEmailController showEmailController = loader.getController();
-        showEmailController.setEmailPopup(email);
+        showEmailController.setEmailPopup(inputEmail);
+        showEmailController.setClientController(clientController);
+        showEmailController.setEmail(inputEmail);
 
         Stage stage = new Stage();
         stage.setTitle("Email");
         stage.setScene(scene);
         stage.show();
+
+        showEmailController.setStage(stage);
+
         return stage;
     }
 }
