@@ -19,7 +19,7 @@ public class RegisterHandler {
         Packet responsePacket;
 
         // Check if the username is in a valid email format
-        if (Email.isValidFormat(username)) {
+        if (!Email.isValidFormat(username)) {
             responsePacket = new Packet("failed", "invalid username format", "server");
             return responsePacket;
         }

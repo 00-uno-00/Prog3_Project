@@ -21,6 +21,9 @@ public class Packet implements Serializable{
 
     String sender;
 
+    public Packet() {
+    }
+
     /**
      * Constructor for the Packet class.
      * @param operation  the operation type (e.g. "login", "logged", "register", "send", "receive", "refresh", "delete")

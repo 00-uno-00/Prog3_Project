@@ -8,7 +8,7 @@ public class EmailTest {
 
     @Test
     public void isValidFormat_withValidEmail_returnsTrue() {
-        assertTrue(Email.isValidFormat("test@example.com"));
+        assertTrue(Email.isValidFormat("a@aa.aa"));
     }
 
     @Test
