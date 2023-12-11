@@ -149,7 +149,7 @@ public class ServerController implements Initializable {
      * Method to handle the on/off button click event.
      */
     @FXML
-    protected void onOffButtonClick() {
+    protected void onOffButtonClick() throws InterruptedException {
         if (server.isOn()) {
             server.stopServer();
             connectionLabel.setText("NOT RUNNING");
@@ -159,8 +159,11 @@ public class ServerController implements Initializable {
             server.startServer();
             connectionLabel.setText("CONNECTED to port : " + server.getPort());
         }
-        logList.scrollTo(logList.getItems().size() - 1);
-        dateList.scrollTo(dateList.getItems().size() - 1);
-        typeList.scrollTo(typeList.getItems().size() - 1);
+        Thread.sleep(100); //avoid button smashing
+        Platform.runLater(() -> {
+            logList.scrollTo(logList.getItems().size() - 1);
+            dateList.scrollTo(dateList.getItems().size() - 1);
+            typeList.scrollTo(typeList.getItems().size() - 1);
+        });
     }
 }
