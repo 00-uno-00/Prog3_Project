@@ -46,7 +46,7 @@ public class loginController implements Initializable {
      * Checks if the email and username are valid and loads the client window
      */
     public void login() {
-        if (emailField.getText() != null && !Email.isValidFormat(emailField.getText())) {
+        if (emailField.getText() != null && Email.isValidFormat(emailField.getText())) {
             model.setEmail(emailField.getText());// redundant because at model creation the email is null
             if (model.login()) {
                 openClient();

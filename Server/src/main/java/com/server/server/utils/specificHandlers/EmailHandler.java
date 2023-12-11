@@ -26,7 +26,7 @@ public class EmailHandler {
             // check if the recipient string is equal to
             // the name of a folder in the directory:
             //  "Server/src/main/resources/com/server/server/accounts"
-            if(AccountUtils.doesAccountExist(emailAddress)){
+            if(!AccountUtils.doesAccountExist(emailAddress)){
                 return false;
             }
         }

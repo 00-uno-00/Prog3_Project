@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class newEmailController implements Initializable {
+public class newEmailController {
 
     @FXML
     public Button sendButton;
@@ -39,12 +39,9 @@ public class newEmailController implements Initializable {
 
     private String owner = ""; // must be initialized with a valid contact
 
-    private Email email;
+    private Email email = new Email();
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        email = new Email(owner, parseRecipients(recipient.getText()), body.getText(), subject.getText(), null, false);// date and time will be updated at the moment the email is sent
-    }
+
 
     public Stage showNewEmailPopup(Parent root, ClientModel model) throws IOException {
         Scene scene = new Scene(root);
@@ -79,6 +76,10 @@ public class newEmailController implements Initializable {
 
     public void send() {
         email.setDate(new Date());
+        email.setSender(owner);
+        email.setRecipients(parseRecipients(recipient.getText()));
+        email.setBody(body.getText());
+        email.setSubject(subject.getText());
         try {
             if (model.send(email)) {
                 Stage stage = (Stage) recipient.getScene().getWindow();

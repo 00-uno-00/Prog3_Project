@@ -20,10 +20,10 @@ public class CommsHandler {
 
     private Packet packet;
 
-    private String email;
+    private String sender;
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setSender(String sender) {
+        this.sender = sender;
     }
 
     /**
@@ -31,14 +31,14 @@ public class CommsHandler {
      * 
      * @param executorService
      */
-    public CommsHandler(ExecutorService executorService, String email) throws IOException {
+    public CommsHandler(ExecutorService executorService, String sender) throws IOException {
         this.executorService = executorService;
-        this.email = email;
+        this.sender = sender;
     }
 
     public String login() throws ExecutionException, InterruptedException, IOException {
         socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
-        Packet loginPacket = new Packet("login", email, "client");
+        Packet loginPacket = new Packet("login", sender, "client");
 
         Future<Packet> future = executorService.submit(new PacketHandler(socket, loginPacket));
 
@@ -51,7 +51,7 @@ public class CommsHandler {
 
     public String register() throws ExecutionException, InterruptedException, IOException {
         socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
-        Packet registerPacket = new Packet("register", email, "client");
+        Packet registerPacket = new Packet("register", sender, "client");
 
         Future<Packet> future = executorService.submit(new PacketHandler(socket, registerPacket));
         if ("successful".equals(future.get().getOperation())) {
@@ -65,7 +65,7 @@ public class CommsHandler {
 
     public List<Email> refresh(List<Integer> emailIDs) throws ExecutionException, InterruptedException, IOException {
         socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
-        Packet onlinePacket = new Packet("refresh", emailIDs, email);
+        Packet onlinePacket = new Packet("refresh", emailIDs, sender);
 
         Future<Packet> responsePacket = executorService.submit(new PacketHandler(socket, onlinePacket));
 
@@ -80,7 +80,7 @@ public class CommsHandler {
     public String send(Email email) throws ExecutionException, InterruptedException, UnknownHostException, IOException {
         socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
 
-        Packet sendPacket = new Packet("mail", email, "client");
+        Packet sendPacket = new Packet("email", email, this.sender);
 
         Future<Packet> responsePacket = executorService.submit(new PacketHandler(socket, sendPacket));
 
@@ -92,7 +92,7 @@ public class CommsHandler {
     }
 
     public boolean delete(List<Integer> emailIDs) throws ExecutionException, InterruptedException {
-        Packet deletePacket = new Packet("delete", emailIDs, email);
+        Packet deletePacket = new Packet("delete", emailIDs, sender);
 
         Future<Packet> responsePacket = executorService.submit(new PacketHandler(socket, deletePacket));
 

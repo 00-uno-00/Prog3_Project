@@ -41,7 +41,7 @@ public class PacketHandler implements Runnable {
         this.strategies = new HashMap<>();
         this.strategies.put("register", new RegisterStrategy());
         this.strategies.put("login", new LoginStrategy());
-        this.strategies.put("mail", new EmailStrategy());
+        this.strategies.put("email", new EmailStrategy());
         this.strategies.put("delete", new DeleteStrategy());
         this.strategies.put("refresh", new RefreshStrategy());
     }

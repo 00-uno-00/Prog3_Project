@@ -63,7 +63,7 @@ public class Logger {
     public synchronized void log(String message, String type) {
         try (FileWriter writer = new FileWriter(logFile, true)) {
             String stringDate = String.valueOf(new Date());
-            writer.write(message + ", " + type+ ", "+ stringDate + logCounter.incrementAndGet() + "\n");
+            writer.write(message + ", " + type + ", "+ stringDate + ", " + logCounter.incrementAndGet() + "\n");
             writer.flush();
             writer.close();
             Platform.runLater(() -> {
