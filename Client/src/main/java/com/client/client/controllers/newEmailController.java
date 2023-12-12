@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -81,7 +82,12 @@ public class newEmailController {
         try {
             if (controller.sendEmail(email)) {
                 Stage stage = (Stage) recipient.getScene().getWindow();
-                stage.close();
+                stage.fireEvent(
+                        new WindowEvent(
+                                stage,
+                                WindowEvent.WINDOW_CLOSE_REQUEST
+                        )
+                );
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -95,5 +101,9 @@ public class newEmailController {
             recipientList.add(recipient.trim());
         }
         return recipientList;
+    }
+
+    private void addContact() {
+
     }
 }

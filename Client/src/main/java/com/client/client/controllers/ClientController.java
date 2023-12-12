@@ -20,8 +20,7 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.*;
 //TODO add contact when new email is written if not already in contacts
-
-//TODO fix active email
+//TODO IMPORTANT: CHECK IS BACKSPACE IN RECIPIENT FUCKS EVERYTHING
 
 public class ClientController implements Initializable {
 
@@ -46,7 +45,7 @@ public class ClientController implements Initializable {
     @FXML
     private ListView<EmailItem> bodyList;
 
-    private List<String> contacts = new ArrayList<>();
+    private List<String> contacts = new ArrayList<>();//move to set?
 
     private HashMap<Integer, Email> emails = new HashMap<>();
 
@@ -403,5 +402,9 @@ public class ClientController implements Initializable {
         double yPosition = window.getY() + window.getHeight() / 2;
 
         tooltip.show(senderList, xPosition, yPosition);
+    }
+
+    public void addContact(String contact) {
+
     }
 }
