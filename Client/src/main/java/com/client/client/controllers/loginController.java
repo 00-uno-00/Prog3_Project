@@ -34,8 +34,6 @@ public class loginController implements Initializable {
     @FXML
     private TextField emailField;
 
-    private Stage stage = new Stage();
-
     private ClientModel model;
 
     @Override
@@ -79,17 +77,19 @@ public class loginController implements Initializable {
     }
 
     private void openClient() {
-        loadClient();
-
         Stage stage = (Stage) loginButton.getScene().getWindow();
-        stage.close();
+
+        loadClient(stage);
+
+
     }
 
     /**
      * Loads the client window
      */
-    private void loadClient() {
+    private void loadClient(Stage stage) {
         try {
+            stage = new Stage();
             URL resource = getClass().getResource("/com/client/client/controllers/client.fxml");
             if (resource == null) {
                 throw new FileNotFoundException("Cannot find resource: /com/client/client/controllers/client.fxml");
@@ -100,9 +100,6 @@ public class loginController implements Initializable {
             controller.setModel(model);
             controller.setOwner(emailField.getText());
             controller.refresh();
-
-
-
 
             // minimum window size can only be set through the stage
             stage.setMinWidth(400);
