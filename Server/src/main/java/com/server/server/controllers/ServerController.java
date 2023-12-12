@@ -24,7 +24,6 @@ import java.util.ResourceBundle;
  * This class handles the UI interactions for the server.
  */
 
-//TODO add add clear log button
 public class ServerController implements Initializable {
 
     @FXML
@@ -145,6 +144,16 @@ public class ServerController implements Initializable {
         } else {
             server.stopServer();
         }
+    }
+
+    /**
+     * Method to handle the clearLog button click event.
+     */
+    @FXML
+    protected void clearLogButtonClick() {
+        logItems.clear();
+        dateItems.clear();
+        typeItems.clear();
     }
 
     /**

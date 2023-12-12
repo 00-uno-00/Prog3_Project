@@ -12,7 +12,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.server.server.controllers.ServerController">
    <children>
-      <VBox AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ToolBar prefHeight="40.0">
                <items>
@@ -24,15 +24,16 @@
                            </image></ImageView>
                      </graphic>
                   </Button>
+                  <Button id="clearLogButton" mnemonicParsing="false" onAction="#clearLogButtonClick" text="Clear Log" />
                   <Label id="connectionLabel" fx:id="connectionLabel" text="Connected to port : ..." />
                </items>
             </ToolBar>
             <HBox VBox.vgrow="ALWAYS">
-               <VBox HBox.hgrow="ALWAYS" >
+               <VBox HBox.hgrow="ALWAYS">
                   <Label text="Log events" />
                   <ListView id="logList" fx:id="logList" VBox.vgrow="ALWAYS" />
                </VBox>
-               <VBox HBox.hgrow="ALWAYS" maxWidth="200">
+               <VBox maxWidth="200" HBox.hgrow="ALWAYS">
                   <Label text="Type" />
                   <ListView id="typeList" fx:id="typeList" VBox.vgrow="ALWAYS" />
                </VBox>
