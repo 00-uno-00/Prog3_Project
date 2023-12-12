@@ -80,7 +80,7 @@ public class loginController implements Initializable {
         Stage stage = (Stage) loginButton.getScene().getWindow();
 
         loadClient(stage);
-
+        stage.close();
 
     }
 

@@ -64,11 +64,6 @@ public class ClientController implements Initializable {
         this.model = new ClientModel();
     }
 
-    public ClientController(ClientModel model) {
-        this.model = model;
-    }
-
-
     //TODO fix owner setup
     private String owner =  ""; // must be initalized at startup
 
