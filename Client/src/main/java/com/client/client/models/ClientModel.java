@@ -113,4 +113,5 @@ public class ClientModel {
         this.email = email;
         commsHandler.setSender(email);
     }
+
 }

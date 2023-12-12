@@ -85,7 +85,7 @@ public class EmailHandler {
      * @return a Packet indicating the result of the operation
      */
     public Packet email(Email mail, List<String> usernames) {
-        if (!isValidRecipient(mail.getRecipient())) {
+        if (!isValidRecipient(mail.getRecipients())) {
             return new Packet("failed", "invalid recipient", "server");
         }
         if(usernames.size()>1){

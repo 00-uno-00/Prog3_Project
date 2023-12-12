@@ -11,7 +11,7 @@ public class Email implements Serializable {
     private static final long serialVersionUID = 5950169519310163575L;
     private int id;
     private String sender;
-    private List<String> recipient;
+    private List<String> recipients;
     private String body;
     private String subject;
     private Date date;
@@ -20,10 +20,10 @@ public class Email implements Serializable {
     public Email() {
     }
     // Constructor
-    public Email(String sender, List<String> recipient, String body, String subject, Date date, boolean isRead) {
+    public Email(String sender, List<String> recipients, String body, String subject, Date date, boolean isRead) {
         this.id = 0;
         this.sender = sender;
-        this.recipient = recipient;
+        this.recipients = recipients;
         this.body = body;
         this.subject = subject;
         this.date = date;
@@ -47,12 +47,12 @@ public class Email implements Serializable {
         this.sender = sender;
     }
 
-    public List<String> getRecipient() {
-        return recipient;
+    public List<String> getRecipients() {
+        return recipients;
     }
 
     public void setRecipients(List<String > recipient) {
-        this.recipient = recipient;
+        this.recipients = recipient;
     }
 
     public String getBody() {

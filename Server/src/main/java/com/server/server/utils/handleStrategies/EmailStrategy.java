@@ -30,7 +30,7 @@ public class EmailStrategy implements PacketHandlerStrategy {
         if(packet.getPayload() instanceof Email mail){
             logger.log("Received email from : " + mail.getSender(), "Email" );
             EmailHandler emailHandler = new EmailHandler();
-            responsePacket = emailHandler.email(mail, mail.getRecipient());
+            responsePacket = emailHandler.email(mail, mail.getRecipients());
         } else {
             logger.log("Received email request with invalid Payload type : " + packet.getPayload().getClass(), "Error" );
             return;

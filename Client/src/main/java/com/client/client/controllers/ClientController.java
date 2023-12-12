@@ -17,10 +17,13 @@ import javafx.stage.Window;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
-//TODO add contact when new email is written if not already in contacts
-//TODO IMPORTANT: CHECK IS BACKSPACE IN RECIPIENT FUCKS EVERYTHING
+//TODO make a username+"Contacts.csv" file for each user and create it if it doesn't exist
+//TODO is the refresh automatic ? it has to refresh automatically every X seconds
+
 
 public class ClientController implements Initializable {
 
@@ -45,11 +48,11 @@ public class ClientController implements Initializable {
     @FXML
     private ListView<EmailItem> bodyList;
 
-    private List<String> contacts = new ArrayList<>();//move to set?
+    private final List<String> contacts = new ArrayList<>();//move to set?
 
-    private HashMap<Integer, Email> emails = new HashMap<>();
+    private final HashMap<Integer, Email> emails = new HashMap<>();
 
-    private List<Stage> emailStages = new ArrayList<>();
+    private final List<Stage> emailStages = new ArrayList<>();
 
     Parent root;
     Scene scene;
@@ -74,18 +77,17 @@ public class ClientController implements Initializable {
 
         loadContacts();
 
-        contactsList.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
-            openNewEmailPopup(new String[]{"new", "1", contactsList.getSelectionModel().getSelectedItem(), "", ""});
-        });
+        contactsList.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> openNewEmailPopup(new String[]{"new", "1", contactsList.getSelectionModel().getSelectedItem(), "", ""}));
 
         newEmailButton.onActionProperty().setValue(actionEvent -> {
             openNewEmailPopup(new String[]{"new", "1", "", "", ""});
         });
-
+    
+        //TODO extract method
         senderList.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
             EmailItem selectedSender = senderList.getSelectionModel().getSelectedItem();
             if (selectedSender != null) {
-                Email selectedEmail = emails.get(selectedSender.getId());
+                Email selectedEmail = emails.get(selectedSender.id());
                 if (selectedEmail != null) {
                     openShowEmailPopup(selectedEmail);
                 }
@@ -95,7 +97,7 @@ public class ClientController implements Initializable {
         subjectList.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
             EmailItem selectedSubject = subjectList.getSelectionModel().getSelectedItem();
             if (selectedSubject != null) {
-                Email selectedEmail = emails.get(selectedSubject.getId());
+                Email selectedEmail = emails.get(selectedSubject.id());
                 if (selectedEmail != null) {
                     openShowEmailPopup(selectedEmail);
                 }
@@ -105,7 +107,7 @@ public class ClientController implements Initializable {
         bodyList.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
             EmailItem selectedBody = bodyList.getSelectionModel().getSelectedItem();
             if (selectedBody != null) {
-                Email selectedEmail = emails.get(selectedBody.getId());
+                Email selectedEmail = emails.get(selectedBody.id());
                 if (selectedEmail != null) {
                     openShowEmailPopup(selectedEmail);
                 }
@@ -141,6 +143,7 @@ public class ClientController implements Initializable {
 
     public void refresh() {
         List<Email> refreshedEmails = model.refresh(new ArrayList<>(emails.keySet()));
+        loadContacts(); //update contacts
         if (refreshedEmails != null && !refreshedEmails.isEmpty()) {
             for (Email email : refreshedEmails) {
                 handleEmail(email);
@@ -187,7 +190,7 @@ public class ClientController implements Initializable {
 
                     newEmailController newEmailController = loader.getController();
                     newEmailController.setRecipient(args[2]);
-                    newEmailController.setSubject("Re: " + args[3]);
+                    newEmailController.setSubject("Re: " + args[3]); //TODO extract method
                     newEmailController.setBody("\"" + args[4] + "\"");
                     newEmailController.setOwner(owner);
 
@@ -281,8 +284,23 @@ public class ClientController implements Initializable {
         }
     }
 
+    public void addRecipientToContacts(List<String> recipients) {
+        for (String recipient : recipients) {
+            if (!contacts.contains(recipient)) {
+                contacts.add(recipient);
+                try {
+                    FileWriter writer = new FileWriter(Objects.requireNonNull(getClass().getResource("contacts.csv")).getFile(), true);
+                    writer.write(recipient + "\n");
+                    writer.close();
+                } catch (IOException e) {
+                    System.out.println("An error occurred while writing to contacts.csv");
+                }
+            }
+        }
+    }
+
     public void handleCloseRequest(javafx.stage.WindowEvent event) {
-        if (emailStages.size() != 0) {
+        if (!emailStages.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation Dialog");
             alert.setHeaderText("Client has open emails");
@@ -312,9 +330,9 @@ public class ClientController implements Initializable {
             subjectList.getItems().remove(new EmailItem(email.getSubject(), email.getId()));
             bodyList.getItems().remove(new EmailItem(email.getBody(), email.getId()));
 
-            senderList.getItems().removeIf(item -> item.getId() == email.getId());
-            subjectList.getItems().removeIf(item -> item.getId() == email.getId());
-            bodyList.getItems().removeIf(item -> item.getId() == email.getId());
+            senderList.getItems().removeIf(item -> item.id() == email.getId());
+            subjectList.getItems().removeIf(item -> item.id() == email.getId());
+            bodyList.getItems().removeIf(item -> item.id() == email.getId());
 
             stage.close();
             operationSuccess("Delete");
@@ -331,7 +349,7 @@ public class ClientController implements Initializable {
     public boolean sendEmail(Email email) {
         if (model.send(email)) {
             operationSuccess("Send");
-
+            addRecipientToContacts(email.getRecipients());
             return true;
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -358,7 +376,7 @@ public class ClientController implements Initializable {
     }
 
     public void popStage(javafx.stage.WindowEvent event) {
-        emailStages.remove(event.getSource());
+        emailStages.remove((Stage) event.getSource());
     }
 
     public void setOwner(String owner) {
@@ -402,9 +420,5 @@ public class ClientController implements Initializable {
         double yPosition = window.getY() + window.getHeight() / 2;
 
         tooltip.show(senderList, xPosition, yPosition);
-    }
-
-    public void addContact(String contact) {
-
     }
 }
