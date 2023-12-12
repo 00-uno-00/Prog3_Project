@@ -19,6 +19,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.*;
+//TODO add contact when new email is written if not already in contacts
+
+//TODO fix active email
 
 public class ClientController implements Initializable {
 
@@ -65,7 +68,7 @@ public class ClientController implements Initializable {
     }
 
     //TODO fix owner setup
-    private String owner =  ""; // must be initalized at startup
+    private String owner =  ""; // must be initialized at startup
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -170,8 +173,10 @@ public class ClientController implements Initializable {
                     newEmailController.setBody(args[4]);
                     newEmailController.setOwner(owner);
 
-                    emailStages.add(newEmailController.showNewEmailPopup(root, this));
-                    emailStages.get(emailStages.size() - 1).setOnCloseRequest(this::popStage);
+                    Stage newEmailStage = newEmailController.showNewEmailPopup(root, this);
+                    newEmailStage.setOnCloseRequest(this::popStage);
+
+                    emailStages.add(newEmailStage);
                 } catch (Exception e) {
                     System.out.println("Error opening popup");
                 }
@@ -185,9 +190,12 @@ public class ClientController implements Initializable {
                     newEmailController.setRecipient(args[2]);
                     newEmailController.setSubject("Re: " + args[3]);
                     newEmailController.setBody("\"" + args[4] + "\"");
+                    newEmailController.setOwner(owner);
 
-                    emailStages.add(newEmailController.showNewEmailPopup(root, this));
-                    emailStages.get(emailStages.size() - 1).setOnCloseRequest(this::popStage);
+                    Stage newEmailStage = newEmailController.showNewEmailPopup(root, this);
+                    newEmailStage.setOnCloseRequest(this::popStage);
+
+                    emailStages.add(newEmailStage);
                 } catch (Exception e) {
                     System.out.println("Error opening popup");
                 }
@@ -201,9 +209,12 @@ public class ClientController implements Initializable {
                     newEmailController.setRecipient(args[2]);
                     newEmailController.setSubject("Fwd: " + args[3]);
                     newEmailController.setBody("\"" + args[4] + "\"");
+                    newEmailController.setOwner(owner);
 
-                    emailStages.add(newEmailController.showNewEmailPopup(root, this));
-                    emailStages.get(emailStages.size() - 1).setOnCloseRequest(this::popStage);
+                    Stage newEmailStage = newEmailController.showNewEmailPopup(root, this);
+                    newEmailStage.setOnCloseRequest(this::popStage);
+
+                    emailStages.add(newEmailStage);
                 } catch (Exception e) {
                     System.out.println("Error opening popup");
                 }
@@ -220,9 +231,12 @@ public class ClientController implements Initializable {
                     }
                     newEmailController.setSubject("Re: " + args[3]);
                     newEmailController.setBody("\"" + args[4] + "\"");
+                    newEmailController.setOwner(owner);
 
-                    emailStages.add(newEmailController.showNewEmailPopup(root, this));
-                    emailStages.get(emailStages.size() - 1).setOnCloseRequest(this::popStage);
+                    Stage newEmailStage = newEmailController.showNewEmailPopup(root, this);
+                    newEmailStage.setOnCloseRequest(this::popStage);
+
+                    emailStages.add(newEmailStage);
                 } catch (Exception e) {
                     System.out.println("Error opening popup");
                 }
@@ -292,11 +306,17 @@ public class ClientController implements Initializable {
     public void deleteEmail(Email email, Stage stage) {
         if (model.delete(email.getId())){
             emails.remove(email.getId());
+
+            deselectList(new ArrayList<>(Arrays.asList(senderList, subjectList, bodyList)));
+
+            senderList.getItems().remove(new EmailItem(email.getSender(), email.getId()));
+            subjectList.getItems().remove(new EmailItem(email.getSubject(), email.getId()));
+            bodyList.getItems().remove(new EmailItem(email.getBody(), email.getId()));
+
             senderList.getItems().removeIf(item -> item.getId() == email.getId());
             subjectList.getItems().removeIf(item -> item.getId() == email.getId());
             bodyList.getItems().removeIf(item -> item.getId() == email.getId());
 
-            deselectList(new ArrayList<>(Arrays.asList(senderList, subjectList, bodyList)));//opens new email for some reason
             stage.close();
             operationSuccess("Delete");
         } else {
@@ -325,7 +345,7 @@ public class ClientController implements Initializable {
     }
 
     public void forwardEmail(Email email) {
-        openNewEmailPopup(new String[]{"forward", "1", email.getSubject(), email.getBody()});
+        openNewEmailPopup(new String[]{"forward", "1", "", email.getSubject(), email.getBody()});
     }
 
     public void replyEmail(Email email) {
