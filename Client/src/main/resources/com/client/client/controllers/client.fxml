@@ -12,9 +12,9 @@
    <children>
       <SplitPane dividerPositions="0.2, 0.5, 0.75" VBox.vgrow="ALWAYS">
          <items>
-            <ListView fx:id="subjectList" prefHeight="578.0" prefWidth="696.0" />
-            <ListView fx:id="senderList" prefHeight="578.0" prefWidth="0.0" />
-            <ListView fx:id="bodyList" prefHeight="200.0" prefWidth="200.0" />
+            <ListView fx:id="subjectList" fixedCellSize="25" prefHeight="578.0" prefWidth="696.0" />
+            <ListView fx:id="senderList" fixedCellSize="25" prefHeight="578.0" prefWidth="0.0" />
+            <ListView fx:id="bodyList" fixedCellSize="25" prefHeight="200.0" prefWidth="200.0" />
             <AnchorPane>
                <children>
                   <Button fx:id="changeAccount" layoutY="2.0" mnemonicParsing="false" onAction="#changeAccount" prefHeight="25.0" prefWidth="266.0" text="Change Account" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />

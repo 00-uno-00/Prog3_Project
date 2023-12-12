@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="delete handler fix, now stores the emails">
+    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Added clear log button + better logging">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/controllers/ServerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/controllers/ServerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RefreshStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RefreshStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/server-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/server-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +139,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ServerApplication">
+  <component name="RunManager" selected="Application.ClientApplication">
     <configuration name="ServerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.server.server.ServerApplication" />
       <module name="Server" />
@@ -220,7 +217,7 @@
       <workItem from="1702254765437" duration="2343000" />
       <workItem from="1702304280346" duration="10586000" />
       <workItem from="1702325423854" duration="601000" />
-      <workItem from="1702380256300" duration="1027000" />
+      <workItem from="1702380256300" duration="2906000" />
     </task>
     <task id="LOCAL-00001" summary="Server branch">
       <option name="closed" value="true" />
@@ -494,7 +491,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702325581057</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Added clear log button + better logging">
+      <option name="closed" value="true" />
+      <created>1702381324252</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1702381324252</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -544,7 +549,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Reformatting and better folders" />
     <MESSAGE value="Added ID variable and file" />
     <MESSAGE value="Added logger singleton and model split" />
     <MESSAGE value="Fixed unresponsive logging and minor changes" />
@@ -569,7 +573,8 @@
     <MESSAGE value="added icon to client stage" />
     <MESSAGE value="minor fixes" />
     <MESSAGE value="delete handler fix, now stores the emails" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete handler fix, now stores the emails" />
+    <MESSAGE value="Added clear log button + better logging" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added clear log button + better logging" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
