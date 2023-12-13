@@ -21,9 +21,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 //TODO make a username+"Contacts.csv" file for each user and create it if it doesn't exist
-//TODO is the refresh automatic ? it has to refresh automatically every X seconds
-
 
 public class ClientController implements Initializable {
 
@@ -74,10 +75,11 @@ public class ClientController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         loadContacts();
 
-        contactsList.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> openNewEmailPopup(new String[]{"new", "1", contactsList.getSelectionModel().getSelectedItem(), "", ""}));
+        contactsList.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
+            openNewEmailPopup(new String[]{"new", "1", contactsList.getSelectionModel().getSelectedItem(), "", ""});
+        });
 
         newEmailButton.onActionProperty().setValue(actionEvent -> {
             openNewEmailPopup(new String[]{"new", "1", "", "", ""});
@@ -124,6 +126,9 @@ public class ClientController implements Initializable {
             bindScrollBars(bodyScrollBar, subjectScrollBar);
             bindScrollBars(subjectScrollBar, senderScrollBar);
         });
+
+        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+        executorService.scheduleAtFixedRate(this::refresh, 0, 10, TimeUnit.SECONDS);
     }
 
     public void changeAccount() {
@@ -146,7 +151,15 @@ public class ClientController implements Initializable {
         loadContacts(); //update contacts
         if (refreshedEmails != null && !refreshedEmails.isEmpty()) {
             for (Email email : refreshedEmails) {
-                handleEmail(email);
+                if (email.getSender() == "Server Offline") {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Refresh Error");
+                    alert.setContentText("Connection error.");
+                    Optional<ButtonType> result = alert.showAndWait();
+                } else {
+                    handleEmail(email);
+                }
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -191,6 +204,7 @@ public class ClientController implements Initializable {
                     newEmailController newEmailController = loader.getController();
                     newEmailController.setRecipient(args[2]);
                     newEmailController.setSubject("Re: " + args[3]); //TODO extract method
+                    newEmailController.setSubject("Re: " + args[3]); //TODO extract method, WHY?
                     newEmailController.setBody("\"" + args[4] + "\"");
                     newEmailController.setOwner(owner);
 

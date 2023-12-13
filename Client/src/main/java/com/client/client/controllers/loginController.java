@@ -7,7 +7,6 @@ import com.server.server.models.Email;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -15,7 +14,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import org.kordamp.bootstrapfx.BootstrapFX;
 
 import java.io.FileNotFoundException;
 import java.net.URL;
@@ -46,15 +44,21 @@ public class loginController implements Initializable {
      * Checks if the email and username are valid and loads the client window
      */
     public void login() {
-        if (emailField.getText() != null && Email.isValidFormat(emailField.getText())) {
+        boolean valid = Email.isValidFormat(emailField.getText());
+        if (emailField.getText() != null && valid) {
             model.setEmail(emailField.getText());// redundant because at model creation the email is null
             if (model.login()) {
                 openClient();
             }
-        } else {
+        } else if(!valid){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Dialog");
             alert.setHeaderText("Invalid email");
+            Optional<ButtonType> result = alert.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("Connection error");
             Optional<ButtonType> result = alert.showAndWait();
         }
     }

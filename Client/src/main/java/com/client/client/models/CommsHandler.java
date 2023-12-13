@@ -3,16 +3,13 @@ package com.client.client.models;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
+import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 import com.server.server.models.Email;
 import com.server.server.models.Packet;
 
-//Mandare pacchetti con risposta & refresh periodico
 public class CommsHandler {
 
     private Socket socket;
@@ -37,7 +34,12 @@ public class CommsHandler {
     }
 
     public String login() throws ExecutionException, InterruptedException, IOException {
-        socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
+        try {
+            socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
+        } catch (Exception e) {
+            return "connection error";
+        }
+        
         Packet loginPacket = new Packet("login", sender, "client");
 
         Future<Packet> future = executorService.submit(new PacketHandler(socket, loginPacket));
@@ -50,7 +52,12 @@ public class CommsHandler {
     }
 
     public String register() throws ExecutionException, InterruptedException, IOException {
-        socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
+        try {
+            socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
+        } catch (Exception e) {
+            return "connection error";
+        }
+        
         Packet registerPacket = new Packet("register", sender, "client");
 
         Future<Packet> future = executorService.submit(new PacketHandler(socket, registerPacket));
@@ -64,7 +71,15 @@ public class CommsHandler {
     // send empty list for first refresh
 
     public List<Email> refresh(List<Integer> emailIDs) throws ExecutionException, InterruptedException, IOException {
-        socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
+        try {
+            socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
+        } catch (Exception e) {
+            Email email = new Email();
+            email.setSender("Server Offline");
+            List<Email> emailList = Collections.singletonList(email); // return a list with one email with the sender "Server Offline"
+            return emailList;
+        }
+        
         Packet onlinePacket = new Packet("refresh", emailIDs, sender);
 
         Future<Packet> responsePacket = executorService.submit(new PacketHandler(socket, onlinePacket));
@@ -78,7 +93,12 @@ public class CommsHandler {
     }
 
     public String send(Email email) throws ExecutionException, InterruptedException, IOException {
-        socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
+        try {
+            socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
+        } catch (Exception e) {
+            return "connection error";
+        }
+        
 
         Packet sendPacket = new Packet("email", email, this.sender);
 
@@ -92,7 +112,11 @@ public class CommsHandler {
     }
 
     public String delete(Integer ID) throws ExecutionException, InterruptedException, IOException {
-        socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
+        try {
+            socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
+        } catch (Exception e) {
+            return "connection error";
+        }
 
         Packet deletePacket = new Packet("delete", ID, sender);
 
