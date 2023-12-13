@@ -24,21 +24,24 @@ public class DeleteStrategy implements PacketHandlerStrategy {
      * @param logger The logger to log the operations.
      */
     @Override
-    public void handlePacket(Packet packet, ObjectOutputStream objectOutputStream, Logger logger) {
+    public boolean handlePacket(Packet packet, ObjectOutputStream objectOutputStream, Logger logger) {
         Packet responsePacket;
+        boolean result = false;
         if(packet.getPayload() instanceof Integer id){
             logger.log("Received delete request from : " + packet.getSender(), "Delete" );
             DeleteHandler deleteHandler = new DeleteHandler();
             responsePacket = deleteHandler.delete(id, packet.getSender());
         } else {
             logger.log("Received delete request with invalid Payload type : " + packet.getPayload().getClass(), "Error" );
-            return;
+            return result;
         }
         if(responsePacket.getOperation().equals("successful")){
             logger.log("Deleted email : " + id + " of user : " + packet.getSender(), "Delete" );
+            result = true;
         } else {
             logger.log("Failed to delete email : " + id + " of user : " + packet.getSender(), "Error" );
         }
         PacketUtils.sendPacket(responsePacket, objectOutputStream);
+        return result;
     }
 }

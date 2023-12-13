@@ -94,7 +94,10 @@ public class PacketHandler implements Runnable {
                     email.setId(id.getAndIncrement());
                     packet.setPayload(email);
                 }
-                strategy.handlePacket(packet, objectOutputStream, logger);
+                boolean success = strategy.handlePacket(packet, objectOutputStream, logger);
+                if(!success && strategy instanceof EmailStrategy){
+                    logger.log("Reverting emails ID back to: " + id.decrementAndGet(), "Error");
+                }
             } else {
                 Packet responsePacket = new Packet("failed", "unknown packet operation", "server");
                 PacketUtils.sendPacket(responsePacket, objectOutputStream);

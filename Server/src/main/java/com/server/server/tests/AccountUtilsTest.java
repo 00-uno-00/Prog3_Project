@@ -5,6 +5,7 @@ import com.server.server.utils.AccountUtils;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
 import static org.junit.Assert.*;
@@ -78,7 +79,11 @@ public class AccountUtilsTest {
         String newFolder = "Server/src/main/resources/com/server/server/accounts/newAccount";
         AccountUtils.createAccountFolder(newFolder);
         AccountUtils.initializeAccountFolder(newFolder);
-        assertTrue(AccountUtils.retrieveEmails(newFolder).isEmpty());
+        try {
+            assertTrue(AccountUtils.retrieveEmails(newFolder).isEmpty());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         boolean del = new File(newFolder + "/emails.json").delete();
         boolean folderDel = new File(newFolder).delete();
         if(!del || !folderDel) {

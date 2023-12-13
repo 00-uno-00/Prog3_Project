@@ -24,22 +24,25 @@ public class RegisterStrategy implements PacketHandlerStrategy {
      * @param logger The logger to log events
      */
     @Override
-    public void handlePacket(Packet packet, ObjectOutputStream objectOutputStream, Logger logger) {
+    public boolean handlePacket(Packet packet, ObjectOutputStream objectOutputStream, Logger logger) {
         Packet responsePacket;
+        boolean result = false;
         if(packet.getPayload() instanceof String username){
             logger.log("Received register request from : " + username, "Register" );
             RegisterHandler registerHandler = new RegisterHandler();
             responsePacket = registerHandler.register(username);
         } else {
             logger.log("Received register request with invalid Payload type : " + packet.getPayload().getClass(), "Error" );
-            return;
+            return result;
         }
 
         if(responsePacket.getOperation().equals("successful")){
             logger.log("Registered user : " + packet.getPayload(), "Register" );
+            result = true;
         } else {
             logger.log("Failed to register user : " + packet.getPayload(), "Error" );
         }
         PacketUtils.sendPacket(responsePacket, objectOutputStream);
+        return result;
     }
 }

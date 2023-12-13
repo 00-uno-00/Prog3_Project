@@ -77,19 +77,16 @@ public class AccountUtils {
      * @param accountFolder the path to the account folder
      * @return a HashMap of emails
      */
-    public static HashMap<Integer, Email> retrieveEmails(String accountFolder) {
+    public static HashMap<Integer, Email> retrieveEmails(String accountFolder) throws IOException {
         String emailFile = accountFolder + "/emails.json";
-        HashMap<Integer, Email> emails = new HashMap<>();
+        HashMap<Integer, Email> emails;
         Gson gson = new Gson();
 
-        try (FileReader reader = new FileReader(emailFile)) {
-            Type type = new TypeToken<HashMap<Integer, Email>>(){}.getType();
-            emails = gson.fromJson(reader, type);
-        } catch (Exception e) {
-            System.err.println("Error reading emails.json: " + e.getMessage());
-            return emails;
-        }
-        return emails;
+        FileReader reader = new FileReader(emailFile);
+        Type type = new TypeToken<HashMap<Integer, Email>>(){}.getType();
+        emails = gson.fromJson(reader, type);
+        //if emails is null return new hashmap, else return emails
+        return emails == null ? new HashMap<>() : emails;
     }
 
     /**

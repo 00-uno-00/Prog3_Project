@@ -24,23 +24,25 @@ public class LoginStrategy implements PacketHandlerStrategy {
      * @param logger The logger to log the operations.
      */
     @Override
-    public void handlePacket(Packet packet, ObjectOutputStream objectOutputStream, Logger logger) {
+    public boolean handlePacket(Packet packet, ObjectOutputStream objectOutputStream, Logger logger) {
         Packet responsePacket;
+        boolean result = false;
         if(packet.getPayload() instanceof String username){
             logger.log("Received login request from : " + username, "Login" );
             LoginHandler loginHandler = new LoginHandler();
             responsePacket = loginHandler.login(username);
         } else {
             logger.log("Received login request with invalid Payload type : " + packet.getPayload().getClass(), "Error" );
-            return;
+            return result;
         }
 
         if(responsePacket.getOperation().equals("successful")){
-            PacketUtils.sendPacket(responsePacket, objectOutputStream);
             logger.log("Logged in user : " + packet.getPayload(), "Login" );
+            result = true;
         } else {
-            PacketUtils.sendPacket(responsePacket, objectOutputStream);
             logger.log("Failed to login user : " + packet.getPayload(), "Error" );
         }
+        PacketUtils.sendPacket(responsePacket, objectOutputStream);
+        return result;
     }
 }

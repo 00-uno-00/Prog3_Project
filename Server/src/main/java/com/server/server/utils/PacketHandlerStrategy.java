@@ -18,5 +18,5 @@ public interface PacketHandlerStrategy {
      * @param objectOutputStream The ObjectOutputStream to write the response to
      * @param logger The logger to log events
      */
-    void handlePacket(Packet packet, ObjectOutputStream objectOutputStream, Logger logger);
+    boolean handlePacket(Packet packet, ObjectOutputStream objectOutputStream, Logger logger);
 }

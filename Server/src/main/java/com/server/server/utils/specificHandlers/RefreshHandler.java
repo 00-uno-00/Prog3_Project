@@ -4,6 +4,7 @@ import com.server.server.models.Email;
 import com.server.server.models.Packet;
 import com.server.server.utils.AccountUtils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,10 +31,14 @@ public class RefreshHandler {
         }
 
         // Retrieve the emails from the account
-        emails = AccountUtils.retrieveEmails(accountFolder);
+        try {
+            emails = AccountUtils.retrieveEmails(accountFolder);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         // Check if the emails were retrieved successfully
-        if(emails == null || emails.isEmpty()) {
+        if(emails.isEmpty()) {
             return new Packet("successful", new ArrayList<Email>(), "server");
         } else {
             emailList = new ArrayList<>(emails.values());

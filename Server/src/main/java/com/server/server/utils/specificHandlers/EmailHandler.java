@@ -4,6 +4,7 @@ import com.server.server.models.Email;
 import com.server.server.models.Packet;
 import com.server.server.utils.AccountUtils;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -43,13 +44,13 @@ public class EmailHandler {
     private Packet writeEmail(Email mail, String username) {
         String accountFolder = "Server/src/main/resources/com/server/server/accounts/" + username;
         HashMap<Integer, Email> emails;
-        emails = AccountUtils.retrieveEmails(accountFolder);
-
-        if (emails != null) {
-            emails.put(mail.getId(), mail);
-        } else {
+        try {
+            emails = AccountUtils.retrieveEmails(accountFolder);
+        } catch (IOException e) {
             return new Packet("failed", "Could not retrieve emails", "server");
         }
+
+        emails.put(mail.getId(), mail);
 
         boolean sent = AccountUtils.storeEmails(accountFolder, emails);
 

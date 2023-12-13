@@ -4,6 +4,7 @@ import com.server.server.models.Email;
 import com.server.server.models.Packet;
 import com.server.server.utils.AccountUtils;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 /**
@@ -28,8 +29,9 @@ public class DeleteHandler {
         }
 
         // Retrieve the emails
-        emails = AccountUtils.retrieveEmails(accountFolder);
-        if(emails==null){
+        try {
+            emails = AccountUtils.retrieveEmails(accountFolder);
+        } catch (IOException e) {
             return new Packet("failed", "Could not retrieve emails", "server");
         }
         //TODO implement either delete from file or flag email as deleted, this is broken right now

@@ -25,23 +25,25 @@ public class EmailStrategy implements PacketHandlerStrategy {
      * @param logger The logger to log the operations.
      */
     @Override
-    public void handlePacket(Packet packet, ObjectOutputStream objectOutputStream, Logger logger) {
+    public boolean handlePacket(Packet packet, ObjectOutputStream objectOutputStream, Logger logger) {
         Packet responsePacket;
+        boolean result = false;
         if(packet.getPayload() instanceof Email mail){
             logger.log("Received email from : " + mail.getSender(), "Email" );
             EmailHandler emailHandler = new EmailHandler();
             responsePacket = emailHandler.email(mail, mail.getRecipients());
         } else {
             logger.log("Received email request with invalid Payload type : " + packet.getPayload().getClass(), "Error" );
-            return;
+            return result;
         }
 
         if(responsePacket.getOperation().equals("successful")){
-            PacketUtils.sendPacket(responsePacket, objectOutputStream);
-            logger.log("Sent email from : " + packet.getPayload(), "Email" );
+            logger.log("Sent email from : " + packet.getSender(), "Email" );
+            result = true;
         } else {
-            PacketUtils.sendPacket(responsePacket, objectOutputStream);
-            logger.log("Failed to send email from : " + packet.getPayload(), "Error" );
+            logger.log("Failed to send email from : " + packet.getSender(), "Error" );
         }
+        PacketUtils.sendPacket(responsePacket, objectOutputStream);
+        return result;
     }
 }

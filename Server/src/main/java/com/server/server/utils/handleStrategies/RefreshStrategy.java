@@ -25,8 +25,9 @@ public class RefreshStrategy implements PacketHandlerStrategy {
      * @param logger The logger to log the operations.
      */
     @Override
-    public void handlePacket(Packet packet, ObjectOutputStream objectOutputStream, Logger logger) {
+    public boolean handlePacket(Packet packet, ObjectOutputStream objectOutputStream, Logger logger) {
         Packet responsePacket;
+        boolean result = false;
         String username = packet.getSender();
         if(packet.getPayload() instanceof List){
             logger.log("Received refresh request from : " + username, "Refresh" );
@@ -34,13 +35,15 @@ public class RefreshStrategy implements PacketHandlerStrategy {
             responsePacket = refreshHandler.refresh(username, (List<Integer>) packet.getPayload());
         } else {
             logger.log("Received refresh request with invalid Payload type : " + packet.getPayload().getClass(), "Refresh" );
-            return;
+            return result;
         }
         if(responsePacket.getOperation().equals("successful")){
             logger.log("Successfully sent emails to : " + username, "Refresh" );
+            result = true;
         } else {
             logger.log("Failed to send emails to : " + username, "Error" );
         }
         PacketUtils.sendPacket(responsePacket, objectOutputStream);
+        return result;
     }
 }
