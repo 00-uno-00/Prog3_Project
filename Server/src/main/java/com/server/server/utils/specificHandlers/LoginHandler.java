@@ -26,7 +26,7 @@ public class LoginHandler {
 
         // Check if the username exists
         String accountFolder = "Server/src/main/resources/com/server/server/accounts/" + username;
-        if (AccountUtils.doesAccountExist(accountFolder)) {
+        if (!AccountUtils.doesAccountExist(accountFolder)) {
             responsePacket = new Packet("failed", "username does not exist", "server");
             return responsePacket;
         }
