@@ -281,15 +281,11 @@ public class ClientController implements Initializable {
      */
     public void loadContacts() {
         try {
-            String homeDirectory = System.getProperty("user.home"); //TODO this is not the right folder
-            File contactsFile = new File(homeDirectory + File.separator + owner + "Contacts.csv");
-            if (!contactsFile.exists()) {
-                boolean fileCreated = contactsFile.createNewFile();
-                if (!fileCreated) {
-                    System.out.println("Error creating contacts file");
-                }
+            URL contactsFile = getClass().getResource("contacts.csv");
+            if (contactsFile == null) {
+                throw new FileNotFoundException("Cannot find resource: contacts.csv");
             }
-            Scanner scanner = new Scanner(contactsFile);
+            Scanner scanner = new Scanner(new File(contactsFile.getFile()));
 
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
