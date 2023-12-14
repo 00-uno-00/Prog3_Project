@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Added fixed cell height to client view">
-      <change afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/ReadStrategy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/ReadHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_07_12_23,_11_49_[Changes]/shelved.patch" beforeDir="false" />
+    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="read strategy but now response packet does not work">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/PacketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/PacketHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.aa/emails.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,54 +73,54 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Application.ClientApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ServerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JUnit.AccountUtilsTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EmailTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EmailTest.isValidFormat_withInvalidEmail_returnsFalse.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EmailTest.isValidFormat_withValidEmail_returnsTrue.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LoggerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LoggerTest.log_incrementsLogCounter.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LoggerTest.log_updatesLatestLogEvent.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LoggerTest.log_updatesLatestLogType.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PacketUtilsTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ServerModelTest.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.Server [org.apache.maven.plugins:maven-clean-plugin:2.5:clean].executor&quot;: &quot;Run&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;18&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last.edited.regexp&quot;: &quot;Sample.Text@mymail.com&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/davide/Desktop/PROGIII/Prog3_Project/Client/src/main/resources/com/client/client/icons&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.ClientApplication.executor": "Run",
+    "Application.ServerApplication.executor": "Debug",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.AccountUtilsTest.executor": "Run",
+    "JUnit.EmailTest.executor": "Run",
+    "JUnit.EmailTest.isValidFormat_withInvalidEmail_returnsFalse.executor": "Run",
+    "JUnit.EmailTest.isValidFormat_withValidEmail_returnsTrue.executor": "Run",
+    "JUnit.LoggerTest.executor": "Run",
+    "JUnit.LoggerTest.log_incrementsLogCounter.executor": "Run",
+    "JUnit.LoggerTest.log_updatesLatestLogEvent.executor": "Run",
+    "JUnit.LoggerTest.log_updatesLatestLogType.executor": "Run",
+    "JUnit.PacketUtilsTest.executor": "Run",
+    "JUnit.ServerModelTest.executor": "Run",
+    "Maven.Server [org.apache.maven.plugins:maven-clean-plugin:2.5:clean].executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "18",
+    "kotlin-language-version-configured": "true",
+    "last.edited.regexp": "Sample.Text@mymail.com",
+    "last_opened_file_path": "/home/davide/Desktop/PROGIII/Prog3_Project/Client/src/main/resources/com/client/client/icons",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;PLAIN_TEXT&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "PLAIN_TEXT"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.server.server.utils" />
@@ -523,7 +519,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702383464798</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="read strategy but now response packet does not work">
+      <option name="closed" value="true" />
+      <created>1702565339525</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1702565339525</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -573,7 +577,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added logger singleton and model split" />
     <MESSAGE value="Fixed unresponsive logging and minor changes" />
     <MESSAGE value="Added Packet handler logic and log type" />
     <MESSAGE value="Implemented list sync scroll and readability improvements" />
@@ -598,7 +601,8 @@
     <MESSAGE value="delete handler fix, now stores the emails" />
     <MESSAGE value="Added clear log button + better logging" />
     <MESSAGE value="Added fixed cell height to client view" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added fixed cell height to client view" />
+    <MESSAGE value="read strategy but now response packet does not work" />
+    <option name="LAST_COMMIT_MESSAGE" value="read strategy but now response packet does not work" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -633,19 +637,104 @@
           <option name="timeStamp" value="72" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/EmailStrategy.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="76" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/EmailStrategy.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="77" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/LoginStrategy.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="78" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/LoginStrategy.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RefreshStrategy.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="73" />
+          <line>45</line>
+          <option name="timeStamp" value="81" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/RefreshHandler.java</url>
-          <line>23</line>
-          <option name="timeStamp" value="74" />
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RefreshStrategy.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="82" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/RefreshHandler.java</url>
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RefreshStrategy.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="83" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RefreshStrategy.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="84" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RefreshStrategy.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="85" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RefreshStrategy.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="86" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RefreshStrategy.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="88" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RefreshStrategy.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="89" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RefreshStrategy.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="91" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RefreshStrategy.java</url>
           <line>34</line>
-          <option name="timeStamp" value="75" />
+          <option name="timeStamp" value="92" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/RefreshHandler.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/AccountUtils.java</url>
+          <line>84</line>
+          <option name="timeStamp" value="94" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/AccountUtils.java</url>
+          <line>85</line>
+          <option name="timeStamp" value="95" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/AccountUtils.java</url>
+          <line>87</line>
+          <option name="timeStamp" value="96" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/AccountUtils.java</url>
+          <line>89</line>
+          <option name="timeStamp" value="97" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/AccountUtils.java</url>
+          <line>92</line>
+          <option name="timeStamp" value="98" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
