@@ -4,23 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Improved server UI and addContacts for client">
+    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Added status for strategies and revert id for failed email">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Email.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/Email.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/PacketHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/models/PacketHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/tests/AccountUtilsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/tests/AccountUtilsTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/AccountUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/AccountUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/PacketHandlerStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/PacketHandlerStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/DeleteStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/DeleteStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/EmailStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/EmailStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/LoginStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/LoginStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RefreshStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RefreshStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RegisterStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RegisterStrategy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/DeleteHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/DeleteHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/EmailHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/EmailHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/RefreshHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/RefreshHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.aa/emails.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.aa/emails.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.bb/emails.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.bb/emails.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/id/id.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +88,7 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Application.ClientApplication.executor": "Run",
-    "Application.ServerApplication.executor": "Debug",
+    "Application.ServerApplication.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
     "JUnit.AccountUtilsTest.executor": "Run",
     "JUnit.EmailTest.executor": "Run",
@@ -130,7 +121,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "settings.editor.selected.configurable": "settings.sync",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -234,7 +225,8 @@
       <workItem from="1702325423854" duration="601000" />
       <workItem from="1702380256300" duration="6745000" />
       <workItem from="1702393289518" duration="3134000" />
-      <workItem from="1702484061357" duration="4578000" />
+      <workItem from="1702484061357" duration="4845000" />
+      <workItem from="1702508641875" duration="4261000" />
     </task>
     <task id="LOCAL-00001" summary="Server branch">
       <option name="closed" value="true" />
@@ -540,7 +532,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702396771771</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Added status for strategies and revert id for failed email">
+      <option name="closed" value="true" />
+      <created>1702488899029</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1702488899029</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -590,7 +590,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed unresponsive logging and minor changes" />
     <MESSAGE value="Added Packet handler logic and log type" />
     <MESSAGE value="Implemented list sync scroll and readability improvements" />
     <MESSAGE value="Added email handling logic and minor fixes" />
@@ -615,7 +614,8 @@
     <MESSAGE value="Added clear log button + better logging" />
     <MESSAGE value="Added fixed cell height to client view" />
     <MESSAGE value="Improved server UI and addContacts for client" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved server UI and addContacts for client" />
+    <MESSAGE value="Added status for strategies and revert id for failed email" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added status for strategies and revert id for failed email" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -630,40 +630,18 @@
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/loginController.java</url>
-          <line>93</line>
-          <properties class="com.client.client.controllers.loginController" method="loadClient">
+          <url>file://$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java</url>
+          <line>135</line>
+          <properties class="com.client.client.controllers.ClientController" method="refresh">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
-          <option name="timeStamp" value="26" />
+          <option name="timeStamp" value="35" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/EmailHandler.java</url>
-          <line>87</line>
-          <properties class="com.server.server.utils.specificHandlers.EmailHandler" method="email">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/EmailStrategy.java</url>
-          <line>27</line>
-          <properties class="com.server.server.utils.handleStrategies.EmailStrategy" method="handlePacket">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/EmailHandler.java</url>
-          <line>43</line>
-          <properties class="com.server.server.utils.specificHandlers.EmailHandler" method="writeEmail">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="31" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/models/PacketHandler.java</url>
+          <line>83</line>
+          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

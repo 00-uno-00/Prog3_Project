@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
-
+//TODO implement "read" packet type
 /**
  * Class responsible for handling packets received from clients.
  * Implements Runnable to be used in a separate thread.
@@ -26,7 +26,7 @@ public class PacketHandler implements Runnable {
     /**
      * Constructor for PacketHandler.
      * Initializes the input and output streams and the strategies map.
-     * @param id Unique ID for the packet handler
+     * @param id Unique ID for the possible Email
      * @param socket Socket for communication with the client
      */
     public PacketHandler(AtomicInteger id, Socket socket) {

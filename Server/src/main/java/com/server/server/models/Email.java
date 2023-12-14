@@ -89,6 +89,13 @@ public class Email implements Serializable {
 
     // Methods
     /**
+     * Marks the email as read
+     */
+    public void markAsRead() {
+        this.isRead = true;
+    }
+
+    /**
      * Checks if the username String has the shape of an email address
      * @param username the username to be checked
      * @return true if the username String has the shape of an email address, false otherwise

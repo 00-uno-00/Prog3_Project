@@ -24,7 +24,8 @@ import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-//TODO make a username+"Contacts.csv" file for each user and create it if it doesn't exist
+//TODO when sending an email from the contacts list and closing the tab there is no pop() (not sure tbh)
+//TODO implement "read" mechanism
 
 public class ClientController implements Initializable {
 
@@ -84,37 +85,10 @@ public class ClientController implements Initializable {
         newEmailButton.onActionProperty().setValue(actionEvent -> {
             openNewEmailPopup(new String[]{"new", "1", "", "", ""});
         });
-    
-        //TODO extract method
-        senderList.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
-            EmailItem selectedSender = senderList.getSelectionModel().getSelectedItem();
-            if (selectedSender != null) {
-                Email selectedEmail = emails.get(selectedSender.id());
-                if (selectedEmail != null) {
-                    openShowEmailPopup(selectedEmail);
-                }
-            }
-        });
 
-        subjectList.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
-            EmailItem selectedSubject = subjectList.getSelectionModel().getSelectedItem();
-            if (selectedSubject != null) {
-                Email selectedEmail = emails.get(selectedSubject.id());
-                if (selectedEmail != null) {
-                    openShowEmailPopup(selectedEmail);
-                }
-            }
-        });
-
-        bodyList.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
-            EmailItem selectedBody = bodyList.getSelectionModel().getSelectedItem();
-            if (selectedBody != null) {
-                Email selectedEmail = emails.get(selectedBody.id());
-                if (selectedEmail != null) {
-                    openShowEmailPopup(selectedEmail);
-                }
-            }
-        });
+        handleSelectionChange(senderList, emails);
+        handleSelectionChange(subjectList, emails);
+        handleSelectionChange(bodyList, emails);
 
 
         Platform.runLater(() -> {
@@ -128,7 +102,19 @@ public class ClientController implements Initializable {
         });
 
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-        executorService.scheduleAtFixedRate(this::refresh, 0, 10, TimeUnit.SECONDS);
+        executorService.scheduleAtFixedRate(this::refresh, 1, 10, TimeUnit.SECONDS); //TODO does not work
+    }
+
+    private void handleSelectionChange(ListView<EmailItem> listView, HashMap<Integer, Email> emails) {
+        listView.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
+            EmailItem selectedItem = listView.getSelectionModel().getSelectedItem();
+            if (selectedItem != null) {
+                Email selectedEmail = emails.get(selectedItem.id());
+                if (selectedEmail != null) {
+                    openShowEmailPopup(selectedEmail);
+                }
+            }
+        });
     }
 
     public void changeAccount() {
@@ -146,12 +132,14 @@ public class ClientController implements Initializable {
         }
     }
 
+    //TODO don't show popup if is the first refresh (maybe)
     public void refresh() {
         List<Email> refreshedEmails = model.refresh(new ArrayList<>(emails.keySet()));
         loadContacts(); //update contacts
+        int numberOfNewEmails = 0;
         if (refreshedEmails != null && !refreshedEmails.isEmpty()) {
             for (Email email : refreshedEmails) {
-                if (email.getSender() == "Server Offline") {
+                if (Objects.equals(email.getSender(), "Server Offline")) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
                     alert.setHeaderText("Refresh Error");
@@ -159,8 +147,18 @@ public class ClientController implements Initializable {
                     Optional<ButtonType> result = alert.showAndWait();
                 } else {
                     handleEmail(email);
+                    numberOfNewEmails++;
                 }
             }
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("New Emails");
+            alert.setHeaderText(null);
+            if(numberOfNewEmails == 1) {
+                alert.setContentText("There is 1 new email.");
+            } else {
+                alert.setContentText("There are " + numberOfNewEmails + " new emails.");
+            }
+            alert.showAndWait();
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("No New Emails");
@@ -203,8 +201,8 @@ public class ClientController implements Initializable {
 
                     newEmailController newEmailController = loader.getController();
                     newEmailController.setRecipient(args[2]);
-                    newEmailController.setSubject("Re: " + args[3]); //TODO extract method
-                    newEmailController.setSubject("Re: " + args[3]); //TODO extract method, WHY?
+                    newEmailController.setSubject("Re: " + args[3]);
+                    newEmailController.setSubject("Re: " + args[3]); //TODO extract method, WHY? this code is duplicate, look how cleaner it is a couple of line upwards
                     newEmailController.setBody("\"" + args[4] + "\"");
                     newEmailController.setOwner(owner);
 
@@ -263,6 +261,8 @@ public class ClientController implements Initializable {
 
     public void openShowEmailPopup(Email email) {
         try {
+            email.markAsRead();
+            //TODO send Read packet to server
             ArrayList<ListView<EmailItem>> showEmailList = new ArrayList<>();
             showEmailList.add(senderList);
             showEmailList.add(subjectList);
@@ -278,23 +278,28 @@ public class ClientController implements Initializable {
      */
     public void loadContacts() {
         try {
-            URL resource = getClass().getResource("contacts.csv");
-            if (resource == null) {
-                throw new FileNotFoundException("Cannot find resource: contacts.csv");
+            String homeDirectory = System.getProperty("user.home"); //TODO this is not the right folder
+            File contactsFile = new File(homeDirectory + File.separator + owner + "Contacts.csv");
+            if (!contactsFile.exists()) {
+                boolean fileCreated = contactsFile.createNewFile();
+                if (!fileCreated) {
+                    System.out.println("Error creating contacts file");
+                }
             }
-            File contactsFile = new File(resource.getFile());
             Scanner scanner = new Scanner(contactsFile);
 
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 contacts.add(line);
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+        } catch (IOException e) {
+            System.out.println("An error occurred while creating or reading the file");
         }
 
         for (String contact : contacts) {
-            contactsList.getItems().add(contact);
+            if (!contactsList.getItems().contains(contact)) {
+                contactsList.getItems().add(contact);
+            }
         }
     }
 
@@ -364,6 +369,7 @@ public class ClientController implements Initializable {
         if (model.send(email)) {
             operationSuccess("Send");
             addRecipientToContacts(email.getRecipients());
+            loadContacts();
             return true;
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
