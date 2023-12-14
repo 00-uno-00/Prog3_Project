@@ -54,7 +54,7 @@ public class AccountUtilsTest {
     public void doesAccountExist_returnsFalse_whenAccountFolderExists() {
         String existingFolder = "Server/src/main/resources/com/server/server/accounts/existingAccount";
         boolean dir = new File(existingFolder).mkdirs();
-        assertFalse(AccountUtils.doesAccountExist(existingFolder));
+        assertTrue(AccountUtils.doesAccountExist(existingFolder));
         boolean del = new File(existingFolder).delete();
         if (!dir || !del) {
             fail("Error creating or deleting directory.");

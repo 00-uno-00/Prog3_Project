@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="read strategy but now response packet does not work">
+    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="now gson it's working? possible date inconsistency between versions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.aa/emails.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/tests/AccountUtilsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/tests/AccountUtilsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/AccountUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/AccountUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/LoginHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/LoginHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/RefreshHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/RefreshHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +81,7 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Application.ClientApplication.executor": "Run",
-    "Application.ServerApplication.executor": "Debug",
+    "Application.ServerApplication.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
     "JUnit.AccountUtilsTest.executor": "Run",
     "JUnit.EmailTest.executor": "Run",
@@ -527,7 +530,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702565339525</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="now gson it's working? possible date inconsistency between versions">
+      <option name="closed" value="true" />
+      <created>1702566274028</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1702566274028</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -577,7 +588,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed unresponsive logging and minor changes" />
     <MESSAGE value="Added Packet handler logic and log type" />
     <MESSAGE value="Implemented list sync scroll and readability improvements" />
     <MESSAGE value="Added email handling logic and minor fixes" />
@@ -602,7 +612,8 @@
     <MESSAGE value="Added clear log button + better logging" />
     <MESSAGE value="Added fixed cell height to client view" />
     <MESSAGE value="read strategy but now response packet does not work" />
-    <option name="LAST_COMMIT_MESSAGE" value="read strategy but now response packet does not work" />
+    <MESSAGE value="now gson it's working? possible date inconsistency between versions" />
+    <option name="LAST_COMMIT_MESSAGE" value="now gson it's working? possible date inconsistency between versions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -637,16 +648,6 @@
           <option name="timeStamp" value="72" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/EmailStrategy.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="76" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/EmailStrategy.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="77" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/LoginStrategy.java</url>
           <line>45</line>
           <option name="timeStamp" value="78" />
@@ -658,83 +659,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RefreshStrategy.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="81" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RefreshStrategy.java</url>
           <line>46</line>
           <option name="timeStamp" value="82" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RefreshStrategy.java</url>
-          <line>30</line>
-          <option name="timeStamp" value="83" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RefreshStrategy.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="84" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RefreshStrategy.java</url>
-          <line>35</line>
-          <option name="timeStamp" value="85" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RefreshStrategy.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="86" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RefreshStrategy.java</url>
-          <line>40</line>
-          <option name="timeStamp" value="88" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RefreshStrategy.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="89" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RefreshStrategy.java</url>
-          <line>43</line>
-          <option name="timeStamp" value="91" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RefreshStrategy.java</url>
-          <line>34</line>
-          <option name="timeStamp" value="92" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/RefreshHandler.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="93" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/AccountUtils.java</url>
-          <line>84</line>
-          <option name="timeStamp" value="94" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/AccountUtils.java</url>
-          <line>85</line>
-          <option name="timeStamp" value="95" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/AccountUtils.java</url>
-          <line>87</line>
-          <option name="timeStamp" value="96" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/AccountUtils.java</url>
-          <line>89</line>
-          <option name="timeStamp" value="97" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/AccountUtils.java</url>
-          <line>92</line>
-          <option name="timeStamp" value="98" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

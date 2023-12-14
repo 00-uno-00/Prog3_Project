@@ -26,7 +26,7 @@ public class RefreshHandler {
         List<Email> emailList;
 
         // Check if the account exists
-        if(AccountUtils.doesAccountExist(accountFolder)){
+        if(!AccountUtils.doesAccountExist(accountFolder)){
             return new Packet("failed", "Account does not exist", "server");
         }
 
