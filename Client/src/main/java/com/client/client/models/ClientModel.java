@@ -37,7 +37,7 @@ public class ClientModel {
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
-                alert.setHeaderText("Register Error");
+                alert.setHeaderText("Login Error");
                 alert.setContentText(response);
                 Optional<ButtonType> result = alert.showAndWait();
                 return false;
@@ -100,6 +100,24 @@ public class ClientModel {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("Delete Error");
+                alert.setContentText(response);
+                Optional<ButtonType> result = alert.showAndWait();
+                return false;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean read(Integer ID) {
+        try {
+            String response = commsHandler.read(ID);
+            if (Objects.equals(response, "successful")) {
+                return true;
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Read Error");
                 alert.setContentText(response);
                 Optional<ButtonType> result = alert.showAndWait();
                 return false;

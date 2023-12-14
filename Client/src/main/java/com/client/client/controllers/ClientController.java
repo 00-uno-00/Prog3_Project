@@ -74,6 +74,8 @@ public class ClientController implements Initializable {
     //TODO fix owner setup
     private String owner =  ""; // must be initialized at startup
 
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadContacts();
@@ -166,6 +168,7 @@ public class ClientController implements Initializable {
             alert.setContentText("There are no new emails.");
             alert.showAndWait();
         }
+
     }
 
     //can be changed into ViewClass
@@ -201,7 +204,6 @@ public class ClientController implements Initializable {
 
                     newEmailController newEmailController = loader.getController();
                     newEmailController.setRecipient(args[2]);
-                    newEmailController.setSubject("Re: " + args[3]);
                     newEmailController.setSubject("Re: " + args[3]); //TODO extract method, WHY? this code is duplicate, look how cleaner it is a couple of line upwards
                     newEmailController.setBody("\"" + args[4] + "\"");
                     newEmailController.setOwner(owner);
@@ -261,7 +263,8 @@ public class ClientController implements Initializable {
 
     public void openShowEmailPopup(Email email) {
         try {
-            email.markAsRead();
+            email.markAsRead();//does this apply to the email in the list?
+
             //TODO send Read packet to server
             ArrayList<ListView<EmailItem>> showEmailList = new ArrayList<>();
             showEmailList.add(senderList);

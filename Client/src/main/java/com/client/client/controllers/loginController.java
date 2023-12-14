@@ -103,7 +103,6 @@ public class loginController implements Initializable {
             ClientController controller = fxmlLoader.getController();
             controller.setModel(model);
             controller.setOwner(emailField.getText());
-            controller.refresh();
 
             // minimum window size can only be set through the stage
             stage.setMinWidth(400);

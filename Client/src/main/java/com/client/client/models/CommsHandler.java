@@ -28,12 +28,12 @@ public class CommsHandler {
      * 
      * @param executorService
      */
-    public CommsHandler(ExecutorService executorService, String sender) throws IOException {
+    public CommsHandler(ExecutorService executorService, String sender) {
         this.executorService = executorService;
         this.sender = sender;
     }
 
-    public String login() throws ExecutionException, InterruptedException, IOException {
+    public String login() throws ExecutionException, InterruptedException {
         try {
             socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
         } catch (Exception e) {
@@ -51,7 +51,7 @@ public class CommsHandler {
         }
     }
 
-    public String register() throws ExecutionException, InterruptedException, IOException {
+    public String register() throws ExecutionException, InterruptedException {
         try {
             socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
         } catch (Exception e) {
@@ -70,7 +70,7 @@ public class CommsHandler {
 
     // send empty list for first refresh
 
-    public List<Email> refresh(List<Integer> emailIDs) throws ExecutionException, InterruptedException, IOException {
+    public List<Email> refresh(List<Integer> emailIDs) throws ExecutionException, InterruptedException{
         try {
             socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
         } catch (Exception e) {
@@ -92,7 +92,7 @@ public class CommsHandler {
         }
     }
 
-    public String send(Email email) throws ExecutionException, InterruptedException, IOException {
+    public String send(Email email) throws ExecutionException, InterruptedException {
         try {
             socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
         } catch (Exception e) {
@@ -111,7 +111,7 @@ public class CommsHandler {
         }
     }
 
-    public String delete(Integer ID) throws ExecutionException, InterruptedException, IOException {
+    public String delete(Integer ID) throws ExecutionException, InterruptedException {
         try {
             socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
         } catch (Exception e) {
@@ -129,4 +129,21 @@ public class CommsHandler {
         }
     }
 
+    public String read(Integer id) throws ExecutionException, InterruptedException {//TODO needs to be tested
+        try {
+            socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
+        } catch (Exception e) {
+            return "connection error";
+        }
+
+        Packet readPacket = new Packet("read", id, sender);
+
+        Future<Packet> responsePacket = executorService.submit(new PacketHandler(socket, readPacket));
+
+        if ("successful".equals(responsePacket.get().getOperation())) {
+            return "successful";
+        } else {
+            return responsePacket.get().getPayload().toString();
+        }
+    }
 }

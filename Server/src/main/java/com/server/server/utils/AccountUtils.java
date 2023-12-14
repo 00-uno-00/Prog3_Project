@@ -84,7 +84,11 @@ public class AccountUtils {
 
         FileReader reader = new FileReader(emailFile);
         Type type = new TypeToken<HashMap<Integer, Email>>(){}.getType();
-        emails = gson.fromJson(reader, type);
+        try { //only for debugging should be able to be removed later, super try/catch doesn't catch GSON errors(why?)
+            emails = gson.fromJson(reader, type);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         //if emails is null return new hashmap, else return emails
         return emails == null ? new HashMap<>() : emails;
     }
