@@ -1,6 +1,7 @@
 package com.server.server.utils;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.server.server.models.Email;
 
@@ -80,7 +81,7 @@ public class AccountUtils {
     public static HashMap<Integer, Email> retrieveEmails(String accountFolder) throws IOException {
         String emailFile = accountFolder + "/emails.json";
         HashMap<Integer, Email> emails;
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setDateFormat("MMM dd, yyyy, h:mm:ss a").create();
 
         FileReader reader = new FileReader(emailFile);
         Type type = new TypeToken<HashMap<Integer, Email>>(){}.getType();

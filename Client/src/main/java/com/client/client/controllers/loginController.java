@@ -119,6 +119,8 @@ public class loginController implements Initializable {
 
             stage.show();
 
+            controller.startScheduledRefresh();
+
         } catch (Exception e) {
             // e.printStackTrace();
             System.err.println("Error: " + e + e.getCause());

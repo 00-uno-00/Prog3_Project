@@ -7,8 +7,17 @@ import com.server.server.utils.AccountUtils;
 import java.io.IOException;
 import java.util.HashMap;
 
+/**
+ * Handler for reading emails
+ */
 public class ReadHandler {
 
+    /**
+     * Reads an email
+     * @param id the id of the email to read
+     * @param username the username of the account to read the email from
+     * @return a packet containing the result of the operation
+     */
     public Packet read(int id, String username) {
         String accountFolder = AccountUtils.getAccountFolder(username);
         HashMap<Integer, Email> emails;

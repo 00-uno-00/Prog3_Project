@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 //TODO when sending an email from the contacts list and closing the tab there is no pop() (not sure tbh)
 //TODO implement "read" mechanism
 
-public class ClientController implements Initializable {
+public class ClientController implements Initializable{
 
     @FXML
     private Button changeAccount;
@@ -71,10 +71,7 @@ public class ClientController implements Initializable {
         this.model = new ClientModel();
     }
 
-    //TODO fix owner setup
     private String owner =  ""; // must be initialized at startup
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -102,9 +99,6 @@ public class ClientController implements Initializable {
             bindScrollBars(bodyScrollBar, subjectScrollBar);
             bindScrollBars(subjectScrollBar, senderScrollBar);
         });
-
-        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-        executorService.scheduleAtFixedRate(this::refresh, 1, 10, TimeUnit.SECONDS); //TODO does not work
     }
 
     private void handleSelectionChange(ListView<EmailItem> listView, HashMap<Integer, Email> emails) {
@@ -264,14 +258,21 @@ public class ClientController implements Initializable {
     public void openShowEmailPopup(Email email) {
         try {
             email.markAsRead();//does this apply to the email in the list?
-
-            //TODO send Read packet to server
-            ArrayList<ListView<EmailItem>> showEmailList = new ArrayList<>();
-            showEmailList.add(senderList);
-            showEmailList.add(subjectList);
-            showEmailList.add(bodyList);
-            showEmailController showEmailController = new showEmailController();
-            showEmailController.showEmailPopup(email,this).setOnCloseRequest(event -> {deselectList(showEmailList);});
+            if (model.read(email.getId())) {
+                ArrayList<ListView<EmailItem>> showEmailList = new ArrayList<>();
+                showEmailList.add(senderList);
+                showEmailList.add(subjectList);
+                showEmailList.add(bodyList);
+                showEmailController showEmailController = new showEmailController();
+                showEmailController.showEmailPopup(email,this).setOnCloseRequest(event -> {deselectList(showEmailList);});
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Read Error");
+                alert.setContentText("There was an error reading the email.");
+                Optional<ButtonType> result = alert.showAndWait();
+            }
+            
         } catch (Exception e) {
             System.out.println("Error opening popup");
         }
@@ -440,4 +441,13 @@ public class ClientController implements Initializable {
 
         tooltip.show(senderList, xPosition, yPosition);
     }
+
+    public void startScheduledRefresh() {//TODO implement as runnable?
+        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+        executorService.scheduleAtFixedRate(()->{
+            refresh();
+        }, 0, 10, TimeUnit.SECONDS);
+    }
+
+    
 }
