@@ -311,7 +311,7 @@ public class ClientController implements Initializable {
             if (!contacts.contains(recipient)) {
                 contacts.add(recipient);
                 try {
-                    FileWriter writer = new FileWriter(Objects.requireNonNull(getClass().getResource("contacts.csv")).getFile(), true);
+                    FileWriter writer = new FileWriter(Objects.requireNonNull(getClass().getResource(owner + "Contacts.csv")).getFile(), true);
                     writer.write(recipient + "\n");
                     writer.close();
                 } catch (IOException e) {
