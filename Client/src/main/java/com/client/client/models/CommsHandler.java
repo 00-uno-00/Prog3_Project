@@ -129,7 +129,7 @@ public class CommsHandler {
         }
     }
 
-    public String read(Integer id) throws ExecutionException, InterruptedException {//TODO needs to be tested
+    public String read(Integer id) throws ExecutionException, InterruptedException {
         try {
             socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
         } catch (Exception e) {

@@ -57,10 +57,11 @@ public class AccountUtils {
 
     /**
      * Checks if the account folder exists.
-     * @param accountFolder the path to the account folder
+     * @param username the username of the account
      * @return true if the account folder does exist
      */
-    public static boolean doesAccountExist(String accountFolder){
+    public static boolean doesAccountExist(String username){
+        String accountFolder = getAccountFolder(username);
         return new File(accountFolder).exists();
     }
 

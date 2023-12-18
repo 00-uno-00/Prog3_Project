@@ -18,7 +18,7 @@ public class ReadHandler {
      * @param username the username of the account to read the email from
      * @return a packet containing the result of the operation
      */
-    public Packet read(int id, String username) {
+     public Packet read(int id, String username) {
         String accountFolder = AccountUtils.getAccountFolder(username);
         HashMap<Integer, Email> emails;
 

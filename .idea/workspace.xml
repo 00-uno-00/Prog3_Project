@@ -4,12 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="now gson it's working? possible date inconsistency between versions">
+    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Mini commit, contacts file fixing">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_12_23,_02_08_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_12_23__02_08__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/loginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/loginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/controllers/client.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/controllers/client.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/AccountUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/AccountUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/ReadStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/ReadStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/LoginHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/LoginHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/ReadHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/ReadHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/RefreshHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/RefreshHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.aa/emails.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.aa/emails.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.bb/emails.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.bb/emails.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,54 +83,54 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Application.ClientApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ServerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JUnit.AccountUtilsTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EmailTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EmailTest.isValidFormat_withInvalidEmail_returnsFalse.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EmailTest.isValidFormat_withValidEmail_returnsTrue.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LoggerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LoggerTest.log_incrementsLogCounter.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LoggerTest.log_updatesLatestLogEvent.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LoggerTest.log_updatesLatestLogType.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PacketUtilsTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ServerModelTest.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.Server [org.apache.maven.plugins:maven-clean-plugin:2.5:clean].executor&quot;: &quot;Run&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;18&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last.edited.regexp&quot;: &quot;Sample.Text@mymail.com&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/davide/Desktop/PROGIII/Prog3_Project/Client/src/main/resources/com/client/client/icons&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.ClientApplication.executor": "Run",
+    "Application.ServerApplication.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.AccountUtilsTest.executor": "Run",
+    "JUnit.EmailTest.executor": "Run",
+    "JUnit.EmailTest.isValidFormat_withInvalidEmail_returnsFalse.executor": "Run",
+    "JUnit.EmailTest.isValidFormat_withValidEmail_returnsTrue.executor": "Run",
+    "JUnit.LoggerTest.executor": "Run",
+    "JUnit.LoggerTest.log_incrementsLogCounter.executor": "Run",
+    "JUnit.LoggerTest.log_updatesLatestLogEvent.executor": "Run",
+    "JUnit.LoggerTest.log_updatesLatestLogType.executor": "Run",
+    "JUnit.PacketUtilsTest.executor": "Run",
+    "JUnit.ServerModelTest.executor": "Run",
+    "Maven.Server [org.apache.maven.plugins:maven-clean-plugin:2.5:clean].executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "18",
+    "kotlin-language-version-configured": "true",
+    "last.edited.regexp": "Sample.Text@mymail.com",
+    "last_opened_file_path": "/home/davide/Desktop/PROGIII/Prog3_Project/Client/src/main/resources/com/client/client/icons",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;PLAIN_TEXT&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "PLAIN_TEXT"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.server.server.utils" />
@@ -166,7 +173,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.1-temurin-21.0.1-3183f394aec4-be7c972f" />
+        <option value="jdk-18.0.2-corretto-18.0.2-3183f394aec4-0dc1e537" />
       </set>
     </attachedChunks>
   </component>
@@ -226,6 +233,9 @@
       <workItem from="1702393289518" duration="2908000" />
       <workItem from="1702555278009" duration="4144000" />
       <workItem from="1702570204427" duration="23000" />
+      <workItem from="1702582340257" duration="1055000" />
+      <workItem from="1702649465794" duration="19000" />
+      <workItem from="1702899258320" duration="8152000" />
     </task>
     <task id="LOCAL-00001" summary="Server branch">
       <option name="closed" value="true" />
@@ -553,12 +563,12 @@
             <list>
               <RecentGroup>
                 <option name="FILTER_VALUES">
-                  <option value="origin/server" />
+                  <option value="main" />
                 </option>
               </RecentGroup>
               <RecentGroup>
                 <option name="FILTER_VALUES">
-                  <option value="main" />
+                  <option value="origin/server" />
                 </option>
               </RecentGroup>
             </list>
@@ -576,7 +586,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/server" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
@@ -629,39 +639,9 @@
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/loginController.java</url>
-          <line>104</line>
-          <option name="timeStamp" value="65" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Client/src/main/java/com/client/client/models/CommsHandler.java</url>
           <line>36</line>
           <option name="timeStamp" value="69" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java</url>
-          <line>77</line>
-          <option name="timeStamp" value="70" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Client/src/main/java/com/client/client/models/PacketHandler.java</url>
-          <line>38</line>
-          <option name="timeStamp" value="72" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/LoginStrategy.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="78" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/LoginStrategy.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="79" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RefreshStrategy.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="82" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

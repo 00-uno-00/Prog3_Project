@@ -7,30 +7,40 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?xml-stylesheet type="text/css" href="style.css"?>
 
 <VBox id="window" fx:id="window" prefHeight="600.0" prefWidth="900.0" spacing="5.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.client.client.controllers.ClientController">
    <children>
-      <SplitPane dividerPositions="0.2, 0.5, 0.75" VBox.vgrow="ALWAYS">
+      <SplitPane dividerPositions="0.2, 0.5, 0.75" prefHeight="618.0" prefWidth="887.0" VBox.vgrow="ALWAYS">
          <items>
-            <VBox>
-               <Label text="Sender" />
-               <ListView fx:id="senderList" fixedCellSize="25" prefHeight="578.0" prefWidth="0.0" />
-            </VBox>
-            <VBox>
-               <Label text="Subject" />
-               <ListView fx:id="subjectList" fixedCellSize="25" prefHeight="578.0" prefWidth="696.0" />
-            </VBox>
-            <VBox>
-               <Label text="Body" />
-               <ListView fx:id="bodyList" fixedCellSize="25" prefHeight="588.0" prefWidth="214.0" />
-            </VBox>
+            <AnchorPane prefHeight="613.0" prefWidth="172.0">
+               <Label text="Sender" AnchorPane.topAnchor="0.0" />
+               <ListView fx:id="senderList" fixedCellSize="25" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+            </AnchorPane>
+            <AnchorPane>
+               <Label text="Subject" AnchorPane.topAnchor="0.0" />
+               <ListView fx:id="subjectList" fixedCellSize="25" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+            </AnchorPane>
+            <AnchorPane>
+               <Label text="Body" AnchorPane.topAnchor="0.0" />
+               <ListView fx:id="bodyList" fixedCellSize="25" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+            </AnchorPane>
             <AnchorPane>
                <children>
-                  <Button fx:id="changeAccount" layoutY="2.0" mnemonicParsing="false" onAction="#changeAccount" prefHeight="25.0" prefWidth="266.0" text="Change Account" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <Button fx:id="refresh" layoutX="8.0" layoutY="25.0" mnemonicParsing="false" onAction="#refresh" prefHeight="25.0" prefWidth="204.0" text="Receive All" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0" />
-                  <Button fx:id="newEmailButton" layoutX="82.0" layoutY="50.0" mnemonicParsing="false" text="New Email" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
-                  <ListView id="contactsList" fx:id="contactsList" layoutY="50.0" prefHeight="528.0" prefWidth="216.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0" />
+                  <Button fx:id="changeAccount" layoutX="-1.0" layoutY="2.0" mnemonicParsing="false" onAction="#changeAccount" prefHeight="25.0" prefWidth="266.0" text="Change Account" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="2.0" />
+                  <Button fx:id="refresh" layoutY="27.0" mnemonicParsing="false" onAction="#refresh" prefHeight="25.0" prefWidth="204.0" text="Receive All" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0" />
+                  <Button fx:id="newEmailButton" layoutY="52.0" mnemonicParsing="false" text="New Email" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0" />
+                  <SplitPane dividerPositions="0.5" layoutX="-1.0" layoutY="84.0" orientation="VERTICAL">
+                     <items>
+                        <Label text="Recent Contacts">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <ListView id="contactsList" fx:id="contactsList" prefHeight="478.0" prefWidth="216.0" />
+                     </items>
+                  </SplitPane>
                </children>
             </AnchorPane>
          </items>

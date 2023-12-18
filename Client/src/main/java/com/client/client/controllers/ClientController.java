@@ -24,8 +24,7 @@ import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-//TODO when sending an email from the contacts list and closing the tab there is no pop() (not sure tbh)
-//TODO implement "read" mechanism
+//TODO make the refresh periodic and automatic
 
 public class ClientController implements Initializable{
 
@@ -89,7 +88,6 @@ public class ClientController implements Initializable{
         handleSelectionChange(subjectList, emails);
         handleSelectionChange(bodyList, emails);
 
-
         Platform.runLater(() -> {
             ScrollBar senderScrollBar = getVerticalScrollbar(senderList);
             ScrollBar subjectScrollBar = getVerticalScrollbar(subjectList);
@@ -99,6 +97,31 @@ public class ClientController implements Initializable{
             bindScrollBars(bodyScrollBar, subjectScrollBar);
             bindScrollBars(subjectScrollBar, senderScrollBar);
         });
+
+        // Set the cell factory for each ListView
+        setCellFactoryForListView(senderList);
+        setCellFactoryForListView(subjectList);
+        setCellFactoryForListView(bodyList);
+    }
+
+    private void setCellFactoryForListView(ListView<EmailItem> listView) {
+        listView.setCellFactory(lv -> new ListCell<EmailItem>() {
+            @Override
+            protected void updateItem(EmailItem item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setStyle("-fx-font-weight: normal;");
+                } else {
+                    setText(item.toString());
+                    if (!emails.get(item.id()).isRead()) {
+                        setStyle("-fx-font-weight: bold;");
+                    } else {
+                        setStyle("-fx-font-weight: normal;");
+                    }
+                }
+            }
+        });
     }
 
     private void handleSelectionChange(ListView<EmailItem> listView, HashMap<Integer, Email> emails) {
@@ -107,7 +130,13 @@ public class ClientController implements Initializable{
             if (selectedItem != null) {
                 Email selectedEmail = emails.get(selectedItem.id());
                 if (selectedEmail != null) {
-                    openShowEmailPopup(selectedEmail);
+                    Email newEmailVersion = openShowEmailPopup(selectedEmail);
+                    if (newEmailVersion != selectedEmail){
+                        emails.replace(selectedItem.id(), newEmailVersion);
+                    }
+                    senderList.refresh();
+                    subjectList.refresh();
+                    bodyList.refresh();
                 }
             }
         });
@@ -116,13 +145,17 @@ public class ClientController implements Initializable{
     public void changeAccount() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/client/client/login.fxml"));
-            root = loader.load();
+            Parent root = loader.load();
 
-            scene = new Scene(root);
-            stage = new Stage();
-            stage.setTitle("Login");
-            stage.setScene(scene);
-            stage.show();
+            Scene scene = new Scene(root);
+            Stage newStage = new Stage();
+            newStage.setTitle("Login");
+            newStage.setScene(scene);
+            newStage.show();
+
+            // Close the current stage
+            Stage currentStage = (Stage) changeAccount.getScene().getWindow();
+            currentStage.close();
         } catch (Exception e) {
             System.out.println("Error opening login popup");
         }
@@ -198,7 +231,7 @@ public class ClientController implements Initializable{
 
                     newEmailController newEmailController = loader.getController();
                     newEmailController.setRecipient(args[2]);
-                    newEmailController.setSubject("Re: " + args[3]); //TODO extract method, WHY? this code is duplicate, look how cleaner it is a couple of line upwards
+                    newEmailController.setSubject("Re: " + args[3]);
                     newEmailController.setBody("\"" + args[4] + "\"");
                     newEmailController.setOwner(owner);
 
@@ -255,27 +288,31 @@ public class ClientController implements Initializable{
     }
 
 
-    public void openShowEmailPopup(Email email) {
+    public Email openShowEmailPopup(Email email) {
         try {
-            email.markAsRead();//does this apply to the email in the list?
-            if (model.read(email.getId())) {
-                ArrayList<ListView<EmailItem>> showEmailList = new ArrayList<>();
-                showEmailList.add(senderList);
-                showEmailList.add(subjectList);
-                showEmailList.add(bodyList);
-                showEmailController showEmailController = new showEmailController();
-                showEmailController.showEmailPopup(email,this).setOnCloseRequest(event -> {deselectList(showEmailList);});
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Read Error");
-                alert.setContentText("There was an error reading the email.");
-                Optional<ButtonType> result = alert.showAndWait();
+            if(!email.isRead()) {
+                if (model.read(email.getId())) {
+                    email.markAsRead();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Read Error");
+                    alert.setContentText("There was an error reading the email.");
+                    Optional<ButtonType> result = alert.showAndWait();
+                }
             }
+           //show email popup anyway, even if there was an error reading the email
+            ArrayList<ListView<EmailItem>> showEmailList = new ArrayList<>();
+            showEmailList.add(senderList);
+            showEmailList.add(subjectList);
+            showEmailList.add(bodyList);
+            showEmailController showEmailController = new showEmailController();
+            showEmailController.showEmailPopup(email,this).setOnCloseRequest(event -> {deselectList(showEmailList);});
             
         } catch (Exception e) {
             System.out.println("Error opening popup");
         }
+        return email;
     }
     /**
      * Load contacts from a CSV file
@@ -442,7 +479,7 @@ public class ClientController implements Initializable{
         tooltip.show(senderList, xPosition, yPosition);
     }
 
-    public void startScheduledRefresh() {//TODO implement as runnable?
+    public void startScheduledRefresh() {//implement as runnable?
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
         executorService.scheduleAtFixedRate(()->{
             refresh();
