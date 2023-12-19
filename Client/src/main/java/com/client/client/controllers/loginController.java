@@ -122,7 +122,6 @@ public class loginController implements Initializable {
             controller.startScheduledRefresh();
 
         } catch (Exception e) {
-            // e.printStackTrace();
             System.err.println("Error: " + e + e.getCause());
         }
     }

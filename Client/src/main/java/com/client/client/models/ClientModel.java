@@ -32,7 +32,7 @@ public class ClientModel {
     public boolean login() {
         try {
             String response = commsHandler.login();
-            if ("successful" == response) {
+            if ("successful".equals(response)) {
                 return true;
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -50,7 +50,7 @@ public class ClientModel {
     public boolean register(String email) {
         try {
             String response = commsHandler.register();
-            if ("successful" == response) {
+            if ("successful".equals(response)) {
                 return true;
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);

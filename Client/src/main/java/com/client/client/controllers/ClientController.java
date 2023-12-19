@@ -1,5 +1,6 @@
 package com.client.client.controllers;
 
+import com.client.client.ClientApplication;
 import com.client.client.models.ClientModel;
 import com.server.server.models.Email;
 import com.client.client.models.EmailItem;
@@ -12,6 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -24,7 +26,8 @@ import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-//TODO make the refresh periodic and automatic
+//TODO contacts don't load properly
+//TODO sort emails by date
 
 public class ClientController implements Initializable{
 
@@ -60,6 +63,7 @@ public class ClientController implements Initializable{
     Stage stage;
 
     private ClientModel model;
+    private ScheduledExecutorService executorService;
 
     public void setModel(ClientModel model) {
         this.model = model;
@@ -74,7 +78,6 @@ public class ClientController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadContacts();
 
         contactsList.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
             openNewEmailPopup(new String[]{"new", "1", contactsList.getSelectionModel().getSelectedItem(), "", ""});
@@ -102,6 +105,10 @@ public class ClientController implements Initializable{
         setCellFactoryForListView(senderList);
         setCellFactoryForListView(subjectList);
         setCellFactoryForListView(bodyList);
+
+        if(owner!=null ){
+            loadContacts();
+        }
     }
 
     private void setCellFactoryForListView(ListView<EmailItem> listView) {
@@ -151,7 +158,16 @@ public class ClientController implements Initializable{
             Stage newStage = new Stage();
             newStage.setTitle("Login");
             newStage.setScene(scene);
+            // Load the Client icon
+            Image icon = new Image(Objects.requireNonNull(ClientApplication.class.getResource("icons/mail.png")).toExternalForm());
+            // Set the icon for the stage
+            newStage.getIcons().add(icon);
             newStage.show();
+
+            // Shutdown the executor service
+            if (executorService != null) {
+                executorService.shutdown();
+            }
 
             // Close the current stage
             Stage currentStage = (Stage) changeAccount.getScene().getWindow();
@@ -161,41 +177,61 @@ public class ClientController implements Initializable{
         }
     }
 
-    //TODO don't show popup if is the first refresh (maybe)
-    public void refresh() {
+    public void receiveAll(){
+        refresh(false);
+    }
+
+    public void refresh(boolean automatic) {
         List<Email> refreshedEmails = model.refresh(new ArrayList<>(emails.keySet()));
         loadContacts(); //update contacts
         int numberOfNewEmails = 0;
         if (refreshedEmails != null && !refreshedEmails.isEmpty()) {
             for (Email email : refreshedEmails) {
                 if (Objects.equals(email.getSender(), "Server Offline")) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error");
-                    alert.setHeaderText("Refresh Error");
-                    alert.setContentText("Connection error.");
-                    Optional<ButtonType> result = alert.showAndWait();
+                    if (!automatic) {
+                        showServerOfflineAlert();
+                    }
                 } else {
                     handleEmail(email);
-                    numberOfNewEmails++;
+                    if(!email.isRead()) {
+                        numberOfNewEmails++;
+                    }
                 }
             }
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("New Emails");
-            alert.setHeaderText(null);
-            if(numberOfNewEmails == 1) {
-                alert.setContentText("There is 1 new email.");
-            } else {
-                alert.setContentText("There are " + numberOfNewEmails + " new emails.");
+            if (numberOfNewEmails > 0) {
+                showNewEmailsAlert(numberOfNewEmails);
             }
-            alert.showAndWait();
-        } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("No New Emails");
-            alert.setHeaderText(null);
-            alert.setContentText("There are no new emails.");
-            alert.showAndWait();
+        } else if (!automatic) {
+            showNoNewEmailsAlert();
         }
+    }
 
+    public void showNoNewEmailsAlert(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("No New Emails");
+        alert.setHeaderText(null);
+        alert.setContentText("There are no new emails.");
+        alert.showAndWait();
+    }
+
+    public void showNewEmailsAlert(int numberOfNewEmails){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("New Emails");
+        alert.setHeaderText(null);
+        if(numberOfNewEmails == 1) {
+            alert.setContentText("There is 1 new email.");
+        } else {
+            alert.setContentText("There are " + numberOfNewEmails + " new emails.");
+        }
+        alert.showAndWait();
+    }
+
+    public void showServerOfflineAlert(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Could not reach the Server");
+        alert.setContentText("Connection error.");
+        Optional<ButtonType> result = alert.showAndWait();
     }
 
     //can be changed into ViewClass
@@ -319,9 +355,18 @@ public class ClientController implements Initializable{
      */
     public void loadContacts() {
         try {
-            URL contactsFile = getClass().getResource("contacts.csv");
+            URL contactsFile = getClass().getResource("/" + owner + "Contacts.csv");
             if (contactsFile == null) {
-                throw new FileNotFoundException("Cannot find resource: contacts.csv");
+                File newFile = new File(owner + "Contacts.csv");
+                try {
+                    if (newFile.createNewFile()) {
+                        System.out.println("File created: " + newFile.getName());
+                    }
+                } catch (IOException e) {
+                    System.out.println("An error occurred while creating the file.");
+                    System.err.println("Error: " + e + e.getCause());
+                }
+                contactsFile = newFile.toURI().toURL();
             }
             Scanner scanner = new Scanner(new File(contactsFile.getFile()));
 
@@ -331,6 +376,7 @@ public class ClientController implements Initializable{
             }
         } catch (IOException e) {
             System.out.println("An error occurred while creating or reading the file");
+            System.err.println("Error: " + e + e.getCause());
         }
 
         for (String contact : contacts) {
@@ -345,7 +391,7 @@ public class ClientController implements Initializable{
             if (!contacts.contains(recipient)) {
                 contacts.add(recipient);
                 try {
-                    FileWriter writer = new FileWriter(Objects.requireNonNull(getClass().getResource(owner + "Contacts.csv")).getFile(), true);
+                    FileWriter writer = new FileWriter(owner + "Contacts.csv", true);
                     writer.write(recipient + "\n");
                     writer.close();
                 } catch (IOException e) {
@@ -479,10 +525,17 @@ public class ClientController implements Initializable{
         tooltip.show(senderList, xPosition, yPosition);
     }
 
-    public void startScheduledRefresh() {//implement as runnable?
-        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-        executorService.scheduleAtFixedRate(()->{
-            refresh();
+    public void startScheduledRefresh() {
+        executorService = Executors.newSingleThreadScheduledExecutor();
+        executorService.scheduleAtFixedRate(() -> {
+            try {
+                Platform.runLater(() -> {
+                    refresh(true);
+                });
+            } catch (Exception e) {
+                System.err.println("Error in scheduled task: " + e.getMessage());
+                e.printStackTrace();
+            }
         }, 0, 10, TimeUnit.SECONDS);
     }
 
