@@ -7,6 +7,7 @@ import com.client.client.models.EmailItem;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.fxml.Initializable;
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
@@ -18,7 +19,6 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
@@ -27,7 +27,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 //TODO contacts don't load properly
-//TODO sort emails by date
 
 public class ClientController implements Initializable{
 
@@ -186,6 +185,8 @@ public class ClientController implements Initializable{
         loadContacts(); //update contacts
         int numberOfNewEmails = 0;
         if (refreshedEmails != null && !refreshedEmails.isEmpty()) {
+            //order emails by date in reverse order
+            refreshedEmails.sort(Comparator.comparing(Email::getDate));
             for (Email email : refreshedEmails) {
                 if (Objects.equals(email.getSender(), "Server Offline")) {
                     if (!automatic) {
@@ -337,14 +338,15 @@ public class ClientController implements Initializable{
                     Optional<ButtonType> result = alert.showAndWait();
                 }
             }
-           //show email popup anyway, even if there was an error reading the email
+            //show email popup anyway, even if there was an error reading the email
+            // Initialize the Label for the date of the Email popup
             ArrayList<ListView<EmailItem>> showEmailList = new ArrayList<>();
             showEmailList.add(senderList);
             showEmailList.add(subjectList);
             showEmailList.add(bodyList);
             showEmailController showEmailController = new showEmailController();
             showEmailController.showEmailPopup(email,this).setOnCloseRequest(event -> {deselectList(showEmailList);});
-            
+
         } catch (Exception e) {
             System.out.println("Error opening popup");
         }
@@ -473,9 +475,10 @@ public class ClientController implements Initializable{
     }
     public void handleEmail(Email email) {
         emails.put(email.getId(), email);
-        senderList.getItems().add(new EmailItem(email.getSender(), email.getId()));
-        subjectList.getItems().add(new EmailItem(email.getSubject(), email.getId()));
-        bodyList.getItems().add(new EmailItem(email.getBody(), email.getId()));
+        //Passing 0 as index to add the element at the beginning of the list
+        senderList.getItems().add(0, new EmailItem(email.getSender(), email.getId()));
+        subjectList.getItems().add(0, new EmailItem(email.getSubject(), email.getId()));
+        bodyList.getItems().add(0, new EmailItem(email.getBody(), email.getId()));
     }
 
     public void popStage(javafx.stage.WindowEvent event) {
