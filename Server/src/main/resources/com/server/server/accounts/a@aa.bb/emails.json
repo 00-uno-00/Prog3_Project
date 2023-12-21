@@ -1,1 +1,1 @@
-{"32":{"id":32,"sender":"a@aa.bb","recipients":["a@aa.bb","a@aa.bb"],"body":"Hi!","subject":"New test","date":"Dec 18, 2023, 4:31:05 PM","isRead":true},"34":{"id":34,"sender":"a@aa.bb","recipients":["a@aa.bb"],"body":"\"Hi!\"\nThis is a reply","subject":"Re: New test","date":"Dec 18, 2023, 4:32:40 PM","isRead":true}}
+{"1":{"id":1,"sender":"a@aa.bb","recipients":["a@aa.bb"],"body":"diocane","subject":"self send","date":"Dec 21, 2023, 4:54:15 PM","isRead":false}}

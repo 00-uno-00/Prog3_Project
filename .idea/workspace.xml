@@ -5,11 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Miscellaneous files">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_23__17_39__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_23__17_39__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_12_23__20_26__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_12_23__20_26__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/showEmailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/showEmailController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/controllers/showEmail.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/controllers/showEmail.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.aa/emails.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.aa/emails.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/loginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/loginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/ClientModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/models/ClientModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contacs.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contacts.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/AccountUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/AccountUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.bb/emails.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.bb/emails.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a@aa.aaContacs.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/a@aa.aaContacts.csv" beforeDir="false" afterPath="$PROJECT_DIR$/a@aa.aaContacts.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +101,8 @@
     "JUnit.LoggerTest.log_updatesLatestLogType.executor": "Run",
     "JUnit.PacketUtilsTest.executor": "Run",
     "JUnit.ServerModelTest.executor": "Run",
+    "Maven.Client [clean].executor": "Run",
+    "Maven.Server [clean].executor": "Run",
     "Maven.Server [org.apache.maven.plugins:maven-clean-plugin:2.5:clean].executor": "Run",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
@@ -653,6 +663,26 @@
           <url>file://$PROJECT_DIR$/Client/src/main/java/com/client/client/models/CommsHandler.java</url>
           <line>36</line>
           <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Client/src/main/java/com/client/client/models/PacketHandler.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="96" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Client/src/main/java/com/client/client/models/PacketHandler.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="97" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java</url>
+          <line>487</line>
+          <option name="timeStamp" value="98" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/RefreshHandler.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="99" />
         </line-breakpoint>
         <breakpoint type="java-exception">
           <properties class="java.lang.NullPointerException" package="java.lang" />

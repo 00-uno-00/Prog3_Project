@@ -10,7 +10,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import com.server.server.models.Email;
 
-//TODO add javadoc move alerts to view controller
+/**
+* ClientModel handles client-side functionalities including communication with the server.
+* It manages tasks like login, registration, email operations, and communication setup.
+*/
 public class ClientModel {
 
     private ExecutorService executorService;
@@ -19,6 +22,11 @@ public class ClientModel {
 
     private String email;
 
+
+    /**
+     * Constructor to initialize the ClientModel with necessary components.
+     * It sets up the executor service and communication handler.
+     */
     public ClientModel() {
         try {
             executorService = Executors.newFixedThreadPool(2);
@@ -29,42 +37,46 @@ public class ClientModel {
         }
     }
 
-    public boolean login() {
+    /**
+     * Attempts to log in the user.
+     * @return "successful" if login is successful, an error message otherwise. Shows an error alert in case of failure.
+     */
+    public String login() {
         try {
             String response = commsHandler.login();
             if ("successful".equals(response)) {
-                return true;
+                return "successful";
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Login Error");
-                alert.setContentText(response);
-                Optional<ButtonType> result = alert.showAndWait();
-                return false;
+                return response;
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public boolean register(String email) {
+    /**
+     * Attempts to register a new user with the given email.
+     * @param email The email address for the new user.
+     * @return "successful" if registration is successful, an error message otherwise. Throws a RuntimeException in case of failure.
+     */
+    public String register(String email) {
         try {
             String response = commsHandler.register();
             if ("successful".equals(response)) {
-                return true;
+                return "successful";
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Register Error");
-                alert.setContentText(response);
-                Optional<ButtonType> result = alert.showAndWait();
-                return false;
+                return response;
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
+    /**
+     * Refreshes and retrieves a list of emails based on provided IDs.
+     * @param emailIDs A list of email IDs to be refreshed.
+     * @return A list of Email objects corresponding to the email IDs.
+     */
     public List<Email> refresh(List<Integer> emailIDs) {
         try {
             return commsHandler.refresh(emailIDs);
@@ -73,60 +85,64 @@ public class ClientModel {
         }
     }
 
-    public boolean send(Email email) {
+    /**
+     * Sends an email.
+     * @param email The Email object to be sent.
+     * @return "successful" if the email is sent successfully, an error message otherwise. Throws a RuntimeException in case of failure.
+     */
+    public String send(Email email) {
         try {
             String response = commsHandler.send(email);
             if (Objects.equals(response, "successful")) {
-                return true;
+                return "successful";
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Send Error");
-                alert.setContentText(response);
-                Optional<ButtonType> result = alert.showAndWait();
-                return false;
+                return response;
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public boolean delete(Integer ID) {
+    /**
+     * Deletes an email with the specified ID.
+     * @param ID The ID of the email to be deleted.
+     * @return "successful" if the email is deleted successfully, an error message otherwise. Throws a RuntimeException in case of failure.
+     */
+    public String delete(Integer ID) {
         try {
             String response = commsHandler.delete(ID);
             if (Objects.equals(response, "successful")) {
-                return true;
+                return "successful";
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Delete Error");
-                alert.setContentText(response);
-                Optional<ButtonType> result = alert.showAndWait();
-                return false;
+                return response;
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public boolean read(Integer ID) {
+    /**
+     * Marks an email as read with the specified ID.
+     * @param ID The ID of the email to be marked as read.
+     * @return "successful" if the operation is successful, an error message otherwise. Throws a RuntimeException in case of failure.
+     */
+    public String read(Integer ID) {
         try {
             String response = commsHandler.read(ID);
             if (Objects.equals(response, "successful")) {
-                return true;
+                return "successful";
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Read Error");
-                alert.setContentText(response);
-                Optional<ButtonType> result = alert.showAndWait();
-                return false;
+                return response;
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
+    /**
+     * Sets the email address of the client.
+     * @param email The email address to be set for the client.
+     */
     public void setEmail(String email) {
         this.email = email;
         commsHandler.setSender(email);

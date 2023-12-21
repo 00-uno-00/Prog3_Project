@@ -72,7 +72,7 @@ public class ClientController implements Initializable{
         this.model = new ClientModel();
     }
 
-    private String owner =  ""; // must be initialized at startup
+    private String owner = ""; // must be initialized at startup
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -103,10 +103,6 @@ public class ClientController implements Initializable{
         setCellFactoryForListView(senderList);
         setCellFactoryForListView(subjectList);
         setCellFactoryForListView(bodyList);
-
-        if(owner!=null ){
-            loadContacts();
-        }
     }
 
     private void setCellFactoryForListView(ListView<EmailItem> listView) {
@@ -327,13 +323,14 @@ public class ClientController implements Initializable{
     public Email openShowEmailPopup(Email email) {
         try {
             if(!email.isRead()) {
-                if (model.read(email.getId())) {
+                String response = model.read(email.getId());
+                if (response.equals("successful")) {
                     email.markAsRead();
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
                     alert.setHeaderText("Read Error");
-                    alert.setContentText("There was an error reading the email.");
+                    alert.setContentText("There was an error reading the email: " + response);
                     Optional<ButtonType> result = alert.showAndWait();
                 }
             }
@@ -358,7 +355,7 @@ public class ClientController implements Initializable{
         try {
             URL contactsFile = getClass().getResource("/" + owner + "Contacts.csv");
             if (contactsFile == null) {
-                File newFile = new File(owner + "Contacts.csv");
+                File newFile = new File(owner + "Contacts.csv");//owner is null when creating the file
                 try {
                     if (newFile.createNewFile()) {
                         System.out.println("File created: " + newFile.getName());
@@ -424,7 +421,8 @@ public class ClientController implements Initializable{
 
 
     public void deleteEmail(Email email, Stage stage) {
-        if (model.delete(email.getId())){
+        String response = model.delete(email.getId());
+        if (response.equals("successful")){
             emails.remove(email.getId());
 
             deselectList(new ArrayList<>(Arrays.asList(senderList, subjectList, bodyList)));
@@ -443,14 +441,15 @@ public class ClientController implements Initializable{
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Delete Error");
-            alert.setContentText("There was an error deleting the email.");
+            alert.setContentText("There was an error deleting the email: " + response);
             Optional<ButtonType> result = alert.showAndWait();
         }
 
     }
 
     public boolean sendEmail(Email email) {
-        if (model.send(email)) {
+        String response = model.send(email);
+        if (response.equals("successful")) {
             operationSuccess("Send");
             addRecipientToContacts(email.getRecipients());
             loadContacts();
@@ -459,7 +458,7 @@ public class ClientController implements Initializable{
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Send Error");
-            alert.setContentText("There was an error sending the email.");
+            alert.setContentText("There was an error sending the email: " + response);
             Optional<ButtonType> result = alert.showAndWait();
             return false;
         }
@@ -486,6 +485,7 @@ public class ClientController implements Initializable{
 
     public void setOwner(String owner) {
         this.owner = owner;
+        loadContacts(); //load constacts after setting owner or elese createws a generic contacts file
     }
 
     private ScrollBar getVerticalScrollbar(ListView<?> listView) {

@@ -47,8 +47,15 @@ public class loginController implements Initializable {
         boolean valid = Email.isValidFormat(emailField.getText());
         if (emailField.getText() != null && valid) {
             model.setEmail(emailField.getText());// redundant because at model creation the email is null
-            if (model.login()) {
+            String response = model.login();
+            if (response.equals("successful")) {
                 openClient();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Login Error");
+                alert.setContentText(response);
+                Optional<ButtonType> result = alert.showAndWait();
             }
         } else if(!valid){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -69,8 +76,15 @@ public class loginController implements Initializable {
     public void register() {
         if (emailField.getText() != null && Email.isValidFormat(emailField.getText())) {
             model.setEmail(emailField.getText());
-            if (model.register(emailField.getText())) {
+            String response = model.register(emailField.getText());
+            if (response.equals("successful")) {
                 openClient();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Registration Error");
+                alert.setContentText(response);
+                Optional<ButtonType> result = alert.showAndWait();
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
