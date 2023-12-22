@@ -26,6 +26,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 //TODO contacts don't load properly
+//TODO when client is not receiving a response it freezes
+//TODO the server/client has generic problem with the account a@aa.bb
 
 public class ClientController implements Initializable{
 
