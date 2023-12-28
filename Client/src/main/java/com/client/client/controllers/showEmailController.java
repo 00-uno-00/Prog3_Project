@@ -43,6 +43,10 @@ public class showEmailController {
 
     private Stage stage;
 
+    /**
+     * Sets the email details in the popup window.
+     * @param email The Email object containing sender, subject, body, and date.
+     */
     protected void setEmailPopup(Email email) {
         sender.setText(email.getSender());
         subject.setText(email.getSubject());
@@ -50,29 +54,63 @@ public class showEmailController {
         emailDate.setText(email.getDate().toString());
     }
 
+    /**
+     * Sets the client controller for this view.
+     * @param clientController The controller managing client operations.
+     */
     public void setClientController(ClientController clientController) {
         this.clientController = clientController;
     }
+
+    /**
+     * Sets the email object to be displayed or manipulated.
+     * @param email The Email object to be set.
+     */
 
     public void setEmail(Email email) {
         this.email = email;
     }
 
+    /**
+     * Sets the stage for the email view.
+     * @param stage The stage on which the email view is displayed.
+     */
+
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+
+    /**
+     * Initiates the reply operation for the current email.
+     */
 
     public void reply() {
         clientController.replyEmail(email);
     }
 
+    /**
+     * Initiates the forward operation for the current email.
+     */
+
     public void forward() {
         clientController.forwardEmail(email);
     }
 
+    /**
+     * Initiates the deletion of the current email.
+     */
+
     public void delete() {
         clientController.deleteEmail(email, stage);
     }
+
+    /**
+     * Displays the email popup window with the specified email and client controller.
+     * @param inputEmail The email to be displayed.
+     * @param clientController The controller managing client operations.
+     * @return The stage of the displayed email popup.
+     * @throws IOException If the FXML file cannot be loaded.
+     */
 
     public Stage showEmailPopup(Email inputEmail, ClientController clientController) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("showEmail.fxml"));

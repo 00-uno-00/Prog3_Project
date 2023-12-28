@@ -94,6 +94,9 @@ public class loginController implements Initializable {
         }
     }
 
+    /**
+     * Opens the client stage and closes the login stage
+     */
     private void openClient() {
         Stage stage = (Stage) loginButton.getScene().getWindow();
 

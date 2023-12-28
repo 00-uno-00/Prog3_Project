@@ -65,6 +65,10 @@ public class ClientController implements Initializable{
     private ClientModel model;
     private ScheduledExecutorService executorService;
 
+    /**
+     * Sets the client model for the controller.
+     * @param model The client model to be set.
+     */
     public void setModel(ClientModel model) {
         this.model = model;
     }
@@ -145,6 +149,9 @@ public class ClientController implements Initializable{
         });
     }
 
+    /**
+     * Changes the current user account.
+     */
     public void changeAccount() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/client/client/login.fxml"));
@@ -173,10 +180,17 @@ public class ClientController implements Initializable{
         }
     }
 
+    /**
+     * Retrieves all emails from the server.
+     */
     public void receiveAll(){
         refresh(false);
     }
 
+    /**
+     * Refreshes the email list, loading new emails.
+     * @param automatic Specifies if the refresh is automatic or manual.
+     */
     public void refresh(boolean automatic) {
         List<Email> refreshedEmails = model.refresh(new ArrayList<>(emails.keySet()));
         loadContacts(); //update contacts
@@ -204,6 +218,9 @@ public class ClientController implements Initializable{
         }
     }
 
+    /**
+     * Displays an alert if there are no new emails.
+     */
     public void showNoNewEmailsAlert(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("No New Emails");
@@ -212,6 +229,10 @@ public class ClientController implements Initializable{
         alert.showAndWait();
     }
 
+    /**
+     * Displays an alert indicating the number of new emails received.
+     * @param numberOfNewEmails The number of new emails.
+     */
     public void showNewEmailsAlert(int numberOfNewEmails){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("New Emails");
@@ -224,6 +245,9 @@ public class ClientController implements Initializable{
         alert.showAndWait();
     }
 
+    /**
+     * Displays an alert when the server is offline or unreachable.
+     */
     public void showServerOfflineAlert(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
@@ -232,7 +256,6 @@ public class ClientController implements Initializable{
         Optional<ButtonType> result = alert.showAndWait();
     }
 
-    //can be changed into ViewClass
     /**
      * Opens a new email popup
      * @param args args[0] is the type of new mail, args[1] is the number of recipients, args[2] is the recipient(s), args[3] is the subject, args[4] is the body
@@ -321,7 +344,11 @@ public class ClientController implements Initializable{
         }
     }
 
-
+    /**
+     * Opens a popup to show details of a selected email.
+     * @param email The email object to display.
+     * @return The modified email object.
+     */
     public Email openShowEmailPopup(Email email) {
         try {
             if(!email.isRead()) {
@@ -351,7 +378,7 @@ public class ClientController implements Initializable{
         return email;
     }
     /**
-     * Load contacts from a CSV file
+     * Loads the contacts for the current user.
      */
     public void loadContacts() {
         try {
@@ -386,6 +413,10 @@ public class ClientController implements Initializable{
         }
     }
 
+    /**
+     * Adds a new recipient to the user's contacts.
+     * @param recipients A list of recipient email addresses.
+     */
     public void addRecipientToContacts(List<String> recipients) {
         for (String recipient : recipients) {
             if (!contacts.contains(recipient)) {
@@ -401,6 +432,10 @@ public class ClientController implements Initializable{
         }
     }
 
+    /**
+     * Handles the request to close the client application.
+     * @param event The window event triggered on close request.
+     */
     public void handleCloseRequest(javafx.stage.WindowEvent event) {
         if (!emailStages.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -421,7 +456,11 @@ public class ClientController implements Initializable{
         }
     }
 
-
+    /**
+     * Deletes the specified email.
+     * @param email The email to be deleted.
+     * @param stage The stage from which the email is being deleted.
+     */
     public void deleteEmail(Email email, Stage stage) {
         String response = model.delete(email.getId());
         if (response.equals("successful")){
@@ -449,6 +488,11 @@ public class ClientController implements Initializable{
 
     }
 
+    /**
+     * Sends an email.
+     * @param email The email to be sent.
+     * @return true if the email was sent successfully, false otherwise.
+     */
     public boolean sendEmail(Email email) {
         String response = model.send(email);
         if (response.equals("successful")) {
@@ -466,13 +510,26 @@ public class ClientController implements Initializable{
         }
     }
 
+    /**
+     * Forwards an email.
+     * @param email The email to be forwarded.
+     */
     public void forwardEmail(Email email) {
         openNewEmailPopup(new String[]{"forward", "1", "", email.getSubject(), email.getBody()});
     }
 
+    /**
+     * Replies to an email.
+     * @param email The email to reply to.
+     */
     public void replyEmail(Email email) {
         openNewEmailPopup(new String[]{"reply", "1", email.getSender(), email.getSubject(), email.getBody()});
     }
+
+    /**
+     * Handles the incoming or existing email.
+     * @param email The email to be handled.
+     */
     public void handleEmail(Email email) {
         emails.put(email.getId(), email);
         //Passing 0 as index to add the element at the beginning of the list
@@ -481,10 +538,18 @@ public class ClientController implements Initializable{
         bodyList.getItems().add(0, new EmailItem(email.getBody(), email.getId()));
     }
 
+    /**
+     * Removes a stage from the list of active email stages.
+     * @param event The window event triggered on stage closure.
+     */
     public void popStage(javafx.stage.WindowEvent event) {
         emailStages.remove((Stage) event.getSource());
     }
 
+    /**
+     * Sets the owner of the client.
+     * @param owner The email address of the owner.
+     */
     public void setOwner(String owner) {
         this.owner = owner;
         loadContacts(); //load constacts after setting owner or elese createws a generic contacts file
@@ -529,6 +594,9 @@ public class ClientController implements Initializable{
         tooltip.show(senderList, xPosition, yPosition);
     }
 
+    /**
+     * Starts a scheduled task for automatic email refresh.
+     */
     public void startScheduledRefresh() {
         executorService = Executors.newSingleThreadScheduledExecutor();
         executorService.scheduleAtFixedRate(() -> {
@@ -542,6 +610,4 @@ public class ClientController implements Initializable{
             }
         }, 0, 10, TimeUnit.SECONDS);
     }
-
-    
 }

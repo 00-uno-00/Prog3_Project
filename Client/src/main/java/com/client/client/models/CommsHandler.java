@@ -19,20 +19,30 @@ public class CommsHandler {
 
     private String sender;
 
+    /**
+     * Sets the sender email address for the communication handler.
+     * @param sender The sender's email address.
+     */
     public void setSender(String sender) {
         this.sender = sender;
     }
 
     /**
-     * Handles the connection to the server
-     * 
-     * @param executorService
+     * Constructor for the CommsHandler class.
+     * @param executorService The ExecutorService for handling asynchronous tasks.
+     * @param sender The sender's email address.
      */
     public CommsHandler(ExecutorService executorService, String sender) {
         this.executorService = executorService;
         this.sender = sender;
     }
 
+    /**
+     * Attempts to log in to the server.
+     * @return A string indicating the result of the login attempt.
+     * @throws ExecutionException If an execution error occurs.
+     * @throws InterruptedException If the operation is interrupted.
+     */
     public String login() throws ExecutionException, InterruptedException {
         try {
             socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
@@ -51,6 +61,12 @@ public class CommsHandler {
         }
     }
 
+    /**
+     * Attempts to register the client with the server.
+     * @return A string indicating the result of the registration attempt.
+     * @throws ExecutionException If an execution error occurs.
+     * @throws InterruptedException If the operation is interrupted.
+     */
     public String register() throws ExecutionException, InterruptedException {
         try {
             socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
@@ -68,8 +84,13 @@ public class CommsHandler {
         }
     }
 
-    // send empty list for first refresh
-
+    /**
+     * Refreshes the email list based on the provided email IDs.
+     * @param emailIDs The list of email IDs to refresh.
+     * @return A list of refreshed emails.
+     * @throws ExecutionException If an execution error occurs.
+     * @throws InterruptedException If the operation is interrupted.
+     */
     public List<Email> refresh(List<Integer> emailIDs) throws ExecutionException, InterruptedException{
         try {
             socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
@@ -92,6 +113,13 @@ public class CommsHandler {
         }
     }
 
+    /**
+     * Sends an email.
+     * @param email The Email object to be sent.
+     * @return A string indicating the result of the send operation.
+     * @throws ExecutionException If an execution error occurs.
+     * @throws InterruptedException If the operation is interrupted.
+     */
     public String send(Email email) throws ExecutionException, InterruptedException {
         try {
             socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
@@ -111,6 +139,13 @@ public class CommsHandler {
         }
     }
 
+    /**
+     * Deletes an email based on its ID.
+     * @param ID The ID of the email to be deleted.
+     * @return A string indicating the result of the delete operation.
+     * @throws ExecutionException If an execution error occurs.
+     * @throws InterruptedException If the operation is interrupted.
+     */
     public String delete(Integer ID) throws ExecutionException, InterruptedException {
         try {
             socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);
@@ -129,6 +164,13 @@ public class CommsHandler {
         }
     }
 
+    /**
+     * Marks an email as read based on its ID.
+     * @param id The ID of the email to be marked as read.
+     * @return A string indicating the result of the read operation.
+     * @throws ExecutionException If an execution error occurs.
+     * @throws InterruptedException If the operation is interrupted.
+     */
     public String read(Integer id) throws ExecutionException, InterruptedException {
         try {
             socket = new Socket(InetAddress.getLocalHost().getHostName(), 8081);

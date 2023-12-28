@@ -42,6 +42,13 @@ public class newEmailController {
 
     private Email email = new Email();
 
+    /**
+     * Displays the new email popup window.
+     * @param root The root node of the scene.
+     * @param controller The client controller.
+     * @return The stage of the new email window.
+     * @throws IOException If an I/O error occurs.
+     */
     public Stage showNewEmailPopup(Parent root, ClientController controller) throws IOException {
         Scene scene = new Scene(root);
         Stage stage = new Stage();
@@ -52,27 +59,49 @@ public class newEmailController {
         return stage;
     }
 
+    /**
+     * Sets the recipient of the new email.
+     * @param recipient The email address of the recipient.
+     */
     public void setRecipient(String recipient) {
         this.recipient.setText(recipient);
     }
 
+    /**
+     * Sets the subject of the new email.
+     * @param subject The subject text.
+     */
     public void setSubject(String subject) {
         this.subject.setText(subject);
     }
 
+    /**
+     * Sets the body content of the new email.
+     * @param body The body text of the email.
+     */
     public void setBody(String body) {
         this.body.setText(body);
     }
 
+    /**
+     * Sets the owner (sender) of the new email.
+     * @param owner The email address of the sender.
+     */
     public void setOwner(String owner) {
         this.owner = owner;
     }
 
+    /**
+     * Closes the new email popup without sending the email.
+     */
     public void abort() {
         Stage stage = (Stage) recipient.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Sends the email and closes the popup if successful.
+     */
     public void send() {
         email.setDate(new Date());
         email.setSender(owner);
@@ -94,6 +123,11 @@ public class newEmailController {
         }
     }
 
+    /**
+     * Parses the recipients string into a list of email addresses.
+     * @param recipients Comma-separated string of email addresses.
+     * @return List of email addresses.
+     */
     private List<String> parseRecipients(String recipients) {
         List<String> recipientList = new ArrayList<>();
         String[] recipientArray = recipients.split(",");
@@ -101,9 +135,5 @@ public class newEmailController {
             recipientList.add(recipient.trim());
         }
         return recipientList;
-    }
-
-    private void addContact() {
-
     }
 }
