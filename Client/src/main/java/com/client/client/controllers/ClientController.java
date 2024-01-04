@@ -25,17 +25,11 @@ import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-//TODO contacts don't load properly
-//TODO when client is not receiving a response it freezes
-//TODO the server/client has generic problem with the account a@aa.bb
 
 public class ClientController implements Initializable{
 
     @FXML
     private Button changeAccount;
-
-    @FXML
-    private Button refresh;
 
     @FXML
     private Button newEmailButton;
@@ -59,8 +53,6 @@ public class ClientController implements Initializable{
     private final List<Stage> emailStages = new ArrayList<>();
 
     Parent root;
-    Scene scene;
-    Stage stage;
 
     private ClientModel model;
     private ScheduledExecutorService executorService;
@@ -112,7 +104,7 @@ public class ClientController implements Initializable{
     }
 
     private void setCellFactoryForListView(ListView<EmailItem> listView) {
-        listView.setCellFactory(lv -> new ListCell<EmailItem>() {
+        listView.setCellFactory(lv -> new ListCell<>() {
             @Override
             protected void updateItem(EmailItem item, boolean empty) {
                 super.updateItem(item, empty);
@@ -605,8 +597,7 @@ public class ClientController implements Initializable{
                     refresh(true);
                 });
             } catch (Exception e) {
-                System.err.println("Error in scheduled task: " + e.getMessage());
-                e.printStackTrace();
+                System.err.println("Error in scheduled task: " + e.getMessage()+e.getCause());
             }
         }, 0, 10, TimeUnit.SECONDS);
     }

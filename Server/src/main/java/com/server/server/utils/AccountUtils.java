@@ -86,8 +86,8 @@ public class AccountUtils {
 
         FileReader reader = new FileReader(emailFile);
         Type type = new TypeToken<HashMap<Integer, Email>>(){}.getType();
-        try { //only for debugging should be able to be removed later, super try/catch doesn't catch GSON errors(why?)
-            emails = gson.fromJson(reader, type); //TODO smettere di usare GSON perche fa sbocco
+        try {
+            emails = gson.fromJson(reader, type);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

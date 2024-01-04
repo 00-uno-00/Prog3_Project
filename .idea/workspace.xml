@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Remove unused imports">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_23,_17_39_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_12_23__17_39__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_12_23,_15_34_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_12_23__15_34__Changes_1.xml" beforeDir="false" />
+    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Small fixes">
+      <change afterPath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.bb/emails.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/a@aa.bbContacts.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.aa/emails.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.aa/emails.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/AccountUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/AccountUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RegisterStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/handleStrategies/RegisterStrategy.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,56 +77,56 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Application.ClientApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ServerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JUnit.AccountUtilsTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EmailTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EmailTest.isValidFormat_withInvalidEmail_returnsFalse.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EmailTest.isValidFormat_withValidEmail_returnsTrue.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LoggerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LoggerTest.log_incrementsLogCounter.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LoggerTest.log_updatesLatestLogEvent.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LoggerTest.log_updatesLatestLogType.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PacketUtilsTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ServerModelTest.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.Client [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.Server [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.Server [org.apache.maven.plugins:maven-clean-plugin:2.5:clean].executor&quot;: &quot;Run&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;18&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last.edited.regexp&quot;: &quot;Sample.Text@mymail.com&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/davide/Desktop/IUMTWEB&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.ClientApplication.executor": "Run",
+    "Application.ServerApplication.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.AccountUtilsTest.executor": "Run",
+    "JUnit.EmailTest.executor": "Run",
+    "JUnit.EmailTest.isValidFormat_withInvalidEmail_returnsFalse.executor": "Run",
+    "JUnit.EmailTest.isValidFormat_withValidEmail_returnsTrue.executor": "Run",
+    "JUnit.LoggerTest.executor": "Run",
+    "JUnit.LoggerTest.log_incrementsLogCounter.executor": "Run",
+    "JUnit.LoggerTest.log_updatesLatestLogEvent.executor": "Run",
+    "JUnit.LoggerTest.log_updatesLatestLogType.executor": "Run",
+    "JUnit.PacketUtilsTest.executor": "Run",
+    "JUnit.ServerModelTest.executor": "Run",
+    "Maven.Client [clean].executor": "Run",
+    "Maven.Server [clean].executor": "Run",
+    "Maven.Server [org.apache.maven.plugins:maven-clean-plugin:2.5:clean].executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "18",
+    "kotlin-language-version-configured": "true",
+    "last.edited.regexp": "Sample.Text@mymail.com",
+    "last_opened_file_path": "/home/davide/Desktop/PROGIII/Prog3_Project",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;PLAIN_TEXT&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "PLAIN_TEXT"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.server.server.utils" />
@@ -238,6 +237,7 @@
       <workItem from="1703085837258" duration="2552000" />
       <workItem from="1703245373124" duration="873000" />
       <workItem from="1703246617295" duration="696000" />
+      <workItem from="1704368322836" duration="1084000" />
     </task>
     <task id="LOCAL-00001" summary="Server branch">
       <option name="closed" value="true" />
@@ -575,7 +575,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703003901931</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="More javadoc">
+      <option name="closed" value="true" />
+      <created>1704368618148</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1704368618148</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -625,8 +633,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added handlers for specific packets and send logic" />
-    <MESSAGE value="Useful renames" />
     <MESSAGE value="Useful renames+better strategies" />
     <MESSAGE value="Useful renames and logger directory check" />
     <MESSAGE value="Implemented refresh handler and strategy server-side" />
@@ -650,16 +656,13 @@
     <MESSAGE value="Fixed read and improved client UI." />
     <MESSAGE value="Fixed client auto-refresh + better popups" />
     <MESSAGE value="Miscellaneous files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Miscellaneous files" />
+    <MESSAGE value="More javadoc" />
+    <MESSAGE value="Small fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Small fixes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Client/src/main/java/com/client/client/models/CommsHandler.java</url>
-          <line>36</line>
-          <option name="timeStamp" value="69" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Client/src/main/java/com/client/client/models/PacketHandler.java</url>
           <line>47</line>
@@ -672,13 +675,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java</url>
-          <line>487</line>
+          <line>482</line>
           <option name="timeStamp" value="98" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Server/src/main/java/com/server/server/utils/specificHandlers/RefreshHandler.java</url>
-          <line>23</line>
-          <option name="timeStamp" value="99" />
         </line-breakpoint>
         <breakpoint type="java-exception">
           <properties class="java.lang.NullPointerException" package="java.lang" />

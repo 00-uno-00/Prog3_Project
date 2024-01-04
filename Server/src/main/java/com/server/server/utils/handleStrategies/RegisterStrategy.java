@@ -33,7 +33,7 @@ public class RegisterStrategy implements PacketHandlerStrategy {
             responsePacket = registerHandler.register(username);
         } else {
             logger.log("Received register request with invalid Payload type : " + packet.getPayload().getClass(), "Error" );
-            return result;
+            return false;
         }
 
         if(responsePacket.getOperation().equals("successful")){
