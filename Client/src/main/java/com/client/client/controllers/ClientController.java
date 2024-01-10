@@ -374,20 +374,18 @@ public class ClientController implements Initializable{
      */
     public void loadContacts() {
         try {
-            URL contactsFile = getClass().getResource("/" + owner + "Contacts.csv");
-            if (contactsFile == null) {
-                File newFile = new File(owner + "Contacts.csv");//owner is null when creating the file
+            File contactsFile = new File("Client/src/main/resources/com/client/client/" + owner + "Contacts.csv");
+            if (!contactsFile.exists()) {
                 try {
-                    if (newFile.createNewFile()) {
-                        System.out.println("File created: " + newFile.getName());
+                    if (contactsFile.createNewFile()) {
+                        System.out.println("File created: " + contactsFile.getName());
                     }
                 } catch (IOException e) {
                     System.out.println("An error occurred while creating the file.");
                     System.err.println("Error: " + e + e.getCause());
                 }
-                contactsFile = newFile.toURI().toURL();
             }
-            Scanner scanner = new Scanner(new File(contactsFile.getFile()));
+            Scanner scanner = new Scanner(contactsFile);
 
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
@@ -414,7 +412,7 @@ public class ClientController implements Initializable{
             if (!contacts.contains(recipient)) {
                 contacts.add(recipient);
                 try {
-                    FileWriter writer = new FileWriter(owner + "Contacts.csv", true);
+                    FileWriter writer = new FileWriter("Client/src/main/resources/com/client/client/" + owner + "Contacts.csv", true);
                     writer.write(recipient + "\n");
                     writer.close();
                 } catch (IOException e) {
