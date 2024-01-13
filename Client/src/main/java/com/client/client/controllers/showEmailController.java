@@ -97,6 +97,11 @@ public class showEmailController {
     }
 
     /**
+     * Initiates the replyAll operation for the current email.
+     */
+    public void replyAll(){clientController.replyAll(email);}
+
+    /**
      * Initiates the forward operation for the current email.
      */
 

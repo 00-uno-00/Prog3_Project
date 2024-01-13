@@ -76,11 +76,11 @@ public class ClientController implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         contactsList.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
-            openNewEmailPopup(new String[]{"new", "1", contactsList.getSelectionModel().getSelectedItem(), "", ""});
+            openNewEmailPopup(new String[]{"new", contactsList.getSelectionModel().getSelectedItem(), "", ""});
         });
 
         newEmailButton.onActionProperty().setValue(actionEvent -> {
-            openNewEmailPopup(new String[]{"new", "1", "", "", ""});
+            openNewEmailPopup(new String[]{"new", "", "", ""});
         });
 
         handleSelectionChange(senderList, emails);
@@ -250,7 +250,7 @@ public class ClientController implements Initializable{
 
     /**
      * Opens a new email popup
-     * @param args args[0] is the type of new mail, args[1] is the number of recipients, args[2] is the recipient(s), args[3] is the subject, args[4] is the body
+     * @param args args[0] is the type of new mail,  args[1] is the recipient(s), args[2] is the subject, args[3] is the body
      */
     public void openNewEmailPopup(String[] args) {
         switch (args[0]){
@@ -260,9 +260,9 @@ public class ClientController implements Initializable{
                     root = loader.load();
 
                     newEmailController newEmailController = loader.getController();
-                    newEmailController.setRecipient(args[2]);
-                    newEmailController.setSubject(args[3]);
-                    newEmailController.setBody(args[4]);
+                    newEmailController.setRecipient(args[1]);
+                    newEmailController.setSubject(args[2]);
+                    newEmailController.setBody(args[3]);
                     newEmailController.setOwner(owner);
 
                     Stage newEmailStage = newEmailController.showNewEmailPopup(root, this);
@@ -279,9 +279,9 @@ public class ClientController implements Initializable{
                     root = loader.load();
 
                     newEmailController newEmailController = loader.getController();
-                    newEmailController.setRecipient(args[2]);
-                    newEmailController.setSubject("Re: " + args[3]);
-                    newEmailController.setBody("\"" + args[4] + "\"");
+                    newEmailController.setRecipient(args[1]);
+                    newEmailController.setSubject("Re: " + args[2]);
+                    newEmailController.setBody("\"" + args[3] + "\"");
                     newEmailController.setOwner(owner);
 
                     Stage newEmailStage = newEmailController.showNewEmailPopup(root, this);
@@ -298,9 +298,9 @@ public class ClientController implements Initializable{
                     root = loader.load();
 
                     newEmailController newEmailController = loader.getController();
-                    newEmailController.setRecipient(args[2]);
-                    newEmailController.setSubject("Fwd: " + args[3]);
-                    newEmailController.setBody("\"" + args[4] + "\"");
+                    newEmailController.setRecipient(args[1]);
+                    newEmailController.setSubject("Fwd: " + args[2]);
+                    newEmailController.setBody("\"" + args[3] + "\"");
                     newEmailController.setOwner(owner);
 
                     Stage newEmailStage = newEmailController.showNewEmailPopup(root, this);
@@ -483,7 +483,7 @@ public class ClientController implements Initializable{
      * @param email The email to be forwarded.
      */
     public void forwardEmail(Email email) {
-        openNewEmailPopup(new String[]{"forward", "1", "", email.getSubject(), email.getBody()});
+        openNewEmailPopup(new String[]{"forward", "", email.getSubject(), email.getBody()});
     }
 
     /**
@@ -491,7 +491,16 @@ public class ClientController implements Initializable{
      * @param email The email to reply to.
      */
     public void replyEmail(Email email) {
-        openNewEmailPopup(new String[]{"reply", "1", email.getSender(), email.getSubject(), email.getBody()});
+        openNewEmailPopup(new String[]{"reply", email.getSender(), email.getSubject(), email.getBody()});
+    }
+
+    public void replyAll(Email email) {
+        String recipients = email.getSender() + ", " + email.getRecipients();
+        //use replace all to remove the brackets from the list
+        recipients = recipients.replaceAll("[\\[\\]]", "");
+        //remove duplicates from the string except for ", "
+        recipients = Arrays.stream(recipients.split(", ")).distinct().reduce((s, s2) -> s + ", " + s2).orElse("");
+        openNewEmailPopup(new String[]{"reply", recipients, email.getSubject(), email.getBody()});
     }
 
     /**
