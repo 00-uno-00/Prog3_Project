@@ -254,7 +254,7 @@ public class ClientController implements Initializable{
      */
     public void openNewEmailPopup(String[] args) {
         switch (args[0]){
-            case "new"://args[1] = 1
+            case "new":
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/client/client/controllers/newEmail.fxml"));
                     root = loader.load();
@@ -273,7 +273,7 @@ public class ClientController implements Initializable{
                     System.out.println("Error opening popup");
                 }
                 break;
-            case "reply"://args[1] = 1
+            case "reply":
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/client/client/controllers/newEmail.fxml"));
                     root = loader.load();
@@ -292,7 +292,7 @@ public class ClientController implements Initializable{
                     System.out.println("Error opening popup");
                 }
                 break;
-            case "forward"://args[1] = 1
+            case "forward":
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/client/client/controllers/newEmail.fxml"));
                     root = loader.load();
@@ -300,28 +300,6 @@ public class ClientController implements Initializable{
                     newEmailController newEmailController = loader.getController();
                     newEmailController.setRecipient(args[2]);
                     newEmailController.setSubject("Fwd: " + args[3]);
-                    newEmailController.setBody("\"" + args[4] + "\"");
-                    newEmailController.setOwner(owner);
-
-                    Stage newEmailStage = newEmailController.showNewEmailPopup(root, this);
-                    newEmailStage.setOnCloseRequest(this::popStage);
-
-                    emailStages.add(newEmailStage);
-                } catch (Exception e) {
-                    System.out.println("Error opening popup");
-                }
-                break;
-            case "replyAll"://args[1] = x
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/client/client/controllers/newEmail.fxml"));
-                    root = loader.load();
-
-                    newEmailController newEmailController = loader.getController();
-                    while (args[2].contains(",")){
-                        newEmailController.setRecipient(args[2].substring(0, args[2].indexOf(",")));
-                        args[2] = args[2].substring(args[2].indexOf(",") + 1);
-                    }
-                    newEmailController.setSubject("Re: " + args[3]);
                     newEmailController.setBody("\"" + args[4] + "\"");
                     newEmailController.setOwner(owner);
 

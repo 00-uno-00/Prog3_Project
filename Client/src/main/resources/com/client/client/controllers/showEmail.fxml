@@ -16,6 +16,7 @@
         <ToolBar>
             <items>
                 <Button fx:id="replyButton" mnemonicParsing="false" onAction="#reply" text="Reply" />
+            <Button id="replyAllButton" fx:id="replyAllButton" mnemonicParsing="false" onAction="#replyAll" text="Reply All" />
                 <Button fx:id="forwardButton" mnemonicParsing="false" onAction="#forward" text="Forward" />
                 <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#delete" text="Delete" />
                 <Label fx:id="emailDate" layoutX="500" layoutY="10" />
@@ -37,6 +38,23 @@
                 <TextField fx:id="sender" editable="false" prefHeight="24.0" prefWidth="514.0" GridPane.columnIndex="1" />
             </children>
         </GridPane>
+      <GridPane prefHeight="30.0" prefWidth="592.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="285.0" minWidth="10.0" prefWidth="36.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="544.0" minWidth="10.0" prefWidth="544.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label text="To:">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="recipients" editable="false" prefHeight="24.0" prefWidth="514.0" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
         <TextField fx:id="subject" editable="false" />
         <TextArea fx:id="body" editable="false" />
     </children>

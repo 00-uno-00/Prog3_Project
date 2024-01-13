@@ -18,9 +18,16 @@ import java.io.IOException;
 public class showEmailController {
 
     @FXML
+    public TextField recipients;
+
+    @FXML
     private Label emailDate;
+
     @FXML
     private Button replyButton;
+
+    @FXML
+    public Button replyAllButton;
 
     @FXML
     private Button forwardButton;
@@ -49,6 +56,7 @@ public class showEmailController {
      */
     protected void setEmailPopup(Email email) {
         sender.setText(email.getSender());
+        recipients.setText(email.getRecipients().toString().replaceAll("[\\[\\]]", ""));
         subject.setText(email.getSubject());
         body.setText(email.getBody());
         emailDate.setText(email.getDate().toString());
