@@ -4,20 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Fixed contacts files location and behaviour">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/showEmailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/showEmailController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/a@aa.aaContacts.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/a@aa.aaContacts.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/controllers/showEmail.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/controllers/showEmail.fxml" afterDir="false" />
+    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Added reply all feature and recipients to show email popup. Changes from Edoardo">
       <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.aa/emails.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.aa/emails.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.bb/emails.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.bb/emails.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/davide.vitturini@prog3.it/emails.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/davide.vitturini@prog3.it/emails.json" afterDir="false" />
     </list>
-    <list id="e3185283-d5b6-43ae-9241-e28d03e8e7b5" name="Changes by XZgam" comment="">
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/showEmailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/showEmailController.java" afterDir="false" />
-    </list>
+    <list id="e3185283-d5b6-43ae-9241-e28d03e8e7b5" name="Changes by XZgam" comment="Changes by XZgam" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,34 +51,6 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Server/src/main/java/com/server/server/models/ServerModel.java" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/ClientController.java">
-      <ranges>
-        <range start1="78" end1="79" start2="78" end2="79" changelist="e3185283-d5b6-43ae-9241-e28d03e8e7b5" />
-        <range start1="82" end1="83" start2="82" end2="83" changelist="e3185283-d5b6-43ae-9241-e28d03e8e7b5" />
-        <range start1="252" end1="253" start2="252" end2="253" changelist="e3185283-d5b6-43ae-9241-e28d03e8e7b5" />
-        <range start1="256" end1="257" start2="256" end2="257" changelist="62e09469-553b-4e2a-b21e-c9a9d5c656af" />
-        <range start1="262" end1="265" start2="262" end2="265" changelist="e3185283-d5b6-43ae-9241-e28d03e8e7b5" />
-        <range start1="275" end1="276" start2="275" end2="276" changelist="62e09469-553b-4e2a-b21e-c9a9d5c656af" />
-        <range start1="281" end1="284" start2="281" end2="284" changelist="e3185283-d5b6-43ae-9241-e28d03e8e7b5" />
-        <range start1="294" end1="295" start2="294" end2="295" changelist="62e09469-553b-4e2a-b21e-c9a9d5c656af" />
-        <range start1="300" end1="303" start2="300" end2="303" changelist="e3185283-d5b6-43ae-9241-e28d03e8e7b5" />
-        <range start1="313" end1="335" start2="313" end2="313" changelist="62e09469-553b-4e2a-b21e-c9a9d5c656af" />
-        <range start1="507" end1="508" start2="485" end2="486" changelist="e3185283-d5b6-43ae-9241-e28d03e8e7b5" />
-        <range start1="515" end1="516" start2="493" end2="494" changelist="e3185283-d5b6-43ae-9241-e28d03e8e7b5" />
-        <range start1="518" end1="518" start2="496" end2="505" changelist="e3185283-d5b6-43ae-9241-e28d03e8e7b5" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/showEmailController.java">
-      <ranges>
-        <range start1="19" end1="19" start2="19" end2="22" changelist="62e09469-553b-4e2a-b21e-c9a9d5c656af" />
-        <range start1="21" end1="21" start2="24" end2="25" changelist="62e09469-553b-4e2a-b21e-c9a9d5c656af" />
-        <range start1="23" end1="23" start2="27" end2="30" changelist="62e09469-553b-4e2a-b21e-c9a9d5c656af" />
-        <range start1="51" end1="51" start2="58" end2="59" changelist="62e09469-553b-4e2a-b21e-c9a9d5c656af" />
-        <range start1="90" end1="90" start2="98" end2="103" changelist="e3185283-d5b6-43ae-9241-e28d03e8e7b5" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -286,7 +249,7 @@
       <workItem from="1705054779523" duration="988000" />
       <workItem from="1705098004187" duration="964000" />
       <workItem from="1705148060514" duration="1338000" />
-      <workItem from="1705163630422" duration="3808000" />
+      <workItem from="1705163630422" duration="4101000" />
     </task>
     <task id="LOCAL-00001" summary="Server branch">
       <option name="closed" value="true" />
@@ -648,7 +611,23 @@
       <option name="project" value="LOCAL" />
       <updated>1704910711332</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Added reply all feature and recipients to show email popup">
+      <option name="closed" value="true" />
+      <created>1705167584147</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1705167584147</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Changes by XZgam">
+      <option name="closed" value="true" />
+      <created>1705167612858</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1705167612858</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -698,9 +677,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Useful renames and logger directory check" />
-    <MESSAGE value="Implemented refresh handler and strategy server-side" />
-    <MESSAGE value="Verbose logging server side and run configs" />
     <MESSAGE value="Added client icon" />
     <MESSAGE value="now &quot;client&quot; is a valid sender" />
     <MESSAGE value="is valid format is now working" />
@@ -723,7 +699,10 @@
     <MESSAGE value="More javadoc" />
     <MESSAGE value="Small fixes" />
     <MESSAGE value="Fixed contacts files location and behaviour" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed contacts files location and behaviour" />
+    <MESSAGE value="Added reply all feature and recipients to show email popup" />
+    <MESSAGE value="Added reply all feature and recipients to show email popup. Changes from Edoardo" />
+    <MESSAGE value="Changes by XZgam" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes by XZgam" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
