@@ -4,15 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="New gitignore and more tests">
+    <list default="true" id="62e09469-553b-4e2a-b21e-c9a9d5c656af" name="Changes" comment="Folder reset">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/loginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/com/client/client/controllers/loginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/a@aa.aaContacts.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/a@aa.aaContacts.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/a@aa.bbContacts.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/a@aa.bbContacts.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.aa/emails.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.aa/emails.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.bb/emails.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.bb/emails.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.cc/emails.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.cc/emails.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/id/id.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/id/id.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/a@aa.aaContacts.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/a@aa.bbContacts.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/acc@acc.accContacts.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/resources/com/client/client/davide.vitturini@prog3.itContacts.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.aa/emails.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.bb/emails.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.cc/emails.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.ee/emails.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@aa.gg/emails.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/a@bb.aa/emails.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/acc@acc.acc/emails.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/davide.vitturini@prog3.it/emails.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/marco.vitturini@prog3.it/emails.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/accounts/s@ss.aa/emails.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/src/main/resources/com/server/server/id/id.txt" beforeDir="false" />
     </list>
     <list id="e3185283-d5b6-43ae-9241-e28d03e8e7b5" name="Changes by XZgam" comment="Changes by XZgam" />
     <option name="SHOW_DIALOG" value="false" />
@@ -84,7 +93,7 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Application.ClientApplication.executor": "Debug",
+    "Application.ClientApplication.executor": "Run",
     "Application.ServerApplication.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
     "JUnit.AccountUtilsTest.executor": "Run",
@@ -258,15 +267,7 @@
       <workItem from="1705163630422" duration="4134000" />
       <workItem from="1705231010699" duration="457000" />
       <workItem from="1705232513277" duration="30000" />
-      <workItem from="1705251091692" duration="5275000" />
-    </task>
-    <task id="LOCAL-00002" summary="Server buttons">
-      <option name="closed" value="true" />
-      <created>1701091909252</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1701091909252</updated>
+      <workItem from="1705251091692" duration="5627000" />
     </task>
     <task id="LOCAL-00003" summary="Improved server interface UI and added logging features">
       <option name="closed" value="true" />
@@ -652,7 +653,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705252699587</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Folder reset">
+      <option name="closed" value="true" />
+      <created>1705257250800</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1705257250800</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -702,7 +711,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed the creation of accounts in Register Handler" />
     <MESSAGE value="A bit of mess to make the login work" />
     <MESSAGE value="Added server docs &amp; fixed Email regex" />
     <MESSAGE value="handlers and strategies schemas + tests" />
@@ -727,7 +735,8 @@
     <MESSAGE value="New test emails" />
     <MESSAGE value="Allowed multiple client instances" />
     <MESSAGE value="New gitignore and more tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="New gitignore and more tests" />
+    <MESSAGE value="Folder reset" />
+    <option name="LAST_COMMIT_MESSAGE" value="Folder reset" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
