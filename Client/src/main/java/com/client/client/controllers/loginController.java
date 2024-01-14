@@ -130,7 +130,7 @@ public class loginController implements Initializable {
             // Set the icon for the stage
             stage.getIcons().add(icon);
 
-            stage.setTitle("Client");
+            stage.setTitle("Client - " + emailField.getText());
             stage.setScene(scene);
             stage.setOnCloseRequest(controller::handleCloseRequest);
 
